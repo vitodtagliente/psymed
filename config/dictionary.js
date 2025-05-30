@@ -241,113 +241,271 @@ const pseudoNegations = [
 ];
 
 const bfrsItems = {
-    "ansia": {
-        keywords: ["ansia", "ansioso", "preoccupazione", "agitazione", "tensione"],
+    // 1. Preoccupazione Somatica
+    "preoccupazione_somatica": {
+        keywords: [
+            "preoccupazioni somatiche", "lamentele somatiche", "dolori fisici", "malesseri fisici",
+            "sintomi fisici non giustificati", "somatizzazione", "ipocondria"
+        ],
         modifiers: {
-            "grave": ["grave", "severa", "intensa", "paralizzante", "costante", "insopportabile"],
-            "moderata": ["moderata", "discreta", "significativa", "persistente"],
-            "lieve": ["lieve", "minima", "occasionale", "transitoria"],
-            "assente": ["assente", "non presente", "nessuna"] // Per la negazione
+            "estrema": ["gravemente preoccupato per la salute", "ossessivo riguardo ai sintomi", "invalidato da sintomi fisici"],
+            "grave": ["intense preoccupazioni somatiche", "numerosi disturbi fisici", "frequenti lamentele fisiche", "gravi", "severi"],
+            "moderata": ["moderate lamentele fisiche", "preoccupazioni persistenti per il corpo", "discreto numero di sintomi"],
+            "lieve": ["poche lamentele fisiche", "preoccupazioni occasionali", "lievi disturbi somatici"],
+            "assente": ["nessuna preoccupazione somatica", "nessuna lamentela fisica", "assenti"]
         }
     },
-    "depressione": {
-        keywords: ["depressione", "depresso", "tristezza", "umore basso", "anedonia", "apatia"],
+    // 2. Ritiro Emotivo
+    "ritiro_emotivo": {
+        keywords: [
+            "ritiro emotivo", "isolamento sociale", "distacco emotivo", "freddezza emotiva",
+            "appiattimento affettivo", "espressione emotiva ridotta", "risposta emotiva assente"
+        ],
         modifiers: {
-            "grave": ["grave", "profonda", "marcata", "invalidante", "disperazione"],
-            "moderata": ["moderata", "persistente", "significativa"],
-            "lieve": ["lieve", "transitoria", "occasionale"],
-            "assente": ["assente", "non presente", "nessuna"]
+            "estrema": ["completo isolamento", "totalmente ritirato", "assenza totale di contatto", "senza risposta emotiva"],
+            "grave": ["significativo ritiro", "grave isolamento", "emotivamente non reattivo", "appiattimento marcato"],
+            "moderata": ["moderato ritiro", "difficoltà a connettersi emotivamente", "reazioni emotive attenuate"],
+            "lieve": ["lieve distacco", "occasionale ritiro", "emozioni un po' contenute"],
+            "assente": ["nessun ritiro emotivo", "contatto emotivo normale", "assenti"]
         }
     },
-    "preoccupazione_somatica": { // Item 1 BPRs
-        keywords: ["preoccupazioni somatiche", "dolori fisici", "malesseri", "sintomi fisici non giustificati"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 3. Disorganizzazione Concettuale
+    "disorganizzazione_concettuale": {
+        keywords: [
+            "disorganizzazione del pensiero", "pensiero incoerente", "associazione allentata",
+            "deragliamento", "illogicità", "incoerenza", "salto di idee", "difficoltà a concentrarsi"
+        ],
+        modifiers: {
+            "estrema": ["totalmente incoerente", "discorso incomprensibile", "frammentazione estrema del pensiero"],
+            "grave": ["grave disorganizzazione", "pensiero difficile da seguire", "numerosi deragliamenti", "logica compromessa"],
+            "moderata": ["moderata disorganizzazione", "occasionale illogicità", "difficoltà nel seguire il filo del discorso"],
+            "lieve": ["lievi associazioni allentate", "occasionale incoerenza", "piccole difficoltà di concentrazione"],
+            "assente": ["pensiero coerente", "logico", "assenti"]
+        }
     },
-    "ritiro_emotivo": { // Item 2 BPRs
-        keywords: ["ritiro emotivo", "isolamento", "chiuso in sé", "distaccato", "freddezza emotiva", "appiattimento affettivo"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 4. Manierismi e Posture Bizzarre
+    "manierismi_e_posture_bizzarre": {
+        keywords: [
+            "manierismi", "posture bizzarre", "movimenti insoliti", "tic", "stereotipie",
+            "strane espressioni facciali", "gesti ripetitivi", "rigidità motoria"
+        ],
+        modifiers: {
+            "estrema": ["comportamento totalmente bizzarro", "posture mantenute a lungo", "movimenti gravemente strani"],
+            "grave": ["numerosi manierismi", "posture insolite frequenti", "comportamento strambo", "marcato", "persistente"],
+            "moderata": ["moderati manierismi", "qualche postura insolita", "movimenti ripetitivi"],
+            "lieve": ["lievi tic", "piccoli manierismi occasionali", "lievi movimenti strani"],
+            "assente": ["nessun manierismo o postura bizzarra", "assenti"]
+        }
     },
-    "disorganizzazione_concettuale": { // Item 3 BPRs
-        keywords: ["disorganizzazione del pensiero", "pensiero incoerente", "difficoltà a concentrarsi", "salto di idee"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 5. Tensione
+    "tensione": {
+        keywords: [
+            "tensione", "nervosismo", "irrequietezza", "agitazione", "ansia motoria",
+            "rigidità muscolare", "tremori", "incapacità di rilassarsi"
+        ],
+        modifiers: {
+            "estrema": ["tensione insopportabile", "agitazione estrema", "incapacità totale di stare fermo", "panico"],
+            "grave": ["grave tensione", "agitazione marcata", "tremori costanti", "difficoltà a stare seduto"],
+            "moderata": ["moderata tensione", "un po' irrequieto", "nervosismo evidente"],
+            "lieve": ["lieve tensione", "un po' agitato", "lievi segni di nervosismo"],
+            "assente": ["assenza di tensione", "calmo", "rilassato", "assenti"]
+        }
     },
-    "manierismi_e_posture_bizzarre": { // Item 4 BPRs
-        keywords: ["manierismi", "posture bizzarre", "movimenti insoliti", "tics"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 6. Maniacalità
+    "maniacalita": {
+        keywords: [
+            "maniacalità", "euforia", "iperattività", "grandiosità", "irritabilità marcata",
+            "pensiero accelerato", "logorrea", "ridotta necessità di sonno", "eccessiva autostima"
+        ],
+        modifiers: {
+            "estrema": ["mania grave", "euforia incontenibile", "iperattività pericolosa", "deliri di grandezza"],
+            "grave": ["marcata euforia", "grave iperattività", "eloquio inarrestabile", "irritabilità estrema"],
+            "moderata": ["moderata euforia", "più attivo del solito", "parla molto", "irritabilità"],
+            "lieve": ["lieve elevazione dell'umore", "un po' più energico", "meno necessità di dormire"],
+            "assente": ["umore normale", "nessun segno di mania", "assenti"]
+        }
     },
-    "tensione": { // Item 5 BPRs
-        keywords: ["tensione", "nervosismo", "irrequietezza", "agitazione psicomotoria"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 7. Ostilità
+    "ostilita": {
+        keywords: [
+            "ostilità", "rabbia", "irritabilità", "aggressività", "collera",
+            "comportamento antagonistico", "atteggiamento provocatorio", "risentimento"
+        ],
+        modifiers: {
+            "estrema": ["violenza fisica", "aggressività incontrollabile", "minacce dirette e gravi"],
+            "grave": ["marcata ostilità", "scoppi di rabbia frequenti", "comportamento aggressivo verbale", "minacce"],
+            "moderata": ["moderata irritabilità", "discussioni frequenti", "atteggiamento critico"],
+            "lieve": ["lieve irritabilità", "qualche segno di fastidio", "sguardi ostili occasionali"],
+            "assente": ["nessuna ostilità", "cooperativo", "assenti"]
+        }
     },
-    "maniacalità": { // Item 6 BPRs
-        keywords: ["maniacalità", "euforia", "iperattività", "grandiosità", "irritabilità marcata"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 8. Sospettosità
+    "sospettosita": {
+        keywords: [
+            "sospettosità", "paranoia", "diffidenza", "credenze persecutorie", "idee di riferimento",
+            "sensazione di essere osservato", "complotti"
+        ],
+        modifiers: {
+            "estrema": ["deliri persecutori invalidanti", "assoluta sfiducia in tutti", "totale convinzione di essere perseguitato"],
+            "grave": ["marcata sospettosità", "deliri persecutori", "diffidenza significativa", "non si fida di nessuno"],
+            "moderata": ["moderata sospettosità", "dubbi frequenti sulle intenzioni altrui", "idee di riferimento occasionali"],
+            "lieve": ["lieve diffidenza", "un po' cauto", "un po' sospettoso"],
+            "assente": ["nessuna sospettosità", "fiducia negli altri", "assenti"]
+        }
     },
-    "ostilita": { // Item 7 BPRs
-        keywords: ["ostilità", "rabbia", "irritabilità", "aggressività", "collera"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 9. Allucinazioni
+    "allucinazioni": {
+        keywords: [
+            "allucinazioni", "voci", "visioni", "percezioni anomale", "odori strani",
+            "sensazioni tattili insolite", "allucinazioni uditive", "allucinazioni visive"
+        ],
+        modifiers: {
+            "estrema": ["allucinazioni continue", "invalidanti", "guidano il comportamento", "pericolose"],
+            "grave": ["allucinazioni frequenti", "voci dominanti", "disturbanti", "difficili da distinguere dalla realtà"],
+            "moderata": ["allucinazioni occasionali", "meno frequenti", "il paziente ne è consapevole", "non sempre disturbanti"],
+            "lieve": ["allucinazioni rare", "fugaci", "il paziente le riconosce come tali"],
+            "assente": ["nessuna allucinazione", "assenti"]
+        }
     },
-    "sospettosita": { // Item 8 BPRs
-        keywords: ["sospettosità", "paranoia", "diffidenza", "credenze persecutorie"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 10. Disorientamento
+    "disorientamento": {
+        keywords: [
+            "disorientamento", "confusione", "perdita di lucidità", "difficoltà a riconoscere luoghi",
+            "difficoltà a riconoscere persone", "non sa dove si trova", "non sa che giorno è"
+        ],
+        modifiers: {
+            "estrema": ["totalmente disorientato", "non riconosce nessuno", "incapace di orientarsi", "grave confusione"],
+            "grave": ["disorientamento marcato", "confuso sulla persona, tempo, luogo", "errori frequenti di orientamento"],
+            "moderata": ["moderato disorientamento", "confusione occasionale", "difficoltà con date o luoghi meno familiari"],
+            "lieve": ["lieve disorientamento", "piccoli errori di orientamento", "momenti di lieve confusione"],
+            "assente": ["orientato nel tempo e nello spazio", "lucido", "assenti"]
+        }
     },
-    "allucinazioni": { // Item 9 BPRs
-        keywords: ["allucinazioni", "voci", "visioni", "percezioni anomale"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 11. Anedonia / Ritiro Sociale
+    "anedonia_ritiro_sociale": {
+        keywords: [
+            "anedonia", "mancanza di piacere", "perdita di interesse", "isolamento sociale",
+            "non prova più piacere", "ritiro dalle attività", "indifferenza"
+        ],
+        modifiers: {
+            "estrema": ["totale mancanza di piacere", "completamente isolato", "incapacità di godere di nulla"],
+            "grave": ["anedonia marcata", "grave ritiro sociale", "non partecipa ad attività", "non ha più interessi"],
+            "moderata": ["moderata anedonia", "ridotto interesse per le attività", "socialmente meno attivo"],
+            "lieve": ["lieve anedonia", "diminuito piacere in alcune cose", "meno propenso a socializzare"],
+            "assente": ["capacità di provare piacere", "socialmente attivo", "assenti"]
+        }
     },
-    "disorientamento": { // Item 10 BPRs
-        keywords: ["disorientamento", "confusione", "perdita di lucidità", "difficoltà a riconoscere luoghi/persone"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 12. Mancanza di Insight
+    "mancanza_di_insight": {
+        keywords: [
+            "mancanza di insight", "negazione della malattia", "non consapevole della patologia",
+            "non riconosce i sintomi", "non crede di essere malato", "minimizzazione"
+        ],
+        modifiers: {
+            "estrema": ["totale assenza di insight", "negazione totale della malattia", "non riconosce alcun sintomo"],
+            "grave": ["grave mancanza di insight", "forte negazione", "attribuisce i problemi agli altri", "irremovibile"],
+            "moderata": ["moderata mancanza di insight", "parziale consapevolezza", "minimizza i problemi", "dubbi"],
+            "lieve": ["lieve mancanza di insight", "poca consapevolezza di alcune aree", "momenti di negazione"],
+            "assente": ["piena consapevolezza della malattia", "riconosce i sintomi", "assenti"]
+        }
     },
-    "anedonia": { // Item 11 BPRs (spesso legato a depressione, ma separato nel BPRS)
-        keywords: ["anedonia", "mancanza di piacere", "perdita di interesse"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 13. Insolito Contenuto del Pensiero
+    "insolito_contenuto_del_pensiero": {
+        keywords: [
+            "deliri", "idee fisse", "pensiero insolito", "irrazionale", "credenze bizzarre",
+            "ideazione non comune", "pensiero magico", "idee sovrastimate", "riferimento"
+        ],
+        modifiers: {
+            "estrema": ["deliri bizzarri e incontenibili", "convinzioni totalmente irrazionali che guidano il comportamento"],
+            "grave": ["deliri dominanti", "idee fisse e pervasive", "pensiero irrazionale significativo"],
+            "moderata": ["deliri occasionali", "idee sovrastimate", "pensiero un po' strano o atipico"],
+            "lieve": ["pensieri insoliti fugaci", "idee strambe ma non deliranti", "curiosità per l'occulto"],
+            "assente": ["contenuto del pensiero normale", "razionale", "assenti"]
+        }
     },
-    "mancanza_di_insight": { // Item 12 BPRs
-        keywords: ["mancanza di insight", "negazione della malattia", "non consapevole della patologia"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 14. Ritardo Psicomotorio
+    "ritardo_psicomotorio": {
+        keywords: [
+            "ritardo psicomotorio", "rallentamento", "bradicinesia", "lentezza nei movimenti",
+            "risposta lenta", "ridotta mimica", "scarso movimento"
+        ],
+        modifiers: {
+            "estrema": ["immobilismo", "catatonia", "totale lentezza", "risposta assente"],
+            "grave": ["marcato rallentamento psicomotorio", "movimenti molto lenti", "eloquio rallentato", "mimica ridotta"],
+            "moderata": ["moderato rallentamento", "meno spontaneo nei movimenti", "risposta un po' lenta"],
+            "lieve": ["lieve lentezza", "meno energico del solito", "piccoli segni di rallentamento"],
+            "assente": ["normali movimenti e attività", "assenti"]
+        }
     },
-    "insolito_contenuto_del_pensiero": { // Item 13 BPRs
-        keywords: ["deliri", "idee fisse", "pensiero insolito", "irrazionale", "credenze bizzarre"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 15. Apatia
+    "apatia": {
+        keywords: [
+            "apatia", "mancanza di motivazione", "indifferenza", "passività",
+            "aboulia", "perdita di iniziativa", "inerzia"
+        ],
+        modifiers: {
+            "estrema": ["completa apatia", "mancanza totale di motivazione", "incapacità di iniziare attività"],
+            "grave": ["marcata apatia", "grave mancanza di iniziativa", "indifferenza a tutto", "non si impegna"],
+            "moderata": ["moderata apatia", "ridotta motivazione", "difficoltà a prendere decisioni"],
+            "lieve": ["lieve apatia", "un po' meno motivato", "qualche incertezza"],
+            "assente": ["motivato", "proattivo", "interessato", "assenti"]
+        }
     },
-    "ritardo_psicomotorio": { // Item 14 BPRs
-        keywords: ["ritardo psicomotorio", "rallentamento", "bradicinesia", "lentezza nei movimenti"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 16. Difficoltà di Concentrazione
+    "difficolta_di_concentrazione": {
+        keywords: [
+            "difficoltà di concentrazione", "distraibilità", "deficit attentivo",
+            "attenzione ridotta", "fatica a focalizzarsi", "non riesce a seguire un discorso"
+        ],
+        modifiers: {
+            "estrema": ["incapacità totale di concentrarsi", "attenzione frammentata", "non segue alcun discorso"],
+            "grave": ["grave deficit di attenzione", "facilmente distraibile", "non riesce a completare compiti", "si perde nei pensieri"],
+            "moderata": ["moderata difficoltà di concentrazione", "distraibilità", "meno attento del solito"],
+            "lieve": ["lieve difficoltà a concentrarsi", "a volte distratto", "piccoli cali di attenzione"],
+            "assente": ["buona concentrazione", "attenzione mantenuta", "assenti"]
+        }
     },
-    "apatia": { // Item 15 BPRs (spesso legato a depressione, ma separato nel BPRS)
-        keywords: ["apatia", "mancanza di motivazione", "indifferenza", "passività"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    // 17. Colpa
+    "colpa": {
+        keywords: [
+            "sensi di colpa", "autocondanna", "senso di indegnità", "autorimprovero",
+            "credenze di colpa", "responsabilità eccessiva"
+        ],
+        modifiers: {
+            "estrema": ["deliri di colpa", "convincimento di essere una persona orribile", "autocondanna assoluta"],
+            "grave": ["gravi sensi di colpa", "pensieri persistenti di indegnità", "si autoaccusa continuamente"],
+            "moderata": ["moderati sensi di colpa", "si sente spesso in colpa", "si critica molto"],
+            "lieve": ["lievi sensi di colpa", "occasionali autocritiche", "un po' responsabile"],
+            "assente": ["nessun senso di colpa", "non si autoaccusa", "assenti"]
+        }
     },
-    "difficolta_di_concentrazione": { // Item 16 BPRs
-        keywords: ["difficoltà di concentrazione", "distraibilità", "deficit attentivo"],
-        modifiers: { /* definisci i modificatori di gravità */ }
-    },
-    "colpa": { // Item 17 BPRs
-        keywords: ["sensi di colpa", "autocondanna", "senso di indegnità"],
-        modifiers: { /* definisci i modificatori di gravità */ }
-    },
+    // 18. Ideazione Suicidaria
     "ideazione_suicidaria": {
-        keywords: ["ideazione suicidaria", "pensieri di morte", "desiderio di morire", "intenzione di farsi del male", "propositi suicidi"],
+        keywords: [
+            "ideazione suicidaria", "pensieri di morte", "desiderio di morire", "intenzione di farsi del male",
+            "propositi suicidi", "pianificazione suicidaria", "tentato suicidio" // Tentato suicidio è un atto, ma può essere un indicatore di ideazione passata
+        ],
         modifiers: {
-            "grave": ["grave", "persistente", "con piano", "immediato"],
-            "moderata": ["moderata", "occasionale", "fluttuante"],
-            "lieve": ["lieve", "rara", "non specifica"],
-            "assente": ["assente", "non presente", "nessuna"]
+            "estrema": ["piano suicidario imminente", "tentativo di suicidio recente", "rischio vitale immediato"],
+            "grave": ["ideazione suicidaria persistente", "con piano ma senza intento immediato", "forti propositi suicidi"],
+            "moderata": ["ideazione suicidaria occasionale", "desiderio di non vivere", "pensieri di morte"],
+            "lieve": ["pensieri fugaci di morte", "senza intento", "non specifici", "solo passivi"],
+            "assente": ["nessuna ideazione suicidaria", "assenti"]
         }
     }
 };
 
 // Ordine di gravità (dal più al meno grave per prevalenza)
-const severityOrder = ["grave", "moderata", "lieve", "assente"];
+// Ho aggiunto "estrema" come livello di gravità superiore.
+const severityOrder = ["estrema", "grave", "moderata", "lieve", "assente"];
 
 // Mappatura della stima di gravità a un punteggio numerico (scala 1-7 per BFRs)
-// 1 = non presente, 7 = estremamente grave
 const bfrsSeverityToScore = {
-    "assente": 1,         // Non presente
-    "lieve": 3,           // Lieve (tra 2-3 della scala BFRs)
-    "moderata": 5,        // Moderata (tra 4-5 della scala BFRs)
-    "grave": 7            // Grave (tra 6-7 della scala BFRs)
+    "assente": 1,
+    "lieve": 2, // Ora 2 per distinguere da "assente"
+    "moderata": 4, // Ora 4 per coprire la metà della scala
+    "grave": 6, // Ora 6
+    "estrema": 7 // Il massimo della scala BFRs
 };
 
 const gafIndicators = {
