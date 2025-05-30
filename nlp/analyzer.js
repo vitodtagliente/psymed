@@ -19,80 +19,79 @@ async function analyzeMedicalText(medicalText)
     if (!medicalText)
     {
         console.log("Testo vuoto fornito per l'analisi.");
-        return { problems: [], therapies: [], bfrs: {}, gaf: {}, relations: [], sections: [] };
+        return { problems: [], therapies: [], bfrs: { items: {}, total_score: 0 }, gaf: { gaf_estimate_range: "Non definito", gaf_score_estimate: 0 }, relations: [], sections: [] };
     }
 
     const results = {
         problems: [],
         therapies: [],
-        bfrs: {},
-        gaf: {},
+        bfrs: { items: {}, total_score: 0 },
+        gaf: { gaf_estimate_range: "Non definito", gaf_score_estimate: 0 }, // Inizializza correttamente
         relations: [],
-        sections: [] // Nuova proprietà per i risultati per sezione
+        sections: []
     };
 
     const sections = identifySections(medicalText);
 
-    // Analizza ogni sezione individualmente
     for (const section of sections)
     {
         const sectionAnalysis = analyzeSectionText(section.text, dictionaries, findEntities, checkNegation);
 
-        // Aggiungi il nome della sezione e il testo originale alla sezione analizzata
         const sectionResult = {
             name: section.name,
-            text: section.text, // Il testo della sezione
+            text: section.text,
             problems: [],
             therapies: [],
-            relations: [] // Le relazioni specifiche di questa sezione
+            relations: []
         };
 
-        // Processa problemi di salute per questa sezione
         sectionAnalysis.problems.forEach(p =>
         {
             const problemData = {
                 text: p.text,
                 label: p.label,
                 isNegated: p.isNegated,
-                attributes: extractAttributes(section.text, p), // Estrai attributi nella sezione specifica
-                section: section.name // Aggiungi la sezione all'entità
+                attributes: extractAttributes(section.text, p),
+                section: section.name
             };
-            results.problems.push(problemData); // Aggiungi alla lista globale
-            sectionResult.problems.push(problemData); // Aggiungi alla lista per sezione
+            results.problems.push(problemData);
+            sectionResult.problems.push(problemData);
         });
 
-        // Processa terapie per questa sezione
         sectionAnalysis.therapies.forEach(t =>
         {
             const therapyData = {
                 text: t.text,
                 label: t.label,
                 isNegated: t.isNegated,
-                attributes: extractAttributes(section.text, t), // Estrai attributi nella sezione specifica
-                section: section.name // Aggiungi la sezione all'entità
+                attributes: extractAttributes(section.text, t),
+                section: section.name
             };
-            results.therapies.push(therapyData); // Aggiungi alla lista globale
-            sectionResult.therapies.push(therapyData); // Aggiungi alla lista per sezione
+            results.therapies.push(therapyData);
+            sectionResult.therapies.push(therapyData);
         });
 
-        // Per le relazioni, raggruppiamo tutte le entità rilevate in questa sezione
         const allEntitiesInThisSection = [...sectionResult.problems, ...sectionResult.therapies];
         const relationsInThisSection = extractRelations(section.text, allEntitiesInThisSection);
 
         relationsInThisSection.forEach(rel =>
         {
-            rel.section = section.name; // Aggiungi la sezione alla relazione
-            results.relations.push(rel); // Aggiungi alla lista globale
-            sectionResult.relations.push(rel); // Aggiungi alla lista per sezione
+            rel.section = section.name;
+            results.relations.push(rel);
+            sectionResult.relations.push(rel);
         });
 
-        results.sections.push(sectionResult); // Aggiungi la sezione analizzata ai risultati
+        results.sections.push(sectionResult);
     }
 
-    // BFRs e GAF di solito si basano sull'intero referto, non su singole sezioni.
-    // Li calcoliamo sul testo completo.
-    results.bfrs = await calculateBFRs(medicalText);
-    results.gaf = await calculateGAF(medicalText);
+    const bfrsResult = await calculateBFRs(medicalText);
+    results.bfrs.items = bfrsResult.items;
+    results.bfrs.total_score = bfrsResult.total_score;
+
+    // Aggiorna come segue per il GAF
+    const gafResult = await calculateGAF(medicalText);
+    results.gaf.gaf_estimate_range = gafResult.gaf_estimate_range;
+    results.gaf.gaf_score_estimate = gafResult.gaf_score_estimate;
 
     return results;
 }

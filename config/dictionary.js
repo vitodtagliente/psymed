@@ -327,14 +327,28 @@ const bfrsItems = {
         keywords: ["sensi di colpa", "autocondanna", "senso di indegnità"],
         modifiers: { /* definisci i modificatori di gravità */ }
     },
-    "ideazione_suicidaria": { // Item 18 BPRs
-        keywords: ["ideazione suicidaria", "pensieri di morte", "desiderio di morire", "intenzione di farsi del male"],
-        modifiers: { /* definisci i modificatori di gravità */ }
+    "ideazione_suicidaria": {
+        keywords: ["ideazione suicidaria", "pensieri di morte", "desiderio di morire", "intenzione di farsi del male", "propositi suicidi"],
+        modifiers: {
+            "grave": ["grave", "persistente", "con piano", "immediato"],
+            "moderata": ["moderata", "occasionale", "fluttuante"],
+            "lieve": ["lieve", "rara", "non specifica"],
+            "assente": ["assente", "non presente", "nessuna"]
+        }
     }
 };
 
 // Ordine di gravità (dal più al meno grave per prevalenza)
 const severityOrder = ["grave", "moderata", "lieve", "assente"];
+
+// Mappatura della stima di gravità a un punteggio numerico (scala 1-7 per BFRs)
+// 1 = non presente, 7 = estremamente grave
+const bfrsSeverityToScore = {
+    "assente": 1,         // Non presente
+    "lieve": 3,           // Lieve (tra 2-3 della scala BFRs)
+    "moderata": 5,        // Moderata (tra 4-5 della scala BFRs)
+    "grave": 7            // Grave (tra 6-7 della scala BFRs)
+};
 
 const gafIndicators = {
     "funzionamento_sociale_compromesso": ["isolamento sociale", "difficoltà relazionali", "non socializza"],
@@ -413,6 +427,96 @@ const sectionPatterns = [
     // Aggiungi altre sezioni comuni che trovi nei tuoi referti
 ];
 
+const gafRanges = [
+    {
+        score_range: "1-10",
+        description: "Grave e persistente compromissione, rischio di ferirsi o ferire altri.",
+        keywords: [
+            "rischio suicidario elevato", "pericolo per sé", "pericoloso per altri",
+            "incapace di mantenere l'igiene personale", "incapace di comunicare",
+            "atto suicidario grave", "violenza grave", "non autonomo", "costante supervisione"
+        ]
+    },
+    {
+        score_range: "11-20",
+        description: "Grave compromissione in quasi tutte le aree, a volte rischio per sé/altri.",
+        keywords: [
+            "deliri invalidanti", "allucinazioni persistenti", "grave disorganizzazione",
+            "comportamento gravemente inappropriato", "isolamento estremo",
+            "non in grado di lavorare o studiare", "totalmente dipendente"
+        ]
+    },
+    {
+        score_range: "21-30",
+        description: "Grave compromissione nella comunicazione e giudizio, grave disfunzione sociale/lavorativa.",
+        keywords: [
+            "compromissione del giudizio", "compromissione del test di realtà",
+            "gravi problemi di comunicazione", "gravi problemi sociali", "non in grado di mantenere un lavoro",
+            "grave incuria di sé", "incapace di vivere autonomamente"
+        ]
+    },
+    {
+        score_range: "31-40",
+        description: "Alcune gravi compromissioni nel test di realtà o comunicazione, oppure compromissione maggiore in più aree.",
+        keywords: [
+            "allucinazioni occasionali", "deliri occasionali", "discorso incoerente",
+            "comportamento inadeguato", "non ha amici", "incapacità di lavorare",
+            "grave ansia generalizzata", "attacchi di panico frequenti e debilitanti"
+        ]
+    },
+    {
+        score_range: "41-50",
+        description: "Gravi sintomi o grave compromissione in una o due aree (sociale, lavorativa, scolastica).",
+        keywords: [
+            "sintomi gravi", "depressione maggiore grave", "disturbi bipolari gravi",
+            "problemi lavorativi significativi", "pochissimi amici", "conflitti familiari gravi",
+            "difficoltà a prendersi cura di sé", "igiene scarsa"
+        ]
+    },
+    {
+        score_range: "51-60",
+        description: "Sintomi moderati o moderate difficoltà sociali, lavorative, scolastiche.",
+        keywords: [
+            "sintomi moderati", "depressione moderata", "ansia moderata",
+            "problemi a scuola", "problemi a lavoro", "difficoltà interpersonali",
+            "isolamento occasionale", "umore altalenante"
+        ]
+    },
+    {
+        score_range: "61-70",
+        description: "Alcuni sintomi lievi o difficoltà sociali, lavorative, scolastiche, ma generalmente funziona bene.",
+        keywords: [
+            "sintomi lievi", "ansia lieve", "tristezza temporanea",
+            "lavora con difficoltà", "mancanza di motivazione", "irritabilità occasionale",
+            "dorme male", "difficoltà di concentrazione"
+        ]
+    },
+    {
+        score_range: "71-80",
+        description: "Se i sintomi sono presenti, sono reazioni prevedibili a stress psicosociali. Nessuna compromissione significativa.",
+        keywords: [
+            "reazione allo stress", "stress transitorio", "lievi difficoltà",
+            "normali preoccupazioni", "senza compromissione", "ben adattato"
+        ]
+    },
+    {
+        score_range: "81-90",
+        description: "Sintomi assenti o minimi. Buon funzionamento, nessuna compromissione significativa.",
+        keywords: [
+            "sintomi assenti", "nessun problema", "funzionamento normale",
+            "ben adattato", "produttivo", "socialmente attivo", "sereno"
+        ]
+    },
+    {
+        score_range: "91-100",
+        description: "Funzionamento superiore, nessun sintomo. Vita piena e soddisfacente.",
+        keywords: [
+            "funzionamento superiore", "assenza di sintomi", "eccellente adattamento",
+            "molto produttivo", "relazioni soddisfacenti", "piena autonomia", "benessere"
+        ]
+    }
+];
+
 problemiSaluteKeywords.sort((a, b) => b.length - a.length);
 terapieKeywords.sort((a, b) => b.length - a.length);
 
@@ -429,4 +533,6 @@ module.exports = {
     relationPatterns,
     sectionPatterns,
     severityOrder,
+    bfrsSeverityToScore,
+    gafRanges,
 };

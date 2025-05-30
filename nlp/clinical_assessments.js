@@ -2,7 +2,7 @@ const { findEntities } = require('./entity_recognizer');
 const { checkNegation } = require('./negation_detector');
 const { tokenizeSentences } = require('../utils/text_processor');
 const { normalizeText } = require('../utils/text_processor');
-const { bfrsItems, gafIndicators, severityOrder } = require('../config/dictionary');
+const { bfrsItems, gafIndicators, severityOrder, bfrsSeverityToScore, gafRanges } = require('../config/dictionary');
 
 /**
  * Tenta di calcolare il BFRs (Brief Psychiatric Rating Scale)
@@ -10,19 +10,23 @@ const { bfrsItems, gafIndicators, severityOrder } = require('../config/dictionar
  * AVVERTENZA: Questa è una stima molto approssimativa e NON è una valutazione clinica valida.
  * Non può determinare la gravità in modo affidabile, solo la possibile presenza e una stima.
  * @param {string} medicalText Il testo medico da analizzare.
- * @returns {object} Un oggetto con gli item del BFRs, un flag 'is_present' e una 'severity_estimate'.
+ * @returns {object} Un oggetto con gli item del BFRs, un flag 'is_present', una 'severity_estimate'
+ * e il 'score' numerico per ogni item, più il 'total_score'.
  */
 async function calculateBFRs(medicalText)
 {
     const sentences = tokenizeSentences(medicalText);
     const bfrsResults = {};
-    const normalizedText = normalizeText(medicalText); // Normalizza una volta per il testo completo
+    let totalBFRsScore = 0; // Inizializza il punteggio totale
+
+    const normalizedText = normalizeText(medicalText);
 
     for (const itemKey in bfrsItems)
     {
         const itemDef = bfrsItems[itemKey];
         let isPresent = false;
-        let severityEstimate = "non rilevato"; // Default
+        let severityEstimate = "assente"; // Default per item non presenti
+        let itemScore = bfrsSeverityToScore["assente"]; // Default score
 
         // Step 1: Trova le keyword dell'item e verifica la negazione
         let foundOccurrences = [];
@@ -42,45 +46,35 @@ async function calculateBFRs(medicalText)
         const anyNotNegated = foundOccurrences.some(occ => !occ.isNegated);
         if (!anyNotNegated)
         {
-            bfrsResults[itemKey] = { is_present: false, severity_estimate: "assente" };
+            bfrsResults[itemKey] = { is_present: false, severity_estimate: severityEstimate, score: itemScore };
+            totalBFRsScore += itemScore; // Aggiungi il punteggio di default (1)
             continue; // Passa al prossimo item del BFRs
         }
 
         isPresent = true; // Se almeno un'occorrenza non negata è trovata
 
-        // Step 2: Se presente, cerca i modificatori di gravità nell'intero testo (o nelle frasi vicine)
+        // Step 2: Se presente, cerca i modificatori di gravità
         let highestSeverityFound = "lieve"; // Partiamo dalla più bassa se presente
+
+        // Cerca i modificatori in tutto il testo per questo item
         for (const severityLevel of severityOrder)
         {
-            if (severityLevel === "assente") continue; // Già gestito dalla negazione
+            if (severityLevel === "assente") continue;
 
             const modifiers = itemDef.modifiers[severityLevel];
             if (modifiers)
             {
-                // Per ogni modificatore di gravità, cerca la sua presenza vicino alle keyword dell'item
                 for (const modifierKeyword of modifiers)
                 {
-                    // Costruisci una regex che cerca la keyword dell'item E il modificatore di gravità nella stessa frase
-                    // oppure in prossimità nel testo completo se il pattern è più elastico.
-                    // Per semplicità, cerchiamo il modificatore nella frase.
                     const escapedModifier = modifierKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
                     // Regex che cerca il modificatore vicino a una delle keyword dell'item
-                    // (es. "ansia grave", "grave depressione", "sintomi gravi di ansia")
-                    // Questo è un punto da affinare: potrebbe usare `attributeExtractor` per trovare attributi
-                    // di gravità specifici per le entità BFRs.
-                    // Per ora, un approccio più semplice: se il modificatore è presente nella frase e la keyword è presente
-
-                    // Un approccio più robusto potrebbe essere integrare qui l'attributeExtractor.
-                    // Ad esempio, trovare l'entità "ansia" e poi cercare i suoi attributi di "gravità".
-                    // Per mantenere separati i moduli, facciamo un controllo semplice qui.
-
-                    const pattern = new RegExp(`\\b${escapedModifier}\\s+(?:\\w+\\s+){0,5}?(?:${itemDef.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b|` +
-                        `(?:${itemDef.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s+(?:\\w+\\s+){0,5}?\\b${escapedModifier}\\b`, 'i');
+                    const itemKeywordsRegex = itemDef.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+                    const pattern = new RegExp(`\\b${escapedModifier}\\s+(?:\\w+\\s+){0,5}?(?:${itemKeywordsRegex})\\b|` +
+                        `(?:${itemKeywordsRegex})\\s+(?:\\w+\\s+){0,5}?\\b${escapedModifier}\\b`, 'i');
 
                     if (pattern.test(normalizedText))
-                    { // Cerca nel testo completo per più flessibilità
-                        // Se troviamo un modificatore di gravità, e questo è più alto di quello già trovato, aggiorna.
+                    {
                         const currentSeverityIndex = severityOrder.indexOf(highestSeverityFound);
                         const newSeverityIndex = severityOrder.indexOf(severityLevel);
                         if (newSeverityIndex !== -1 && newSeverityIndex < currentSeverityIndex)
@@ -92,44 +86,83 @@ async function calculateBFRs(medicalText)
             }
         }
         severityEstimate = highestSeverityFound;
+        itemScore = bfrsSeverityToScore[severityEstimate]; // Mappa la stima a un punteggio numerico
 
-        bfrsResults[itemKey] = { is_present: isPresent, severity_estimate: severityEstimate };
+        bfrsResults[itemKey] = { is_present: isPresent, severity_estimate: severityEstimate, score: itemScore };
+        totalBFRsScore += itemScore; // Aggiungi al punteggio totale
     }
-    return bfrsResults;
+
+    return { items: bfrsResults, total_score: totalBFRsScore }; // Restituisce sia gli item che il totale
 }
 
 /**
  * Tenta di stimare il GAF (Global Assessment of Functioning)
  * basandosi sulla presenza di indicatori nel testo.
  * AVVERTENZA: Questa è una stima molto approssimativa e NON è una valutazione clinica valida.
- * Non può assegnare un punteggio numerico affidabile.
+ * Non può assegnare un punteggio numerico affidabile in modo autonomo.
  * @param {string} medicalText Il testo medico da analizzare.
- * @returns {object} Un oggetto con indicatori GAF e un flag 'is_present'.
+ * @returns {object} Un oggetto con la 'gaf_estimate_range' e il 'gaf_score_estimate' (un punto medio del range).
  */
-async function calculateGAF(medicalText)
-{
+async function calculateGAF(medicalText) {
     const sentences = tokenizeSentences(medicalText);
-    const gafResults = {};
+    const normalizedText = normalizeText(medicalText); // Normalizza una volta
 
-    for (const indicator in gafIndicators)
-    {
-        let isPresent = false;
-        for (const sentence of sentences)
-        {
-            const foundKeywords = findEntities(sentence, gafIndicators[indicator], indicator);
-            if (foundKeywords.length > 0)
-            {
-                const anyNotNegated = foundKeywords.some(ent => !checkNegation(sentence, ent.text));
-                if (anyNotNegated)
-                {
-                    isPresent = true;
-                    break;
+    let estimatedGafRange = "Non definito";
+    let estimatedGafScore = 0; // Default
+
+    // Ordina i range dal più basso al più alto (gravità crescente) per trovare il "peggior funzionamento" rilevato
+    // La logica standard del GAF è assegnare il punteggio più basso/grave che il paziente soddisfa.
+    // Qui iteriamo sui range dal più basso (1-10) al più alto (91-100).
+    // Il primo range per cui troviamo keyword non negate è la nostra stima.
+
+    // Itera in ordine inverso per trovare il più grave (più basso) range applicabile.
+    // L'array gafRanges è già ordinato dal più grave (1-10) al meno grave (91-100) per chiarezza.
+    for (const rangeDef of gafRanges) {
+        let foundKeywordsInThisRange = false;
+        for (const keyword of rangeDef.keywords) {
+            const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const pattern = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
+
+            if (pattern.test(normalizedText)) { // Cerca la keyword nel testo completo
+                // Verifica negazione per l'occorrenza della keyword
+                // Qui è un po' più complesso, dovremmo cercare l'esatta occorrenza e poi la negazione.
+                // Per semplificare, se la keyword è presente e non c'è una negazione *vicina* alla keyword.
+                // Una logica più robusta richiederebbe di passare ogni match attraverso checkNegation.
+                
+                // Troviamo tutte le occorrenze della keyword e verifichiamo se almeno una non è negata
+                let anyNotNegated = false;
+                const keywordRegex = new RegExp(`(${escapedKeyword})`, 'gi');
+                let match;
+                while ((match = keywordRegex.exec(normalizedText)) !== null) {
+                    const matchedText = match[0];
+                    // Recuperiamo la frase contenente il match (approssimazione)
+                    const sentenceAroundMatch = normalizedText.substring(
+                        Math.max(0, match.index - 50),
+                        Math.min(normalizedText.length, match.index + matchedText.length + 50)
+                    );
+                    if (!checkNegation(sentenceAroundMatch, matchedText)) {
+                        anyNotNegated = true;
+                        break;
+                    }
+                }
+
+                if (anyNotNegated) {
+                    foundKeywordsInThisRange = true;
+                    break; // Trovato un indicatore per questo range, non cercare oltre per questo range
                 }
             }
         }
-        gafResults[indicator] = { is_present: isPresent };
+
+        if (foundKeywordsInThisRange) {
+            estimatedGafRange = rangeDef.score_range;
+            // Calcola il punto medio del range come stima numerica
+            const [minScore, maxScore] = rangeDef.score_range.split('-').map(Number);
+            estimatedGafScore = Math.round((minScore + maxScore) / 2);
+            break; // Abbiamo trovato il range più grave rilevato, interrompi la ricerca
+        }
     }
-    return gafResults;
+
+    return { gaf_estimate_range: estimatedGafRange, gaf_score_estimate: estimatedGafScore };
 }
 
 module.exports = {
