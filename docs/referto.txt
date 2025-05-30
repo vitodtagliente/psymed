@@ -1,0 +1,36 @@
+Referto di Valutazione Psicopatologica
+
+Nome e Cognome: Rossi Marco
+Data di nascita: 12/04/1990
+Data del colloquio: 15/05/2025
+Luogo della valutazione: Studio di Psicologia Clinica – Dott.ssa L. Bianchi
+Motivo dell’invio: Presenza di sintomi ansioso-depressivi riferiti dal medico curante
+Strumenti utilizzati:
+
+* Colloquio clinico
+* Somministrazione di test psicodiagnostici (MMPI-2, BDI-II, STAI-Y)
+* Osservazione diretta
+
+Anamnesi
+Il paziente si presenta spontaneamente, riferendo un disagio emotivo generalizzato, con difficoltà nella gestione dello stress lavorativo, alterazioni del sonno e dell’umore. L’anamnesi familiare evidenzia la presenza di disturbi dell’umore nella madre e di un disturbo da uso di alcol nel padre. Nessuna storia di patologie neurologiche. Scolarizzazione regolare, attualmente impiegato come tecnico informatico.
+
+Osservazione Clinica
+Durante il colloquio il soggetto appare orientato nel tempo e nello spazio, con tono dell’umore deflesso, mimica facciale povera, tono di voce sommesso. Il contatto oculare è discontinuo. Il pensiero appare coerente ma con contenuti fortemente autocritici. Nessuna alterazione percettiva rilevata. Insight presente, critica conservata.
+
+Risultati dei Test Psicodiagnostici
+
+* MMPI-2: Elevazione delle scale D (Depressione), Pt (Psicastenia) e Si (Introversione sociale), coerente con un profilo depressivo-ansioso.
+* BDI-II: Punteggio totale: 29 → Depressione di grado moderato.
+* STAI-Y: Elevati livelli di ansia sia di tratto che di stato.
+
+Conclusioni Diagnostiche (secondo DSM-5)
+
+* Disturbo depressivo maggiore, episodio attuale di grado moderato (F32.1)
+* Disturbo d’ansia generalizzato (F41.1)
+
+Indicazioni Terapeutiche
+Si consiglia un percorso di psicoterapia individuale ad orientamento cognitivo-comportamentale, con possibile valutazione psichiatrica per l’eventuale supporto farmacologico. Monitoraggio regolare del tono dell’umore e dei livelli di ansia.
+
+Firma dello Psicologo
+Dott.ssa Laura Bianchi, Psicologa Clinica
+Iscritta all’Albo degli Psicologi della Regione Lombardia, n. 012345

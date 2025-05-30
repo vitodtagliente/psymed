@@ -1,0 +1,23 @@
+{
+    "name": "med",
+    "version": "1.0.0",
+    "description": "Analisi NLP di referti medici con Node.js",
+    "license": "MIT",
+    "keywords": [
+        "nlp",
+        "nodejs",
+        "medico",
+        "referti"
+    ],
+    "author": "",
+    "type": "commonjs",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "natural": "^8.1.0",
+        "pdf-parse": "^1.1.1"
+    }
+}
