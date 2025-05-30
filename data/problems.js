@@ -1,4 +1,4 @@
-module.exports = [
+let problems = [
     /* Disturbi dell'Umore */
     "disturbo depressivo maggiore",
     "episodio depressivo maggiore",
@@ -107,7 +107,7 @@ module.exports = [
     "tossicodipendenza",
     "astinenza",
     "intossicazione acuta",
-    
+
     // --- Altri Sintomi o Condizioni Comuni ---
     "disturbo del sonno",
     "insonnia",
@@ -119,3 +119,6 @@ module.exports = [
     "conversione",
     "crisi convulsive",
 ];
+
+problems.sort((a, b) => b.length - a.length);
+module.exports = problems;

@@ -1,10 +1,9 @@
 // index.js
 
 const path = require('path');
-const { extractTextFromPdf } = require('./utils/pdf_extractor');
-const { extractTextFromDocx } = require('./utils/docx_extractor');
 const { analyzeMedicalText } = require('./nlp/analyzer'); // Importa la nuova funzione di analisi
 const FileReader = require('./io/file_reader');
+const Text = require('./utils/text');
 
 async function main()
 {

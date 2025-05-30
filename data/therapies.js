@@ -1,4 +1,4 @@
-module.exports = [
+let therapies = [
     // --- Farmaci Antidepressivi ---
     "inibitori selettivi della ricaptazione della serotonina",
     "SSRI",
@@ -86,3 +86,6 @@ module.exports = [
     "zolpidem",
     "zopiclone",
 ];
+
+therapies.sort((a, b) => b.length - a.length);
+module.exports = therapies;
