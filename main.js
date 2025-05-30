@@ -1,9 +1,9 @@
 // index.js
 
 const path = require('path');
-const { analyzeMedicalText } = require('./nlp/analyzer'); // Importa la nuova funzione di analisi
-const FileReader = require('./io/file_reader');
-const Text = require('./utils/text');
+const { analyzeMedicalText } = require('./src/nlp/analyzer'); // Importa la nuova funzione di analisi
+const FileReader = require('./src/io/file_reader');
+const DataSet = require('./data/dataset');
 
 async function main()
 {
