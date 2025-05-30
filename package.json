@@ -19,6 +19,7 @@
     "dependencies": {
         "mammoth": "^1.9.1",
         "natural": "^8.1.0",
-        "pdf-parse": "^1.1.1"
+        "pdf-parse": "^1.1.1",
+        "sbd": "^1.0.19"
     }
 }
