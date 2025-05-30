@@ -4,38 +4,21 @@ const path = require('path');
 const { extractTextFromPdf } = require('./utils/pdf_extractor');
 const { extractTextFromDocx } = require('./utils/docx_extractor');
 const { analyzeMedicalText } = require('./nlp/analyzer'); // Importa la nuova funzione di analisi
+const FileReader = require('./io/file_reader');
 
 async function main()
 {
     const filePath = path.join(__dirname, '/docs/ubaldini_ubaldo.docx');
+    const fileContent = await FileReader.read(filePath);
 
-    let fullText = null;
-    const fileExtension = path.extname(filePath).toLowerCase();
-
-    console.log(`Caricamento ed estrazione del testo dal file: ${filePath}`);
-
-    if (fileExtension === '.pdf')
-    {
-        fullText = await extractTextFromPdf(filePath);
-    }
-    else if (fileExtension === '.docx')
-    {
-        fullText = await extractTextFromDocx(filePath);
-    }
-    else
-    {
-        console.error(`Formato file non supportato: ${fileExtension}. Supportati solo .pdf e .docx`);
-        return;
-    }
-
-    if (!fullText)
+    if (!fileContent)
     {
         console.error("Impossibile estrarre il testo dal file. Uscita.");
         return;
     }
 
     console.log("Testo estratto con successo. Avvio analisi NLP...");
-    const analysisResults = await analyzeMedicalText(fullText); // Chiama la funzione di analisi
+    const analysisResults = await analyzeMedicalText(fileContent); // Chiama la funzione di analisi
 
     console.log("\n--- Risultati dell'Analisi del Referto ---");
     console.log("Problemi di Salute:");

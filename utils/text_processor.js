@@ -57,5 +57,5 @@ function stemItalian(textToStem)
 module.exports = {
     tokenizeSentences,
     normalizeText,
-    stemItalian // Esporta la nuova funzione per renderla disponibile
+    stemItalian
 };
