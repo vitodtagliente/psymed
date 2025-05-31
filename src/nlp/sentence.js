@@ -2,6 +2,7 @@ const Text = require("../utils/text");
 const Token = require("./token");
 const Pattern = require("./pattern");
 const Entity = require("./entity");
+const Relation = require("./relation"); // Import the new Relation class
 
 /**
  * Represents a sentence, breaking it down into an array of tokens and providing methods for sentence-level operations.
@@ -34,8 +35,6 @@ class Sentence
             this.tokens.push(new Token(_token));
         }
     }
-
-    // ... (isNegatedByPrefix and isNegatedBySuffix methods as before) ...
 
     isNegatedByPrefix(startIndex, negationPrefixes, terminationPhrases, pseudoNegations)
     {
@@ -87,42 +86,34 @@ class Sentence
      */
     _findAndAddModifiers(entity, entityStartIndex, entityEndIndex, modifierDefinitions, windowSize = 5)
     {
-        // Determine the search window
         const searchStart = Math.max(0, entityStartIndex - windowSize);
         const searchEnd = Math.min(this.tokens.length - 1, entityEndIndex + windowSize);
 
-        // Iterate through the tokens in the search window
         for (let i = searchStart; i <= searchEnd; i++)
         {
-            // Skip the tokens that are part of the entity itself to avoid self-referencing
             if (i >= entityStartIndex && i <= entityEndIndex)
             {
                 continue;
             }
 
-            const currentTokenName = this.tokens[i].name; // Stemmed token name
+            const currentTokenName = this.tokens[i].name;
 
-            // Check each modifier type (e.g., "gravita", "cronicità")
             for (const modifierType in modifierDefinitions)
             {
-                const modifierValues = modifierDefinitions[modifierType]; // e.g., { "lieve": ["lieve", ...], "moderata": ["moderato", ...] }
+                const modifierValues = modifierDefinitions[modifierType];
 
-                // Check each semantic category within the modifier type (e.g., "lieve", "moderata", "grave")
                 for (const semanticCategory in modifierValues)
                 {
-                    const modifierTerms = modifierValues[semanticCategory]; // e.g., ["lieve", "moderato", "scarso", "minimo"]
+                    const modifierTerms = modifierValues[semanticCategory];
 
-                    // If the current token's stemmed name is in this list of modifier terms
                     if (modifierTerms.includes(currentTokenName))
                     {
-                        // Add the semantic category to the entity's modifiers
                         entity.addModifier(modifierType, semanticCategory);
                     }
                 }
             }
         }
     }
-
 
     /**
      * Finds entities within the sentence based on a list of patterns and assigns them a label.
@@ -192,11 +183,9 @@ class Sentence
                     const entityStartIndex = i;
                     const entityEndIndex = i + pattern.tokens.length - 1;
 
-                    // Check for negation
                     entity.isNegated = this.isNegatedByPrefix(entityStartIndex, negationPrefixes, terminationPhrases, pseudoNegations) ||
                         this.isNegatedBySuffix(entityEndIndex, negationSuffixes, terminationPhrases, pseudoNegations);
 
-                    // Find and add modifiers
                     this._findAndAddModifiers(entity, entityStartIndex, entityEndIndex, modifierDefinitions, modifierWindowSize);
 
                     foundEntities.push(entity);
@@ -204,6 +193,62 @@ class Sentence
             }
         }
         return foundEntities;
+    }
+
+    /**
+     * Finds semantic relationships between a given set of entities within this sentence.
+     * It iterates through defined relation patterns and checks for matches.
+     *
+     * @param {Entity[]} entitiesInSentence - An array of Entity objects already identified in this sentence.
+     * @param {Array<Object>} relationDefinitions - An array of relation definition objects (from dataset.relations).
+     * @returns {Relation[]} An array of Relation objects found in the sentence.
+     */
+    findRelations(entitiesInSentence, relationDefinitions)
+    {
+        const foundRelations = [];
+
+        // Iterate through all possible pairs of entities in the sentence
+        for (let i = 0; i < entitiesInSentence.length; i++)
+        {
+            for (let j = 0; j < entitiesInSentence.length; j++)
+            {
+                // Skip if it's the same entity
+                if (i === j) continue;
+
+                const entity1 = entitiesInSentence[i];
+                const entity2 = entitiesInSentence[j];
+
+                // Iterate through each defined relation pattern
+                for (const relDef of relationDefinitions)
+                {
+                    // Check if the entity labels match the expected types for this relation
+                    // We need to handle relations with more than 2 entities if they exist,
+                    // but for now, assuming binary relations based on your provided structure.
+                    if (relDef.entities.length === 2 &&
+                        entity1.label === relDef.entities[0] &&
+                        entity2.label === relDef.entities[1])
+                    {
+
+                        // Generate the specific regex for this pair of entities
+                        const specificRegex = relDef.pattern(
+                            Text.escapeRegExp(entity1.text), // Escape special regex characters in entity text
+                            Text.escapeRegExp(entity2.text)
+                        );
+
+                        // Test the regex against the original sentence text
+                        const match = this.text.match(specificRegex);
+
+                        if (match)
+                        {
+                            // Create a new Relation object and add it to the results
+                            foundRelations.push(new Relation(relDef.name, [entity1, entity2], match[0]));
+                        }
+                    }
+                    // Add logic for other entity counts if your relation definitions support them
+                }
+            }
+        }
+        return foundRelations;
     }
 
     /**

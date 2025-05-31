@@ -11,6 +11,16 @@ const { WordTokenizer, StemmerId } = require('natural');
 class Text
 {
     /**
+   * Escapes special characters in a string to be used safely within a regular expression.
+   * @param {string} string - The string to escape.
+   * @returns {string} The escaped string.
+   */
+    static escapeRegExp(string)
+    {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    }
+
+    /**
      * Normalizes the text by removing non-essential characters and converting to lowercase.
      * It preserves Italian accented letters and apostrophes, which are crucial for the language.
      * @param {string} text - The text to be normalized.
