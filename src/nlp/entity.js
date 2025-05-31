@@ -35,26 +35,29 @@ class Entity
         // already covers that part of the sentence.
         const coveredIndices = new Set();
 
-        const normalizedSentence = Text.normalizeText(sentence);
-        const originalWords = normalizedSentence.split(/\s+/).filter(Boolean);
-        const stemmedWords = originalWords.map(word => Text.stemItalian(word));
+        const normalizedSentence = Text.normalize(sentence);
+        const originalSentenceTokens = normalizedSentence.split(/\s+/).filter(Boolean);
+        const stemmedSentenceTokens = originalSentenceTokens.map(word => Text.stemItalian(word));
 
         const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
 
         for (const keyword of sortedKeywords)
         {
-            const normalizedKeyword = Text.normalizeText(keyword);
-            const stemmedKeywordTokens = normalizedKeyword.split(/\s+/).map(word => Text.stemItalian(word)).filter(Boolean);
+            const normalizedKeyword = Text.normalize(keyword);
+            const stemmedKeywordPattern = normalizedKeyword.split(/\s+/).map(word => Text.stemItalian(word)).filter(Boolean);
 
-            if (stemmedKeywordTokens.length === 0) continue;
+            const keywordPatternLength = stemmedKeywordPattern.length;
 
-            const keywordTokenLength = stemmedKeywordTokens.length;
+            // Skip if the pattern is empty.
+            if (keywordPatternLength === 0) continue;
 
-            for (let i = 0; i <= stemmedWords.length - keywordTokenLength; i++)
+            // Step 3: Search for the stemmed keyword sequence within the stemmed sentence.
+            // We use a sliding window approach.
+            for (let i = 0; i <= stemmedSentenceTokens.length - keywordPatternLength; i++)
             {
                 // Check if any part of the potential match is already covered by a previously found entity.
                 let isOverlap = false;
-                for (let k = 0; k < keywordTokenLength; k++)
+                for (let k = 0; k < keywordPatternLength; k++)
                 {
                     if (coveredIndices.has(i + k))
                     {
@@ -68,9 +71,9 @@ class Entity
                 }
 
                 let matchFound = true;
-                for (let j = 0; j < stemmedKeywordTokens.length; j++)
+                for (let j = 0; j < keywordPatternLength; j++)
                 {
-                    if (stemmedWords[i + j] !== stemmedKeywordTokens[j])
+                    if (stemmedSentenceTokens[i + j] !== stemmedKeywordPattern[j])
                     {
                         matchFound = false;
                         break;
@@ -79,14 +82,26 @@ class Entity
 
                 if (matchFound)
                 {
-                    const matchedOriginalText = originalWords.slice(i, i + keywordTokenLength).join(' ');
-                    const entityKey = `${matchedOriginalText}::${label}`;
+                    // A match is found in the stemmed version.
+                    let matchedOriginalText;
+                    if (originalSentenceTokens && originalSentenceTokens.length >= i + keywordPatternLength)
+                    {
+                        // If original tokens are provided, use them to reconstruct the original text.
+                        matchedOriginalText = originalSentenceTokens.slice(i, i + keywordPatternLength).join(' ');
+                    } else
+                    {
+                        // Otherwise, use the stemmed tokens for the entity's text (less ideal but works).
+                        matchedOriginalText = stemmedSentenceTokens.slice(i, i + keywordPatternLength).join(' ');
+                    }
 
+                    // Create a unique key for this potential entity using its text and label.
+                    const entityKey = `${matchedOriginalText}::${label}`;
+                    // Add the entity to the map only if it hasn't been added already.
                     if (!uniqueEntitiesMap.has(entityKey))
                     {
                         uniqueEntitiesMap.set(entityKey, new Entity(matchedOriginalText, label));
                         // Mark the indices covered by this newly found entity.
-                        for (let k = 0; k < keywordTokenLength; k++)
+                        for (let k = 0; k < keywordPatternLength; k++)
                         {
                             coveredIndices.add(i + k);
                         }
@@ -94,6 +109,7 @@ class Entity
                 }
             }
         }
+
         return Array.from(uniqueEntitiesMap.values());
     }
 }

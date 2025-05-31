@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">med</PackageJsonName>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">1.0.0</PackageJsonVersion>
+    <PackageJsonDescription Condition="$(PackageJsonDescription) == ''">Analisi NLP di referti medici con Node.js</PackageJsonDescription>
+    <PackageJsonLicense Condition="$(PackageJsonLicense) == ''">MIT</PackageJsonLicense>
+    <PackageJsonKeywords Condition="$(PackageJsonKeywords) == ''">[
+  "nlp",
+  "nodejs",
+  "medico",
+  "referti"
+]</PackageJsonKeywords>
+    <PackageJsonAuthor Condition="$(PackageJsonAuthor) == ''"></PackageJsonAuthor>
+    <PackageJsonType Condition="$(PackageJsonType) == ''">commonjs</PackageJsonType>
+    <PackageJsonMain Condition="$(PackageJsonMain) == ''">app.js</PackageJsonMain>
+    <PackageJsonScriptsStart Condition="$(PackageJsonScriptsStart) == ''">node app.js</PackageJsonScriptsStart>
+    <PackageJsonScriptsTest Condition="$(PackageJsonScriptsTest) == ''">echo "Error: no test specified" &amp;&amp; exit 1</PackageJsonScriptsTest>
+    <PackageJsonDependenciesMammoth Condition="$(PackageJsonDependenciesMammoth) == ''">^1.9.1</PackageJsonDependenciesMammoth>
+    <PackageJsonDependenciesNatural Condition="$(PackageJsonDependenciesNatural) == ''">^8.1.0</PackageJsonDependenciesNatural>
+    <PackageJsonDependenciesPdfParse Condition="$(PackageJsonDependenciesPdfParse) == ''">^1.1.1</PackageJsonDependenciesPdfParse>
+    <PackageJsonDependenciesSbd Condition="$(PackageJsonDependenciesSbd) == ''">^1.0.19</PackageJsonDependenciesSbd>
+    <PackageJsonDependenciesStringSimilarity Condition="$(PackageJsonDependenciesStringSimilarity) == ''">^4.0.4</PackageJsonDependenciesStringSimilarity>
+    <PackageJsonDirectoriesDoc Condition="$(PackageJsonDirectoriesDoc) == ''">docs</PackageJsonDirectoriesDoc>
+    <PackageJsonDevdependenciesEslint Condition="$(PackageJsonDevdependenciesEslint) == ''">^9.28.0</PackageJsonDevdependenciesEslint>
+    <PackageJsonRepositoryType Condition="$(PackageJsonRepositoryType) == ''">git</PackageJsonRepositoryType>
+    <PackageJsonRepositoryUrl Condition="$(PackageJsonRepositoryUrl) == ''">git+https://github.com/vitodtagliente/psychomed.git</PackageJsonRepositoryUrl>
+    <PackageJsonBugsUrl Condition="$(PackageJsonBugsUrl) == ''">https://github.com/vitodtagliente/psychomed/issues</PackageJsonBugsUrl>
+    <PackageJsonHomepage Condition="$(PackageJsonHomepage) == ''">https://github.com/vitodtagliente/psychomed#readme</PackageJsonHomepage>
+  </PropertyGroup>
+</Project>

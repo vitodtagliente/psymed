@@ -11,28 +11,12 @@ const { WordTokenizer, StemmerId } = require('natural');
 class Text
 {
     /**
-     * Tokenizes the input text into individual sentences.
-     * Leverages the 'sbd' library for robust sentence boundary detection.
-     * @param {string} text - The text to be tokenized.
-     * @returns {string[]} An array of sentences.
-     */
-    static tokenizeSentences(text)
-    {
-        // sbd (sentence boundary detector) is excellent for sentence tokenization.
-        return sentenceBoundaryDetector.sentences(text, {
-            newline_boundaries: true, // Treat newlines as sentence boundaries
-            sanitize: true, // Remove non-printable control characters
-            allowed_tags: [] // We don't expect HTML tags in this context
-        });
-    }
-
-    /**
      * Normalizes the text by removing non-essential characters and converting to lowercase.
      * It preserves Italian accented letters and apostrophes, which are crucial for the language.
      * @param {string} text - The text to be normalized.
      * @returns {string} The normalized text.
      */
-    static normalizeText(text)
+    static normalize(text)
     {
         // This regex removes anything that is not:
         // - Lowercase letters from 'a' to 'z'
@@ -47,18 +31,42 @@ class Text
     /**
      * Applies stemming to words within a given string (which can be a single word or a phrase).
      * Utilizes Natural's Italian stemmer.
-     * @param {string} textToStem - The word or phrase to be stemmed.
+     * @param {string} text - The word or phrase to be stemmed.
      * @returns {string} The string with stemmed words, rejoined by spaces.
      */
-    static stemItalian(textToStem)
+    static stemItalian(text)
     {
-        return textToStem;
-        
         // Splits the string into words, applies the stemmer to each word,
         // and then rejoins the stemmed words into a single string.
-        const tokenizer = new WordTokenizer();
-        const stemmedWords = tokenizer.tokenize(textToStem).map(word => StemmerId.stem(word));
+        const stemmedWords = Text.tokenize(text).map(word => StemmerId.stem(word));
         return stemmedWords.join(' ');
+    }
+
+    /**
+     * Tokenizes the input text into individual tokens.
+     * @param {string} text - The text to be tokenized.
+     * @returns {string[]} An array of tokens.
+     */
+    static tokenize(text)
+    {
+        const tokenizer = new WordTokenizer();
+        return tokenizer.tokenize(text);
+    }
+
+    /**
+     * Tokenizes the input text into individual sentences.
+     * Leverages the 'sbd' library for robust sentence boundary detection.
+     * @param {string} text - The text to be tokenized.
+     * @returns {string[]} An array of sentences.
+     */
+    static tokenizeSentences(text)
+    {
+        // sbd (sentence boundary detector) is excellent for sentence tokenization.
+        return sentenceBoundaryDetector.sentences(text, {
+            newline_boundaries: true, // Treat newlines as sentence boundaries
+            sanitize: true, // Remove non-printable control characters
+            allowed_tags: [] // We don't expect HTML tags in this context
+        });
     }
 }
 

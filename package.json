@@ -1,26 +1,40 @@
 {
-    "name": "med",
-    "version": "1.0.0",
-    "description": "Analisi NLP di referti medici con Node.js",
-    "license": "MIT",
-    "keywords": [
-        "nlp",
-        "nodejs",
-        "medico",
-        "referti"
-    ],
-    "author": "",
-    "type": "commonjs",
-    "main": "main.js",
-    "scripts": {
-        "start": "node main.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "dependencies": {
-        "mammoth": "^1.9.1",
-        "natural": "^8.1.0",
-        "pdf-parse": "^1.1.1",
-        "sbd": "^1.0.19",
-        "string-similarity": "^4.0.4"
-    }
+  "name": "med",
+  "version": "1.0.0",
+  "description": "Analisi NLP di referti medici con Node.js",
+  "license": "MIT",
+  "keywords": [
+    "nlp",
+    "nodejs",
+    "medico",
+    "referti"
+  ],
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mammoth": "^1.9.1",
+    "natural": "^8.1.0",
+    "pdf-parse": "^1.1.1",
+    "sbd": "^1.0.19",
+    "string-similarity": "^4.0.4"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "eslint": "^9.28.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitodtagliente/psychomed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vitodtagliente/psychomed/issues"
+  },
+  "homepage": "https://github.com/vitodtagliente/psychomed#readme"
 }
