@@ -1,8 +1,6 @@
-const problems = require('../data/problems');
 const BFRS = require('./nlp/bfrs');
 const Context = require('./nlp/context');
 const Entity = require('./nlp/entity');
-const { findEntities } = require('./nlp/entity_recognizer');
 const Pattern = require('./nlp/pattern');
 const SectionProcessor = require('./nlp/section_processor');
 const Sentence = require('./nlp/sentence');
