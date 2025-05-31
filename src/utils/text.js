@@ -1,7 +1,9 @@
 const sentenceBoundaryDetector = require('sbd');
 // Import WordTokenizer to split text into words
 // Import StemmerId for Italian stemming
-const { WordTokenizer, StemmerId } = require('natural');
+const natural = require('natural');
+const ItalianStemmer = natural.PorterStemmerIt;
+const WordTokenizer = natural.WordTokenizer;
 
 /**
  * @class Text
@@ -70,7 +72,7 @@ class Text
     {
         // Splits the string into words, applies the stemmer to each word,
         // and then rejoins the stemmed words into a single string.
-        const stemmedWords = Text.tokenize(text).map(word => StemmerId.stem(word));
+        const stemmedWords = Text.tokenize(text).map(word => ItalianStemmer.stem(word));
         return stemmedWords.join(' ');
     }
 
