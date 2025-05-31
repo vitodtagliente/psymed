@@ -1,12 +1,14 @@
 /**
  * Represents the extracted information and semantic understanding derived from processing a document.
- * It serves as a container for identified entities like problems and therapies, and their relationships.
+ * It serves as a container for identified entities like problems and therapies, their relationships,
+ * and calculated scores such as the Brief Psychiatric Rating Scale (BPRS).
  */
 class Context
 {
     /**
      * Creates an instance of Context.
-     * Initializes empty arrays for storing identified problems, therapies, and relations.
+     * Initializes empty arrays for storing identified problems, therapies, and relations,
+     * and initializes properties for BPRS scores.
      */
     constructor()
     {
@@ -31,7 +33,20 @@ class Context
          * Each element is an instance of the `Relation` class.
          * @type {Relation[]}
          */
-        this.relations = []; // New property for relations
+        this.relations = [];
+
+        /**
+         * An object mapping BFRS category keys to their calculated numerical scores.
+         * @type {Object.<string, number>}
+         * @example { "preoccupazione_somatica": 4, "ansia": 6, ... }
+         */
+        this.bfrsScores = {}; // New property for individual BFRS category scores
+
+        /**
+         * The total calculated sum of all BFRS category scores.
+         * @type {number}
+         */
+        this.totalBFRSSum = 0; // New property for the total BFRS sum
     }
 }
 

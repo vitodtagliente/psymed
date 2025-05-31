@@ -1,4 +1,5 @@
 const problems = require('../data/problems');
+const BFRS = require('./nlp/bfrs');
 const Context = require('./nlp/context');
 const Entity = require('./nlp/entity');
 const { findEntities } = require('./nlp/entity_recognizer');
@@ -62,6 +63,20 @@ class Med
             }
         }
 
+        // 3. Calculate BPRS Score after all entities have been identified
+        // Combine all relevant entities from the context for BPRS calculation
+        const allRelevantEntities = [...context.problems, ...context.therapies]; // Add other entity types if they map to BPRS categories
+
+        // Pass the combined entities and the BPRS configuration to the BPRS processor
+        const bfrsResult = BFRS.process(allRelevantEntities, {
+            severityToScore: dataset.bfrs.severityToScore,
+            severityOrder: dataset.bfrs.severityOrder,
+            categories: dataset.bfrs.categories 
+        });
+
+        context.bfrsScores = bfrsResult.scoresPerCategory;
+        context.totalBFRSSum = bfrsResult.totalBFRSSum;
+
         // Logging results
         console.log(`${context.problems.length} Problems:`);
         for (const entity of context.problems)
@@ -78,6 +93,19 @@ class Med
         {
             console.log(relation.toString()); // Use toString for better output
         }
+
+        console.log("--- BFRS Scores per Category ---");
+        // Iterate over the keys (category names) in the bfrsScores object
+        for (const categoryName in context.bfrsScores)
+        {
+            // This check is a good practice to ensure you're only working with the object's own properties
+            if (Object.hasOwnProperty.call(context.bfrsScores, categoryName))
+            {
+                const score = context.bfrsScores[categoryName];
+                console.log(`${categoryName}: ${score}`);
+            }
+        }
+        console.log("Total BFRS Sum:", context.totalBFRSSum);
 
         return context; // Make sure to return the populated context object
     }
