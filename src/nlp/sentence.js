@@ -1,7 +1,7 @@
 const Text = require("../utils/text");
 const Token = require("./token");
 const Pattern = require("./pattern");
-const Entity = require("./entity"); // Make sure Entity is imported
+const Entity = require("./entity");
 
 /**
  * Represents a sentence, breaking it down into an array of tokens and providing methods for sentence-level operations.
@@ -35,30 +35,39 @@ class Sentence
         }
     }
 
-    /**
-     * Checks if a specific index in the sentence's tokens is affected by a negation prefix.
-     * @param {number} startIndex - The starting index of the entity in this.tokens.
-     * @param {string[]} negationPrefixes - Array of words that act as negation prefixes.
-     * @param {string[]} terminationPhrases - Array of words that terminate a negation span.
-     * @param {string[]} pseudoNegations - Array of words that might look like negations but aren't always.
-     * @returns {boolean} True if a negation prefix affects the entity, false otherwise.
-     */
+    // ... (isNegatedByPrefix and isNegatedBySuffix methods as before) ...
+
     isNegatedByPrefix(startIndex, negationPrefixes, terminationPhrases, pseudoNegations)
     {
-        // Check backwards from the start of the entity
         for (let i = startIndex - 1; i >= 0; i--)
         {
-            const currentTokenName = this.tokens[i].name; // Use stemmed name for comparison
-
-            // If we hit a termination phrase, the negation effect stops before the entity
+            const currentTokenName = this.tokens[i].name;
             if (terminationPhrases.includes(currentTokenName))
             {
                 return false;
             }
-            // If we find a negation prefix
             if (negationPrefixes.includes(currentTokenName))
             {
-                // Double-check for pseudo-negations
+                if (!pseudoNegations.includes(currentTokenName))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    isNegatedBySuffix(endIndex, negationSuffixes, terminationPhrases, pseudoNegations)
+    {
+        for (let i = endIndex + 1; i < this.tokens.length; i++)
+        {
+            const currentTokenName = this.tokens[i].name;
+            if (terminationPhrases.includes(currentTokenName))
+            {
+                return false;
+            }
+            if (negationSuffixes.includes(currentTokenName))
+            {
                 if (!pseudoNegations.includes(currentTokenName))
                 {
                     return true;
@@ -69,57 +78,79 @@ class Sentence
     }
 
     /**
-     * Checks if a specific index in the sentence's tokens is affected by a negation suffix.
-     * @param {number} endIndex - The ending index of the entity in this.tokens.
-     * @param {string[]} negationSuffixes - Array of words that act as negation suffixes.
-     * @param {string[]} terminationPhrases - Array of words that terminate a negation span.
-     * @param {string[]} pseudoNegations - Array of words that might look like negations but aren't always.
-     * @returns {boolean} True if a negation suffix affects the entity, false otherwise.
+     * Finds and associates modifiers to a given entity within a specified token window.
+     * @param {Entity} entity - The entity object to attach modifiers to.
+     * @param {number} entityStartIndex - The starting index of the entity in this.tokens.
+     * @param {number} entityEndIndex - The ending index of the entity in this.tokens.
+     * @param {Object.<string, Object.<string, string[]>>} modifierDefinitions - The structured modifier definitions (e.g., from dataset.modifiers).
+     * @param {number} [windowSize=5] - The number of tokens to look before and after the entity for modifiers.
      */
-    isNegatedBySuffix(endIndex, negationSuffixes, terminationPhrases, pseudoNegations)
+    _findAndAddModifiers(entity, entityStartIndex, entityEndIndex, modifierDefinitions, windowSize = 5)
     {
-        // Check forwards from the end of the entity
-        for (let i = endIndex + 1; i < this.tokens.length; i++)
-        {
-            const currentTokenName = this.tokens[i].name; // Use stemmed name for comparison
+        // Determine the search window
+        const searchStart = Math.max(0, entityStartIndex - windowSize);
+        const searchEnd = Math.min(this.tokens.length - 1, entityEndIndex + windowSize);
 
-            // If we hit a termination phrase, the negation effect stops after the entity
-            if (terminationPhrases.includes(currentTokenName))
+        // Iterate through the tokens in the search window
+        for (let i = searchStart; i <= searchEnd; i++)
+        {
+            // Skip the tokens that are part of the entity itself to avoid self-referencing
+            if (i >= entityStartIndex && i <= entityEndIndex)
             {
-                return false;
+                continue;
             }
-            // If we find a negation suffix
-            if (negationSuffixes.includes(currentTokenName))
+
+            const currentTokenName = this.tokens[i].name; // Stemmed token name
+
+            // Check each modifier type (e.g., "gravita", "cronicità")
+            for (const modifierType in modifierDefinitions)
             {
-                // Double-check for pseudo-negations
-                if (!pseudoNegations.includes(currentTokenName))
+                const modifierValues = modifierDefinitions[modifierType]; // e.g., { "lieve": ["lieve", ...], "moderata": ["moderato", ...] }
+
+                // Check each semantic category within the modifier type (e.g., "lieve", "moderata", "grave")
+                for (const semanticCategory in modifierValues)
                 {
-                    return true;
+                    const modifierTerms = modifierValues[semanticCategory]; // e.g., ["lieve", "moderato", "scarso", "minimo"]
+
+                    // If the current token's stemmed name is in this list of modifier terms
+                    if (modifierTerms.includes(currentTokenName))
+                    {
+                        // Add the semantic category to the entity's modifiers
+                        entity.addModifier(modifierType, semanticCategory);
+                    }
                 }
             }
         }
-        return false;
     }
+
 
     /**
      * Finds entities within the sentence based on a list of patterns and assigns them a label.
      * This method searches for exact sequential matches of the provided patterns.
-     * It also checks for negation based on provided negation rules.
+     * It also checks for negation based on provided negation rules and finds associated modifiers.
      *
      * @param {Pattern[]} patterns - An array of Pattern objects to search for.
      * @param {string} label - The label to assign to the found entities (e.g., "PERSON", "LOCATION").
-     * @param {object} negationRules - An object containing arrays for negation detection.
-     * @param {string[]} negationRules.negationPrefixes - Words that negate preceding entities (e.g., "no", "non").
-     * @param {string[]} negationRules.negationSuffixes - Words that negate succeeding entities (e.g., "without").
-     * @param {string[]} negationRules.terminationPhrases - Words that stop a negation span (e.g., "but", "however").
-     * @param {string[]} negationRules.pseudoNegations - Words that look like negations but aren't always (e.g., "little", "few").
+     * @param {object} options - An object containing additional rules and definitions.
+     * @param {object} [options.negationRules={}] - Rules for negation detection.
+     * @param {string[]} [options.negationRules.negationPrefixes=[]] - Words that negate preceding entities.
+     * @param {string[]} [options.negationRules.negationSuffixes=[]] - Words that negate succeeding entities.
+     * @param {string[]} [options.negationRules.terminationPhrases=[]] - Words that stop a negation span.
+     * @param {string[]} [options.negationRules.pseudoNegations=[]] - Words that look like negations but aren't always.
+     * @param {Object.<string, Object.<string, string[]>>} [options.modifierDefinitions={}] - Structured modifier definitions.
+     * @param {number} [options.modifierWindowSize=5] - The number of tokens to look before and after an entity for modifiers.
      * @returns {Entity[]} An array of Entity objects found in the sentence.
      */
-    findEntities(patterns, label, negationRules = {})
+    findEntities(patterns, label, options = {})
     {
         const foundEntities = [];
 
-        // Destructure negation rules for easier access, providing defaults
+        const {
+            negationRules = {},
+            modifierDefinitions = {},
+            modifierWindowSize = 5
+        } = options;
+
         const {
             negationPrefixes = [],
             negationSuffixes = [],
@@ -158,13 +189,15 @@ class Sentence
                     const entityText = matchedOriginalTokens.join(" ");
                     const entity = new Entity(entityText, label);
 
-                    // Determine the start and end index of the matched entity within the sentence's tokens
                     const entityStartIndex = i;
                     const entityEndIndex = i + pattern.tokens.length - 1;
 
                     // Check for negation
                     entity.isNegated = this.isNegatedByPrefix(entityStartIndex, negationPrefixes, terminationPhrases, pseudoNegations) ||
                         this.isNegatedBySuffix(entityEndIndex, negationSuffixes, terminationPhrases, pseudoNegations);
+
+                    // Find and add modifiers
+                    this._findAndAddModifiers(entity, entityStartIndex, entityEndIndex, modifierDefinitions, modifierWindowSize);
 
                     foundEntities.push(entity);
                 }

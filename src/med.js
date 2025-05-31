@@ -18,11 +18,16 @@ class Med
         context.problems = [];
         context.therapies = [];
 
-        const negationRules = {
-            negationPrefixes: dataset.language.negationPrefixes,
-            negationSuffixes: dataset.language.negationSuffixes,
-            terminationPhrases: dataset.language.terminationPhrases,
-            pseudoNegations: dataset.language.pseudoNegations
+        // Prepare negation rules and modifiers to be passed down
+        const processOptions = {
+            negationRules: {
+                negationPrefixes: dataset.language.negationPrefixes || [],
+                negationSuffixes: dataset.language.negationSuffixes || [],
+                terminationPhrases: dataset.language.terminationPhrases || [],
+                pseudoNegations: dataset.language.pseudoNegations || []
+            },
+            modifierDefinitions: dataset.language.modifiers || {}, // Pass the entire modifiers object
+            modifierWindowSize: 5 // You can make this configurable in dataset if needed
         };
 
         const sections = SectionProcessor.identify(text, dataset.sections);
@@ -39,8 +44,8 @@ class Med
             for (let sentence of sentences)
             {
                 // Find problems and therapies within the current sentence.
-                const foundProblems = sentence.findEntities(problemPatterns, "PROBLEMA_SALUTE", negationRules);
-                const foundTherapies = sentence.findEntities(therapyPatterns, "TERAPIA", negationRules);
+                const foundProblems = sentence.findEntities(problemPatterns, "PROBLEMA_SALUTE", processOptions);
+                const foundTherapies = sentence.findEntities(therapyPatterns, "TERAPIA", processOptions);
 
                 // Append the found entities to the context's arrays.
                 // The spread operator (...) unpacks the elements from foundProblems/foundTherapies
@@ -54,12 +59,12 @@ class Med
         console.log(`${context.problems.length} Problems:`);
         for (const entity of context.problems)
         {
-            console.log(entity);
+            console.log(entity.toString());
         }
         console.log(`${context.therapies.length} Therapies:`);
         for (const entity of context.therapies)
         {
-            console.log(entity);
+            console.log(entity.toString());
         }
 
         return context; // Make sure to return the populated context object
