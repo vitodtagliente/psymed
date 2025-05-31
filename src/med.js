@@ -1,3 +1,4 @@
+const Label = require('./label');
 const BFRS = require('./nlp/bfrs');
 const Context = require('./nlp/context');
 const Entity = require('./nlp/entity');
@@ -42,8 +43,8 @@ class Med
             for (let sentence of sentences)
             {
                 // 1. Find Entities
-                const foundProblems = sentence.findEntities(problemPatterns, "PROBLEMA_SALUTE", processOptions);
-                const foundTherapies = sentence.findEntities(therapyPatterns, "TERAPIA", processOptions);
+                const foundProblems = sentence.findEntities(problemPatterns, Label.Problem, processOptions);
+                const foundTherapies = sentence.findEntities(therapyPatterns, Label.Theraphy, processOptions);
 
                 // Append found entities to the context
                 context.problems.push(...foundProblems);
