@@ -52,6 +52,8 @@ class Text
      */
     static stemItalian(textToStem)
     {
+        return textToStem;
+        
         // Splits the string into words, applies the stemmer to each word,
         // and then rejoins the stemmed words into a single string.
         const tokenizer = new WordTokenizer();

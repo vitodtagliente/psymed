@@ -4,6 +4,7 @@ const path = require('path');
 const { analyzeMedicalText } = require('./src/nlp/analyzer'); // Importa la nuova funzione di analisi
 const FileReader = require('./src/io/file_reader');
 const DataSet = require('./data/dataset');
+const Med = require('./src/med');
 
 async function main()
 {
@@ -16,6 +17,10 @@ async function main()
         return;
     }
 
+    Med.process(fileContent, DataSet);
+
+    return;
+    
     console.log("Testo estratto con successo. Avvio analisi NLP...");
     const analysisResults = await analyzeMedicalText(fileContent); // Chiama la funzione di analisi
 
