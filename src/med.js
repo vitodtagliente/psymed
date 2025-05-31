@@ -62,6 +62,8 @@ class Med
             }
         }
 
+        context.redux();
+
         // 3. Calculate BPRS Score after all entities have been identified
         // Combine all relevant entities from the context for BPRS calculation
         const allRelevantEntities = [...context.problems, ...context.therapies]; // Add other entity types if they map to BPRS categories

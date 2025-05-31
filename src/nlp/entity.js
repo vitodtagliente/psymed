@@ -73,6 +73,33 @@ class Entity
     }
 
     /**
+     * Adds multiple modifiers to the entity from an object.
+     * This method iterates through the provided modifiers object and calls addModifier for each key-value pair.
+     * If a value is an array, it iterates through the array and adds each modifier value.
+     * @param {Object.<string, string|string[]>} newModifiers - An object where keys are modifier types and values are single modifier strings or arrays of modifier strings.
+     */
+    addModifiers(newModifiers)
+    {
+        for (const type in newModifiers)
+        {
+            if (Object.prototype.hasOwnProperty.call(newModifiers, type))
+            {
+                const value = newModifiers[type];
+                if (Array.isArray(value))
+                {
+                    value.forEach(v => this.addModifier(type, v));
+                } else if (typeof value === 'string')
+                {
+                    this.addModifier(type, value);
+                } else
+                {
+                    console.warn(`Unsupported modifier value type for type '${type}':`, value);
+                }
+            }
+        }
+    }
+
+    /**
      * Adds a single Token object to the list of original tokens for this entity.
      * @param {Token} token - The Token object to add.
      */
