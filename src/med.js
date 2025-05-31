@@ -2,6 +2,7 @@ const Context = require('./nlp/context');
 const Entity = require('./nlp/entity');
 const { findEntities } = require('./nlp/entity_recognizer');
 const SectionProcessor = require('./nlp/section_processor');
+const Sentence = require('./nlp/sentence');
 const Text = require('./utils/text');
 
 class Med
@@ -13,11 +14,11 @@ class Med
         const sections = SectionProcessor.identify(text, dataset.sections);
         for (const section of sections)
         {
-            const sentences = Text.tokenizeSentences(section);
+            const sentences = Sentence.identify(section);
             for (let sentence of sentences)
             {
-                context.problems = Entity.find(sentence, dataset.problems, "PROBLEMA_SALUTE");
-                context.therapies = Entity.find(sentence, dataset.therapies, "TERAPIA");
+                // context.problems = Entity.find(sentence, dataset.problems, "PROBLEMA_SALUTE");
+                // context.therapies = Entity.find(sentence, dataset.therapies, "TERAPIA");
             }
         }
 
