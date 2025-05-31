@@ -27,6 +27,9 @@ let problems = [
     "iperattività",
     "grandiosità",
     "fuga delle idee",
+    "crisi di pianto",
+    "angoscia",
+    "calo ponderale",
 
     // --- Disturbi d'Ansia e Correlati allo Stress ---
     "ansia generalizzata",
@@ -73,6 +76,14 @@ let problems = [
     "appiattimento affettivo",
     "alogia",
     "ritiro sociale",
+    "psicosi schizofrenica cronicizzata",
+    "schizofrenia cronicizzata",
+    "schizofrenia residuale",
+    "psicosi cronica",
+    "delirio megalomanico",
+    "deliri megalomanici",
+    "dispercezioni uditive",
+    "dispercezioni",
 
     // --- Disturbi di Personalità ---
     "disturbo di personalità borderline",
@@ -98,6 +109,12 @@ let problems = [
     "afasia",
     "aprassia",
     "agnosia",
+    "deterioramento cognitivo",
+    "moderato deterioramento cognitivo",
+    "disorientamento nel tempo",
+    "disorientato nel tempo",
+    "alterazione della memoria",
+    "memoria alterata",
 
     // --- Disturbi da Uso di Sostanze ---
     "dipendenza da sostanze",
@@ -118,6 +135,24 @@ let problems = [
     "cefalea tensiva",
     "conversione",
     "crisi convulsive",
+    "insonnia iniziale",
+    "insonnia finale",
+    "aspetto poco curato",
+    "scarsa cura di sé",
+    "mimica immobile",
+    "mimica ipomobile",
+    "mutacismo",
+    "mutacico",
+    "poca disponibilità al dialogo",
+    "eloquio indotto",
+    "eloquio povero",
+    "eloquio ridotto",
+    "tono di voce sommesso",
+    "aggressività verbale",
+    "aggressività fisica",
+    "aggressività auto-diretta",
+    "aggressività etero-diretta",
+    "consapevolezza di malattia",
 ];
 
 problems.sort((a, b) => b.length - a.length);
