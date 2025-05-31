@@ -172,13 +172,14 @@ class Sentence
                         matchFound = false;
                         break;
                     }
-                    matchedOriginalTokens.push(this.tokens[i + j].text);
+                    matchedOriginalTokens.push(this.tokens[i + j]);
                 }
 
                 if (matchFound)
                 {
-                    const entityText = matchedOriginalTokens.join(" ");
+                    const entityText = matchedOriginalTokens.map(token => token.text).join(" ");
                     const entity = new Entity(entityText, label);
+                    entity.addOriginalTokens(matchedOriginalTokens);
 
                     const entityStartIndex = i;
                     const entityEndIndex = i + pattern.tokens.length - 1;
