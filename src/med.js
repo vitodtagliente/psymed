@@ -18,6 +18,13 @@ class Med
         context.problems = [];
         context.therapies = [];
 
+        const negationRules = {
+            negationPrefixes: dataset.language.negationPrefixes,
+            negationSuffixes: dataset.language.negationSuffixes,
+            terminationPhrases: dataset.language.terminationPhrases,
+            pseudoNegations: dataset.language.pseudoNegations
+        };
+
         const sections = SectionProcessor.identify(text, dataset.sections);
         for (const section of sections)
         {
@@ -32,8 +39,8 @@ class Med
             for (let sentence of sentences)
             {
                 // Find problems and therapies within the current sentence.
-                const foundProblems = sentence.findEntities(problemPatterns, "PROBLEMA_SALUTE");
-                const foundTherapies = sentence.findEntities(therapyPatterns, "TERAPIA");
+                const foundProblems = sentence.findEntities(problemPatterns, "PROBLEMA_SALUTE", negationRules);
+                const foundTherapies = sentence.findEntities(therapyPatterns, "TERAPIA", negationRules);
 
                 // Append the found entities to the context's arrays.
                 // The spread operator (...) unpacks the elements from foundProblems/foundTherapies
