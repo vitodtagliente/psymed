@@ -107,7 +107,10 @@ class Entity
     {
         if (token instanceof Token)
         {
-            this.originalTokens.push(token);
+            if (!this.originalTokens.find(original_token => original_token.name == token.name && original_token.text == token.text))
+            {
+                this.originalTokens.push(token);
+            }
         }
         else
         {

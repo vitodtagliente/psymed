@@ -36,7 +36,7 @@ class Token
      */
     toString()
     {
-        return `Token { text: "${this.text}", name: "${this.name}" }`;
+        return `Token { name: "${this.name}", text: "${this.text}" }`;
     }
 }
 
