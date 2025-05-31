@@ -12,8 +12,6 @@ async function main() {
         return;
     }
 
-    console.log(fileContent);
-
     Med.process(fileContent, DataSet);
 }
 

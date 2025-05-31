@@ -21,21 +21,43 @@ class Text
     }
 
     /**
-     * Normalizes the text by removing non-essential characters and converting to lowercase.
-     * It preserves Italian accented letters and apostrophes, which are crucial for the language.
-     * @param {string} text - The text to be normalized.
-     * @returns {string} The normalized text.
+     * Normalizes a given text string by converting it to lowercase,
+     * converting accented characters to their unaccented equivalents,
+     * and replacing non-alphanumeric characters (excluding apostrophes and hyphens) with spaces.
+     * Multiple spaces are then consolidated into single spaces, and leading/trailing spaces are trimmed.
+     *
+     * This function ensures that text is in a consistent format for further processing,
+     * addressing issues like variations in accentuation.
+     *
+     * @param {string} text - The input text string to normalize.
+     * @returns {string} The normalized text string.
      */
     static normalize(text)
     {
-        // This regex removes anything that is not:
-        // - Lowercase letters from 'a' to 'z'
+        // Convert the entire text to lowercase to ensure case-insensitivity.
+        let normalizedText = text.toLowerCase();
+
+        // Step 1: Normalize accented characters to their base unaccented counterparts.
+        // `normalize("NFD")` decomposes characters into their base form and diacritical marks.
+        // `replace(/[\u0300-\u036f]/g, "")` then removes these diacritical marks.
+        // This will convert 'à' to 'a', 'è' to 'e', 'ì' to 'i', 'ò' to 'o', 'ù' to 'u',
+        // and also 'á', 'é', 'í', 'ó', 'ú' to their unaccented forms.
+        normalizedText = normalizedText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        // Step 2: Remove/replace characters that are not:
+        // - Lowercase letters from 'a' to 'z' (now including unaccented versions of original accented letters)
         // - Numbers from '0' to '9'
-        // - Italian accented letters (àèéìòùáéíóúç)
-        // - Apostrophe (')
-        // - Hyphen (-) (useful for compound words or specific medical terms)
-        // All other characters are replaced with a space.
-        return text.toLowerCase().replace(/[^a-z0-9àèéìòùáéíóúç' -]/g, ' ');
+        // - Apostrophe (') - essential for Italian elision (e.g., "l'uomo")
+        // - Hyphen (-) - useful for compound words or specific medical terms (e.g., "post-traumatico")
+        // All other characters are replaced with a single space.
+        // The 'ç' character is not explicitly handled here as it's less common in standard Italian text
+        // and would typically be removed by this general regex if not explicitly included.
+        normalizedText = normalizedText.replace(/[^a-z0-9' -]/g, ' ');
+
+        // Step 3: Replace multiple spaces with a single space and trim leading/trailing spaces.
+        normalizedText = normalizedText.replace(/\s+/g, ' ').trim();
+
+        return normalizedText;
     }
 
     /**
@@ -60,7 +82,7 @@ class Text
     static tokenize(text)
     {
         const tokenizer = new WordTokenizer();
-        return tokenizer.tokenize(text);
+        return tokenizer.tokenize(Text.normalize(text));
     }
 
     /**
@@ -76,7 +98,7 @@ class Text
             newline_boundaries: true, // Treat newlines as sentence boundaries
             sanitize: true, // Remove non-printable control characters
             allowed_tags: [] // We don't expect HTML tags in this context
-        });
+        }).map(sentence => Text.normalize(sentence));
     }
 }
 
