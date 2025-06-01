@@ -1,5 +1,5 @@
 module.exports = {
-    bfrs: require("./bfrs"),
+    bprs: require("./bprs"),
     gaf: require("./gaf"),
     language: require("./language"),
     problems: require("./problems"),

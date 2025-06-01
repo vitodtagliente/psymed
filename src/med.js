@@ -1,5 +1,5 @@
 const Label = require('./label');
-const BFRS = require('./nlp/bfrs');
+const BPRS = require('./nlp/bprs');
 const Context = require('./nlp/context');
 const Entity = require('./nlp/entity');
 const Pattern = require('./nlp/pattern');
@@ -64,19 +64,11 @@ class Med
 
         context.redux();
 
-        // 3. Calculate BPRS Score after all entities have been identified
         // Combine all relevant entities from the context for BPRS calculation
-        const allRelevantEntities = [...context.problems, ...context.therapies]; // Add other entity types if they map to BPRS categories
+        const allRelevantEntities = [...context.problems, ...context.therapies];
 
-        // Pass the combined entities and the BPRS configuration to the BPRS processor
-        const bfrsResult = BFRS.process(allRelevantEntities, {
-            severityToScore: dataset.bfrs.severityToScore,
-            severityOrder: dataset.bfrs.severityOrder,
-            categories: dataset.bfrs.categories 
-        });
-
-        context.bfrsScores = bfrsResult.scoresPerCategory;
-        context.totalBFRSSum = bfrsResult.totalBFRSSum;
+        // Calculate BPRS Score after all entities have been identified
+        const bprsResult = BPRS.process(context.problems, dataset.bprs);
 
         // Logging results
         console.log(`${context.problems.length} Problems:`);
@@ -95,18 +87,15 @@ class Med
             console.log(relation.toString()); // Use toString for better output
         }
 
-        console.log("--- BFRS Scores per Category ---");
-        // Iterate over the keys (category names) in the bfrsScores object
-        for (const categoryName in context.bfrsScores)
+        console.log("Punteggi BPRS per Categoria:");
+        let i = 0;
+        for (const categoryId in bprsResult.itemScores)
         {
-            // This check is a good practice to ensure you're only working with the object's own properties
-            if (Object.hasOwnProperty.call(context.bfrsScores, categoryName))
-            {
-                const score = context.bfrsScores[categoryName];
-                console.log(`${categoryName}: ${score}`);
-            }
+            const formattedIndex = String(i + 1).padStart(2, '0');
+            console.log(`${formattedIndex} - ${bprsResult.itemScores[categoryId].name}: ${bprsResult.itemScores[categoryId].score}`);
+            i++;
         }
-        console.log("Total BFRS Sum:", context.totalBFRSSum);
+        console.log(`Punteggio BPRS Totale: ${bprsResult.totalScore}`);
 
         return context; // Make sure to return the populated context object
     }
