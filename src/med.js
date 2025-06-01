@@ -1,23 +1,13 @@
 const Label = require('./label');
 const BPRS = require('./nlp/bprs');
 const Context = require('./nlp/context');
-const Entity = require('./nlp/entity');
 const Pattern = require('./nlp/pattern');
-const SectionProcessor = require('./nlp/section_processor');
 const Sentence = require('./nlp/sentence');
-const Text = require('./utils/text');
 
 class Med
 {
     static process(text, dataset)
     {
-        const context = new Context();
-
-        // Initialize context properties as empty arrays.
-        // This is crucial to ensure we can append to them later.
-        context.problems = [];
-        context.therapies = [];
-
         // Prepare negation rules and modifiers to be passed down
         const processOptions = {
             negationRules: {
@@ -35,11 +25,9 @@ class Med
         const therapyPatterns = Pattern.map(dataset.therapies);
         const relationDefinitions = dataset.relations || []; // Ensure relations are available
 
-        const sections = SectionProcessor.identify(text, dataset.sections);
-        for (const section of sections)
+        const context = new Context();
         {
-            const sentences = Sentence.identify(section.text || section);
-
+            const sentences = Sentence.identify(text);
             for (let sentence of sentences)
             {
                 // 1. Find Entities
@@ -54,14 +42,13 @@ class Med
                 // You might need to expand this to include other entity types if your relations involve them
                 const entitiesInCurrentSentence = [...foundProblems, ...foundTherapies];
 
-                // 2. Find Relations between entities in the current sentence
+                // Find Relations between entities in the current sentence
                 const foundRelations = sentence.findRelations(entitiesInCurrentSentence, relationDefinitions);
 
                 // Append found relations to the context
                 context.relations.push(...foundRelations);
             }
         }
-
         context.redux();
 
         // Combine all relevant entities from the context for BPRS calculation
