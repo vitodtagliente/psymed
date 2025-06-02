@@ -2,7 +2,7 @@ const Text = require("../utils/text");
 const Token = require("./token");
 const Pattern = require("./pattern");
 const Entity = require("./entity");
-const Relation = require("./relation"); // Import the new Relation class
+const Relation = require("./relation");
 
 /**
  * Represents a sentence, breaking it down into an array of tokens and providing methods for sentence-level operations.
@@ -91,10 +91,10 @@ class Sentence
 
         for (let i = searchStart; i <= searchEnd; i++)
         {
-            if (i >= entityStartIndex && i <= entityEndIndex)
-            {
-                continue;
-            }
+            // if (i >= entityStartIndex && i <= entityEndIndex)
+            // {
+            //     continue;
+            // }
 
             const currentTokenName = this.tokens[i].name;
 
@@ -105,8 +105,11 @@ class Sentence
                 for (const semanticCategory in modifierValues)
                 {
                     const modifierTerms = modifierValues[semanticCategory];
+                    const stemmedModifiers = modifierTerms.map(
+                        keyword => Text.stemItalian(keyword),
+                    );
 
-                    if (modifierTerms.includes(currentTokenName))
+                    if (stemmedModifiers.includes(currentTokenName))
                     {
                         entity.addModifier(modifierType, semanticCategory);
                     }
