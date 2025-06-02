@@ -3,6 +3,7 @@ const DataSet = require('./data/dataset');
 const FileReader = require('./src/io/file_reader');
 const PsyMed = require('./src/psymed');
 const DirectoryReader = require('./src/io/directory_reader');
+const JsonWriter = require('./src/io/json_writer');
 
 /**
  * @constant {string} input_path - Defines the path to the input document or directory to be processed.
@@ -10,6 +11,7 @@ const DirectoryReader = require('./src/io/directory_reader');
  * containing multiple documents.
  */
 const input_path = path.join(__dirname, '/dataset'); // Currently configured to process a directory named 'dataset'
+const output_path = path.join(__dirname, '/output');
 
 /**
  * Processes a single document file, extracts its content, and runs it through the PsyMed pipeline.
@@ -39,6 +41,11 @@ async function process(file, visualize = false)
     // Process the extracted content using PsyMed and the loaded DataSet.
     const context = PsyMed.process(fileContent, DataSet);
     console.log("Processing complete...");
+
+    const baseNameWithExtension = path.basename(file);
+    const fileNameWithoutExtension = path.parse(baseNameWithExtension).name;
+    const outputContextPath = path.join(output_path, `${fileNameWithoutExtension}.json`);
+    await JsonWriter.write(context, outputContextPath);
 
     // If visualization is requested, call PsyMed's visualize method.
     if (visualize)
@@ -85,7 +92,6 @@ async function main()
     }
     else
     {
-        console.log(`Input path "${input_path}" is a single file. Processing...`);
         // Process the single file with visualization enabled.
         await process(input_path, true);
         console.log("Single file processing complete.");
