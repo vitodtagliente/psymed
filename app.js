@@ -1,7 +1,7 @@
 const path = require('path');
 const DataSet = require('./data/dataset');
 const FileReader = require('./src/io/file_reader');
-const Med = require('./src/med');
+const PsyMed = require('./src/psymed');
 
 async function main() {
     const filePath = path.join(__dirname, '/docs/ubaldini_ubaldo.docx');
@@ -12,10 +12,10 @@ async function main() {
         return;
     }
 
-    Med.process(fileContent, DataSet);
+    PsyMed.process(fileContent, DataSet);
 }
 
 // Avvia la funzione principale
 main().catch(error => {
-    console.error("Si è verificato un errore critico nell'applicazione:", error);
+    console.error("Si ï¿½ verificato un errore critico nell'applicazione:", error);
 });

@@ -1,5 +1,5 @@
 {
-  "name": "med",
+  "name": "psymed",
   "version": "1.0.0",
   "description": "Analisi NLP di referti medici con Node.js",
   "license": "MIT",

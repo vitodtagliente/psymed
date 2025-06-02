@@ -4,7 +4,7 @@ const Context = require('./nlp/context');
 const Pattern = require('./nlp/pattern');
 const Sentence = require('./nlp/sentence');
 
-class Med
+class PsyMed
 {
     static process(text, dataset)
     {
@@ -88,4 +88,4 @@ class Med
     }
 }
 
-module.exports = Med;
+module.exports = PsyMed;
