@@ -38,17 +38,17 @@ class Context
         this.relations = [];
 
         /**
-         * An object mapping BFRS category keys to their calculated numerical scores.
+         * An object mapping BPRS category keys to their calculated numerical scores.
          * @type {Object.<string, number>}
          * @example { "preoccupazione_somatica": 4, "ansia": 6, ... }
          */
-        this.bfrsScores = {}; // New property for individual BFRS category scores
+        this.bprsScores = {}; // New property for individual BPRS category scores
 
         /**
-         * The total calculated sum of all BFRS category scores.
+         * The total calculated sum of all BPRS category scores.
          * @type {number}
          */
-        this.totalBFRSSum = 0; // New property for the total BFRS sum
+        this.totalBPRSSum = 0; // New property for the total BPRS sum
     }
 
     /**

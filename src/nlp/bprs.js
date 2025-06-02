@@ -148,7 +148,7 @@ class BPRS
 
         // Return the detailed category scores and the total score
         return {
-            itemScores: bprsScores,
+            scores: bprsScores,
             totalScore: totalBPRSScore,
         };
     }

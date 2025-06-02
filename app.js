@@ -23,8 +23,10 @@ async function main() {
 
     console.log("File content extracted successfully. Processing with PsyMed...");
     // Process the extracted content using PsyMed and the DataSet.
-    PsyMed.process(fileContent, DataSet);
-    console.log("Processing complete.");
+    const context = PsyMed.process(fileContent, DataSet);
+    console.log("Processing complete...");
+
+    PsyMed.visualize(context);
 }
 
 // Start the main function and catch any critical errors.
