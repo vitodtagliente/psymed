@@ -13,6 +13,7 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,7 +28,8 @@
     "doc": "docs"
   },
   "devDependencies": {
-    "eslint": "^9.28.0"
+    "eslint": "^9.28.0",
+    "nodemon": "^3.1.10"
   },
   "repository": {
     "type": "git",
