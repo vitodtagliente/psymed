@@ -378,3 +378,9 @@ section {
     /* Equivalent to text-gray-600 */
     font-style: italic;
 }
+
+select 
+{
+    padding: 5px;
+    font-size: 1.25em;
+}

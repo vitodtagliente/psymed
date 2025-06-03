@@ -32,17 +32,16 @@ const ProblemCard = ({ problem }) => (
 );
 
 // Main App component
-const App = () =>
-{
+const App = () => {
     const [jsonData, setJsonData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const handleFileChange = (event) =>
-    {
+    // Handles file selection and parsing
+    const handleFileChange = (event) => {
         const file = event.target.files[0];
-        if (!file)
-        {
+        if (!file) {
             return;
         }
 
@@ -51,57 +50,66 @@ const App = () =>
 
         const reader = new FileReader();
 
-        reader.onload = (e) =>
-        {
-            try
-            {
+        reader.onload = (e) => {
+            try {
                 const parsedData = JSON.parse(e.target.result);
-                if (parsedData.problems && parsedData.bprsScores && typeof parsedData.totalBPRSSum === 'number')
-                {
+                // Check if the parsed data has the new category structure
+                if (Object.keys(parsedData).length > 0 && Object.values(parsedData).every(
+                    category => category.problems && category.bprsScores && typeof category.totalBPRSSum === 'number'
+                )) {
                     setJsonData(parsedData);
-                } else
-                {
-                    setError("Invalid JSON structure. Please ensure it contains 'problems', 'bprsScores', and 'totalBPRSSum'.");
+                    // Automatically select the first category if available
+                    setSelectedCategory(Object.keys(parsedData)[0]);
+                } else {
+                    setError("Invalid JSON structure. Please ensure it contains categories with 'problems', 'bprsScores', and 'totalBPRSSum'.");
                     setJsonData(null);
+                    setSelectedCategory(null);
                 }
-            } catch (parseError)
-            {
+            } catch (parseError) {
                 setError(`Error parsing JSON file: ${parseError.message}`);
                 setJsonData(null);
-            } finally
-            {
+                setSelectedCategory(null);
+            } finally {
                 setLoading(false);
             }
         };
 
-        reader.onerror = () =>
-        {
+        reader.onerror = () => {
             setError("Error reading file. Please try again.");
             setLoading(false);
             setJsonData(null);
+            setSelectedCategory(null);
         };
 
         reader.readAsText(file);
     };
 
-    const bprsData = jsonData ? Object.entries(jsonData.bprsScores).map(([key, value]) => ({
+    // Handles category selection
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
+
+    // Get data for the currently selected category
+    const currentCategoryData = jsonData && selectedCategory ? jsonData[selectedCategory] : null;
+
+    // Format BPRS data for the chart
+    const bprsData = currentCategoryData ? Object.entries(currentCategoryData.bprsScores).map(([key, value]) => ({
         name: value.name,
         score: value.score,
     })) : [];
 
     return (
-        // Using custom CSS class names defined in src/index.css
-        <div className="app-container">
-            <div className="main-content-wrapper">
-                <h1 className="main-title">
+        // Main application container with responsive styling
+        <div className="app-container min-h-screen bg-gray-100 flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8 font-inter">
+            <div className="main-content-wrapper bg-white shadow-xl rounded-lg p-6 sm:p-8 lg:p-10 w-full max-w-4xl">
+                <h1 className="main-title text-4xl font-extrabold text-gray-800 text-center mb-8">
                     PsyMed NLP Analysis
                 </h1>
 
                 {/* File Upload Section */}
-                <section className="upload-section">
-                    <label htmlFor="json-upload" className="custom-file-input">
-                        {/* Lucide icon, styled with inline style for precise control */}
-                        <UploadCloud style={{ width: '1.25rem', height: '1.25rem', marginRight: '0.5rem' }} />
+                <section className="upload-section bg-blue-50 p-6 rounded-lg mb-8 flex flex-col items-center justify-center">
+                    <label htmlFor="json-upload" className="custom-file-input bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full cursor-pointer flex items-center shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        <UploadCloud className="w-5 h-5 mr-3" />
                         {loading ? 'Loading...' : 'Upload JSON File'}
                         <input
                             id="json-upload"
@@ -109,15 +117,15 @@ const App = () =>
                             accept=".json"
                             onChange={handleFileChange}
                             disabled={loading}
+                            className="hidden"
                         />
                     </label>
                     {error && (
-                        <p className="error-message">{error}</p>
+                        <p className="error-message text-red-600 mt-4 text-center">{error}</p>
                     )}
                     {!jsonData && !loading && !error && (
-                        <p className="upload-message">
-                            {/* Lucide icon, styled with inline style */}
-                            <FileText style={{ width: '1.25rem', height: '1.25rem', marginRight: '0.5rem' }} />
+                        <p className="upload-message text-gray-600 mt-4 flex items-center">
+                            <FileText className="w-5 h-5 mr-2" />
                             Please upload a JSON file to see the analysis.
                         </p>
                     )}
@@ -125,39 +133,58 @@ const App = () =>
 
                 {jsonData && (
                     <>
-                        {/* Problems Section */}
-                        <section>
-                            <h2 className="section-title">
-                                {/* Lucide icon, styled with inline style */}
-                                <Hash style={{ width: '1.75rem', height: '1.75rem', marginRight: '0.75rem', color: '#6366f1' }} />
-                                Identified Problems ({jsonData.problems.length})
+                        {/* Category Selection */}
+                        <section className="category-selection mb-8">
+                            <h2 className="section-title text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                                <Hash className="w-7 h-7 mr-3 text-indigo-600" />
+                                Section Selection
                             </h2>
-                            {jsonData.problems.length > 0 ? (
-                                <div className="problems-grid">
-                                    {jsonData.problems.map((problem, index) => (
+                            <div className="category-select-wrapper">
+                                <select
+                                    value={selectedCategory}
+                                    onChange={handleCategoryChange}
+                                    className="category-select"
+                                >
+                                    {Object.keys(jsonData).map((category) => (
+                                        <option key={category} value={category}>
+                                            {category}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </section>
+
+                        {/* Problems Section */}
+                        <section className="mb-8">
+                            <h2 className="section-title text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                                <Hash className="w-7 h-7 mr-3 text-indigo-600" />
+                                Identified Problems ({currentCategoryData?.problems.length || 0})
+                            </h2>
+                            {currentCategoryData && currentCategoryData.problems.length > 0 ? (
+                                <div className="problems-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {currentCategoryData.problems.map((problem, index) => (
                                         <ProblemCard key={index} problem={problem} />
                                     ))}
                                 </div>
                             ) : (
-                                <p className="no-data-message">No problems identified in the text.</p>
+                                <p className="no-data-message text-gray-500 text-center py-4">No problems identified for this category.</p>
                             )}
                         </section>
 
                         {/* BPRS Scores Section */}
                         <section>
-                            <h2 className="section-title">
-                                {/* Lucide icon, styled with inline style */}
-                                <Hash style={{ width: '1.75rem', height: '1.75rem', marginRight: '0.75rem', color: '#6366f1' }} />
+                            <h2 className="section-title text-2xl font-semibold text-gray-700 mb-4 flex items-center">
+                                <Hash className="w-7 h-7 mr-3 text-indigo-600" />
                                 BPRS Scores
                             </h2>
-                            <div className="bprs-summary">
-                                <p>
-                                    Total BPRS Sum: <span>{jsonData.totalBPRSSum}</span>
+                            <div className="bprs-summary bg-blue-50 p-4 rounded-lg mb-6 text-center">
+                                <p className="text-lg font-medium text-gray-700">
+                                    Total BPRS Sum: <span className="font-bold text-indigo-600">{currentCategoryData?.totalBPRSSum || 'N/A'}</span>
                                 </p>
                             </div>
 
                             {bprsData.length > 0 ? (
-                                <div className="bprs-chart-container">
+                                <div className="bprs-chart-container bg-gray-50 p-4 rounded-lg shadow-md">
                                     <ResponsiveContainer width="100%" height={400}>
                                         <BarChart
                                             data={bprsData}
@@ -189,7 +216,7 @@ const App = () =>
                                     </ResponsiveContainer>
                                 </div>
                             ) : (
-                                <p className="no-data-message">No BPRS scores available.</p>
+                                <p className="no-data-message text-gray-500 text-center py-4">No BPRS scores available for this category.</p>
                             )}
                         </section>
                     </>
