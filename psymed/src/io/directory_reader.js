@@ -4,6 +4,27 @@ const path = require('path');
 class DirectoryReader
 {
     /**
+     * Ensures that a directory exists at the given path. 
+     * If the directory does not exist, it is created recursively.
+     *
+     * @param {string} dirPath - The path to the directory to ensure.
+     * @returns {Promise<void>} A promise that resolves when the directory is ensured.
+     */
+    static async ensureDir(dirPath)
+    {
+        try
+        {
+            await fs.mkdir(dirPath, { recursive: true });
+            console.log(`Directory ensured: ${dirPath}`);
+        } 
+        catch (err)
+        {
+            console.error(`Error ensuring directory: ${err.message}`);
+            throw err;
+        }
+    }
+
+    /**
      * Checks if a given path points to a directory.
      *
      * @async
@@ -20,7 +41,7 @@ class DirectoryReader
 
             // The `isDirectory()` method of the `fs.Stats` object returns true if it's a directory.
             return stats.isDirectory();
-        } 
+        }
         catch (error)
         {
             // Handle common errors:

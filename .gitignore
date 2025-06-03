@@ -133,5 +133,5 @@ dist
 .vs
 .idea
 
-.dataset/
-.output/
+dataset
+bin

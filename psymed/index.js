@@ -1,7 +1,7 @@
 const fs = require('fs').promises; // Required for directory creation/management
 const path = require('path');
 
-const Data = require('../data/dictionary');
+const Data = require('../data/data');
 const DirectoryReader = require('./src/io/directory_reader');
 const FileReader = require('./src/io/file_reader');
 const JsonWriter = require('./src/io/json_writer');
@@ -23,7 +23,7 @@ const input_path = path.join(__dirname, '/../dataset'); // Currently configured 
  * @constant {string} output_path - Defines the path to the directory where processed JSON
  * context files will be saved.
  */
-const output_path = path.join(__dirname, '/../output');
+const output_path = path.join(__dirname, '/../bin');
 
 /**
  * Processes a single document file: extracts its text content, runs it through the PsyMed NLP pipeline,
@@ -104,7 +104,8 @@ async function main()
         // `recursive: true` ensures parent directories are also created if they don't exist.
         await fs.mkdir(output_path, { recursive: true });
         console.log(`Ensured output directory exists: ${output_path}`);
-    } catch (error)
+    } 
+    catch (error)
     {
         console.error(`Failed to create output directory "${output_path}":`, error);
         console.error("Exiting due to critical directory creation error.");
