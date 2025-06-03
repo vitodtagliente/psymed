@@ -41,7 +41,8 @@ const App = () => {
     terminationPhrases: 'Frasi di Terminazione',
     pseudoNegations: 'Pseudo Negazioni',
     modifiers: 'Modificatori',
-    bprsCategories: 'Categorie BPRS', // Added new category
+    bprsCategories: 'Categorie BPRS',
+    therapies: 'Terapie',
   };
 
   // Effect to clear messages after a few seconds
@@ -133,7 +134,7 @@ const App = () => {
                 }
               }
             }
-            else {
+            else { // For simple array categories like problems, negationPrefixes, therapies
               if (!Array.isArray(parsedData[key])) {
                 isValidStructure = false;
                 break;
@@ -467,6 +468,35 @@ const App = () => {
     setMessage('Mappatura aggiornata con successo!');
   };
 
+  // Handle starting with an empty JSON structure
+  const handleStartFromScratch = () => {
+    setJsonData({
+      problems: [],
+      negationPrefixes: [],
+      negationSuffixes: [],
+      terminationPhrases: [],
+      pseudoNegations: [],
+      modifiers: {},
+      bprsCategories: [],
+      therapies: [], // Initialize therapies as an empty array
+    });
+    setMessage('Iniziato un nuovo documento JSON da zero!');
+    setActiveTab('problems'); // Set initial tab
+    // Reset all specific editing states
+    setSelectedModifierType(null);
+    setSelectedModifierSubtype(null);
+    setNewModifierTypeName('');
+    setNewModifierSubtypeName('');
+    setSelectedBPRSCategoryId(null);
+    setSelectedMappingIndex(null);
+    setNewBPRSCategoryName('');
+    setNewBPRSCategoryId('');
+    setSelectedKeywordsForMapping([]);
+    setEditingModifierRules({});
+    setNewMappingBaseScoreInput(0);
+    setNewItem('');
+  };
+
 
   // Handle downloading the modified JSON
   const handleDownload = () => {
@@ -562,6 +592,9 @@ const App = () => {
           border-radius: 8px;
           border: 1px solid #f3f4f6;
           box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
         }
 
         .upload-label {
@@ -570,6 +603,12 @@ const App = () => {
           font-weight: 600;
           color: #374151;
           margin-bottom: 12px;
+        }
+
+        .file-input-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
         }
 
         .file-input {
@@ -596,13 +635,55 @@ const App = () => {
           background-color: #dbeafe;
         }
 
+        .start-scratch-button {
+          background-color: #60a5fa;
+          color: #ffffff;
+          font-weight: 700;
+          padding: 12px 24px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease-in-out;
+          transform: scale(1);
+          border: none;
+          cursor: pointer;
+          width: 100%; /* Full width on smaller screens */
+          margin-top: 10px; /* Space from file input */
+        }
+
+        .start-scratch-button:hover {
+          background-color: #3b82f6;
+          transform: scale(1.02);
+        }
+
+        @media (min-width: 640px) {
+          .upload-section {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .file-input-container {
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+          }
+          .upload-label {
+            margin-bottom: 0;
+            white-space: nowrap;
+          }
+          .start-scratch-button {
+            width: auto;
+            margin-top: 0;
+          }
+        }
+
+
         .tab-navigation {
           display: flex;
           justify-content: center;
           flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
           margin-bottom: 32px;
           background-color: #eff6ff;
-          border-radius: 9999px;
           padding: 4px;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
@@ -1131,31 +1212,41 @@ const App = () => {
 
           {/* File Upload Section */}
           <div className="upload-section">
-            <label htmlFor="file-upload" className="upload-label">
-              Carica il tuo file JSON:
-            </label>
-            <input
-              id="file-upload"
-              type="file"
-              accept=".json"
-              onChange={handleFileUpload}
-              className="file-input"
-            />
+            <div className="file-input-container">
+              <label htmlFor="file-upload" className="upload-label">
+                Carica il tuo file JSON:
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                accept=".json"
+                onChange={handleFileUpload}
+                className="file-input"
+              />
+            </div>
+            <button
+              onClick={handleStartFromScratch}
+              className="start-scratch-button"
+            >
+              Inizia da zero
+            </button>
           </div>
 
           {jsonData && (
             <>
               {/* Tab Navigation */}
               <div className="tab-navigation">
-                {Object.entries(categories).map(([key, displayName]) => (
-                  <button
-                    key={key}
-                    onClick={() => setActiveTab(key)}
-                    className={`tab-button ${activeTab === key ? 'active' : ''}`}
-                  >
-                    {displayName}
-                  </button>
-                ))}
+                {Object.entries(categories)
+                  .sort(([, nameA], [, nameB]) => nameA.localeCompare(nameB)) // Sort by display name
+                  .map(([key, displayName]) => (
+                    <button
+                      key={key}
+                      onClick={() => setActiveTab(key)}
+                      className={`tab-button ${activeTab === key ? 'active' : ''}`}
+                    >
+                      {displayName}
+                    </button>
+                  ))}
               </div>
 
               {/* Content Area for Active Tab */}
@@ -1495,7 +1586,7 @@ const App = () => {
                         type="text"
                         value={newItem}
                         onChange={(e) => setNewItem(e.target.value)}
-                        placeholder={`Aggiungi un nuovo ${activeTab.slice(0, -1)}...`}
+                        placeholder={`Aggiungi un nuovo elemento a '${categories[activeTab]}'...`}
                         className="add-input"
                       />
                       <button
@@ -1519,7 +1610,7 @@ const App = () => {
                               <button
                                 onClick={() => handleRemoveItem(index)}
                                 className="remove-button"
-                              >
+                                >
                                 Rimuovi
                               </button>
                             </li>
@@ -1549,7 +1640,7 @@ const App = () => {
             <div className="no-data-message">
               <p>Carica un file JSON per iniziare a modificarlo.</p>
               <p>
-                Il file JSON dovrebbe contenere le chiavi: `problems`, `negationPrefixes`, `negationSuffixes`, `terminationPhrases`, `pseudoNegations` (tutte array di stringhe), `modifiers` (un oggetto annidato), e `bprsCategories` (un array di oggetti).
+                Il file JSON dovrebbe contenere le chiavi: `problems`, `negationPrefixes`, `negationSuffixes`, `terminationPhrases`, `pseudoNegations`, `therapies` (tutte array di stringhe), `modifiers` (un oggetto annidato), e `bprsCategories` (un array di oggetti).
               </p>
             </div>
           )}
