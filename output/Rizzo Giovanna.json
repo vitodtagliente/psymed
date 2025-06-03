@@ -1,6 +1,38 @@
 {
   "problems": [
     {
+      "text": "agitazione psicomotoria",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "agitazione",
+          "name": "agit"
+        },
+        {
+          "text": "psicomotoria",
+          "name": "psicomotor"
+        }
+      ]
+    },
+    {
+      "text": "allucinazioni uditive",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "allucinazioni",
+          "name": "allucin"
+        },
+        {
+          "text": "uditive",
+          "name": "udit"
+        }
+      ]
+    },
+    {
       "text": "aggressivita verbale",
       "label": "problem",
       "isNegated": false,
@@ -17,14 +49,14 @@
       ]
     },
     {
-      "text": "allucinazioni",
+      "text": "disorganizzata",
       "label": "problem",
       "isNegated": false,
       "modifiers": {},
       "originalTokens": [
         {
-          "text": "allucinazioni",
-          "name": "allucin"
+          "text": "disorganizzata",
+          "name": "disorganizz"
         }
       ]
     },
@@ -57,6 +89,18 @@
       ]
     },
     {
+      "text": "polarizzato",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "polarizzato",
+          "name": "polarizz"
+        }
+      ]
+    },
+    {
       "text": "preoccupata",
       "label": "problem",
       "isNegated": false,
@@ -73,14 +117,26 @@
       ]
     },
     {
-      "text": "agitazione",
+      "text": "isolamento",
       "label": "problem",
       "isNegated": false,
       "modifiers": {},
       "originalTokens": [
         {
-          "text": "agitazione",
-          "name": "agit"
+          "text": "isolamento",
+          "name": "isol"
+        }
+      ]
+    },
+    {
+      "text": "diffidente",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "diffidente",
+          "name": "diffident"
         }
       ]
     },
@@ -97,6 +153,18 @@
       ]
     },
     {
+      "text": "irritabile",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "irritabile",
+          "name": "irrit"
+        }
+      ]
+    },
+    {
       "text": "deliranti",
       "label": "problem",
       "isNegated": false,
@@ -105,6 +173,34 @@
         {
           "text": "deliranti",
           "name": "delir"
+        }
+      ]
+    },
+    {
+      "text": "disforico",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "disforico",
+          "name": "disfor"
+        }
+      ]
+    },
+    {
+      "text": "controlla",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {
+        "stato_condizione": [
+          "controllato"
+        ]
+      },
+      "originalTokens": [
+        {
+          "text": "controlla",
+          "name": "controll"
         }
       ]
     },
@@ -121,6 +217,111 @@
       ]
     },
     {
+      "text": "controllo",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {
+        "stato_condizione": [
+          "controllato"
+        ]
+      },
+      "originalTokens": [
+        {
+          "text": "controllo",
+          "name": "controll"
+        }
+      ]
+    },
+    {
+      "text": "controlli",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {
+        "stato_condizione": [
+          "controllato"
+        ],
+        "frequenza": [
+          "frequente"
+        ]
+      },
+      "originalTokens": [
+        {
+          "text": "controlli",
+          "name": "controll"
+        }
+      ]
+    },
+    {
+      "text": "disturbi",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "disturbi",
+          "name": "disturb"
+        }
+      ]
+    },
+    {
+      "text": "paziente",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {
+        "frequenza": [
+          "frequente"
+        ],
+        "gravita": [
+          "lieve"
+        ],
+        "stato_condizione": [
+          "controllato"
+        ]
+      },
+      "originalTokens": [
+        {
+          "text": "paziente",
+          "name": "pazient"
+        }
+      ]
+    },
+    {
+      "text": "pensiero",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "pensiero",
+          "name": "pensier"
+        }
+      ]
+    },
+    {
+      "text": "pazienti",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "pazienti",
+          "name": "pazient"
+        }
+      ]
+    },
+    {
+      "text": "malattia",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "malattia",
+          "name": "malatt"
+        }
+      ]
+    },
+    {
       "text": "agitata",
       "label": "problem",
       "isNegated": false,
@@ -129,6 +330,18 @@
         {
           "text": "agitata",
           "name": "agit"
+        }
+      ]
+    },
+    {
+      "text": "isolata",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "isolata",
+          "name": "isol"
         }
       ]
     },
@@ -153,6 +366,42 @@
         {
           "text": "deliri",
           "name": "delir"
+        }
+      ]
+    },
+    {
+      "text": "umore",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "umore",
+          "name": "umor"
+        }
+      ]
+    },
+    {
+      "text": "crisi",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "crisi",
+          "name": "cris"
+        }
+      ]
+    },
+    {
+      "text": "come",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "come",
+          "name": "com"
         }
       ]
     }
@@ -182,7 +431,7 @@
     },
     "tension": {
       "name": "Tension",
-      "score": 1
+      "score": 4
     },
     "mannerisms_and_posturing": {
       "name": "Mannerisms and Posturing",
@@ -194,7 +443,7 @@
     },
     "depression": {
       "name": "Depression",
-      "score": 1
+      "score": 3
     },
     "hostility": {
       "name": "Hostility",
@@ -202,7 +451,7 @@
     },
     "suspiciousness": {
       "name": "Suspiciousness",
-      "score": 1
+      "score": 4
     },
     "hallucinations": {
       "name": "Hallucinations",
@@ -226,12 +475,12 @@
     },
     "excitement": {
       "name": "Excitement",
-      "score": 1
+      "score": 4
     },
     "disorientation": {
       "name": "Disorientation",
       "score": 1
     }
   },
-  "totalBPRSSum": 37
+  "totalBPRSSum": 48
 }

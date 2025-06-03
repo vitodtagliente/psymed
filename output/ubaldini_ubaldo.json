@@ -144,26 +144,6 @@
       ]
     },
     {
-      "text": "insonnia iniziale",
-      "label": "problem",
-      "isNegated": false,
-      "modifiers": {
-        "gravita": [
-          "lieve"
-        ]
-      },
-      "originalTokens": [
-        {
-          "text": "insonnia",
-          "name": "insonn"
-        },
-        {
-          "text": "iniziale",
-          "name": "inizial"
-        }
-      ]
-    },
-    {
       "text": "scarsa cura di se",
       "label": "problem",
       "isNegated": false,
@@ -188,6 +168,26 @@
         {
           "text": "se",
           "name": "se"
+        }
+      ]
+    },
+    {
+      "text": "insonnia iniziale",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {
+        "gravita": [
+          "lieve"
+        ]
+      },
+      "originalTokens": [
+        {
+          "text": "insonnia",
+          "name": "insonn"
+        },
+        {
+          "text": "iniziale",
+          "name": "inizial"
         }
       ]
     },
@@ -272,6 +272,23 @@
       ]
     },
     {
+      "text": "paziente",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {
+        "gravita": [
+          "lieve",
+          "moderata"
+        ]
+      },
+      "originalTokens": [
+        {
+          "text": "paziente",
+          "name": "pazient"
+        }
+      ]
+    },
+    {
       "text": "mutacico",
       "label": "problem",
       "isNegated": false,
@@ -284,6 +301,18 @@
       ]
     },
     {
+      "text": "pensiero",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "pensiero",
+          "name": "pensier"
+        }
+      ]
+    },
+    {
       "text": "angoscia",
       "label": "problem",
       "isNegated": false,
@@ -292,6 +321,30 @@
         {
           "text": "angoscia",
           "name": "angosc"
+        }
+      ]
+    },
+    {
+      "text": "memoria",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "memoria",
+          "name": "memor"
+        }
+      ]
+    },
+    {
+      "text": "umore",
+      "label": "problem",
+      "isNegated": false,
+      "modifiers": {},
+      "originalTokens": [
+        {
+          "text": "umore",
+          "name": "umor"
         }
       ]
     }
