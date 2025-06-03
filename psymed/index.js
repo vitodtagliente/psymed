@@ -94,6 +94,19 @@ async function process(file, visualize = false)
  */
 async function main()
 {
+    // Generate the dictionary
+    const dic_file = path.join(__dirname, '/../data/dictionary.json');
+    await JsonWriter.write({
+        problems: DataSet.problems,
+        bprsCategories: DataSet.bprs.categories,
+        therapies: DataSet.therapies,
+        negationPrefixes: DataSet.language.negationPrefixes,
+        negationSuffixes: DataSet.language.negationSuffixes,
+        terminationPhrases: DataSet.language.terminationPhrases,
+        pseudoNegations: DataSet.language.pseudoNegations,
+        modifiers: DataSet.language.modifiers,
+    }, dic_file);
+
     console.log("Starting PsyMed Document Processor.");
     console.log(`Input Path: ${input_path}`);
     console.log(`Output Path: ${output_path}`);

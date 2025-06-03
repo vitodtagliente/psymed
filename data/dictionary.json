@@ -1,0 +1,2186 @@
+{
+  "problems": [
+    "deterioramento delle relazioni interpersonali",
+    "comportamento sessuale a rischio cronico",
+    "tendenza a idealizzazione e svalutazione",
+    "atteggiamento di superiorità patologica",
+    "incapacità di mantenere lavoro stabile",
+    "comportamento autodistruttivo cronico",
+    "comportamento controllante patologico",
+    "disturbi gastrointestinali funzionali",
+    "disturbo del comportamento alimentare",
+    "perdita del senso di identità cronica",
+    "waxy flexibility (flessibilità cerea)",
+    "disturbo di personalità narcisistica",
+    "comportamento evitante generalizzato",
+    "comportamento esibizionista cronico",
+    "disturbo di personalità antisociale",
+    "comportamento automutilante cronico",
+    "evitamento del conflitto patologico",
+    "incapacità di risoluzione conflitti",
+    "psicosi schizofrenica cronicizzata",
+    "disturbo di personalità borderline",
+    "disturbo da stress post-traumatico",
+    "comportamento ossessivo-compulsivo",
+    "disorganizzazione comportamentale",
+    "idee di trasmissione del pensiero",
+    "moderato deterioramento cognitivo",
+    "perdita della motivazione cronica",
+    "comportamento sessuale compulsivo",
+    "mancanza di adesione terapeutica",
+    "personalità ossessivo-compulsiva",
+    "ricerca di attenzioni patologica",
+    "atteggiamento passivo-aggressivo",
+    "comportamenti autolesivi cronici",
+    "comportamento negligente cronico",
+    "comportamento passivo-aggressivo",
+    "esperienza di déjà-vu patologico",
+    "incapacità di gestione economica",
+    "bisogno patologico di attenzione",
+    "desiderio di vendetta patologico",
+    "preoccupazione eccessiva ordine",
+    "disturbi dell'identità sessuale",
+    "idee di inserzione del pensiero",
+    "insolito contenuto del pensiero",
+    "bisogno patologico approvazione",
+    "manipolazione affettiva cronica",
+    "ostilità interpersonale cronica",
+    "incapacità relazionale cronica",
+    "disturbo d'ansia generalizzata",
+    "atteggiamento sfidante cronico",
+    "deterioramento cognitivo lieve",
+    "incapacità di autocura cronica",
+    "senso di solitudine patologico",
+    "sfiducia cronica generalizzata",
+    "trascuratezza igiene personale",
+    "disagio somatico generalizzato",
+    "promiscuità patologica cronica",
+    "disorganizzazione concettuale",
+    "disturbo ossessivo-compulsivo",
+    "disturbo ossessivo-compulsivo",
+    "isolamento lavorativo cronico",
+    "comportamenti autodistruttivi",
+    "incapacità di perdono cronica",
+    "poca disponibilità al dialogo",
+    "deficit memoria breve termine",
+    "deficit memoria lungo termine",
+    "disturbi alimentari psicogeni",
+    "manierismi e posture bizzarre",
+    "sentimenti di rifiuto cronici",
+    "depersonalizzazione somatica",
+    "difficoltà di concentrazione",
+    "mimica facciale inespressiva",
+    "disturbo depressivo maggiore",
+    "atteggiamento cinico cronico",
+    "difficoltà di pianificazione",
+    "disorganizzazione ambientale",
+    "episodio depressivo maggiore",
+    "idee di lettura del pensiero",
+    "incapacità di organizzazione",
+    "incapacità di pianificazione",
+    "razionalizzazione patologica",
+    "ritiro scolastico patologico",
+    "visione catastrofica cronica",
+    "aggressività passiva cronica",
+    "atteggiamento manipolatorio",
+    "disturbi sessuali psicogeni",
+    "impulsività nelle relazioni",
+    "incapacità di progettazione",
+    "perdita della progettualità",
+    "perdita di speranza cronica",
+    "accellerazione del pensiero",
+    "alterazione della vigilanza",
+    "alterazione senso del tempo",
+    "alterazioni della vigilanza",
+    "ansia da separazione adulta",
+    "deficit memoria procedurale",
+    "disturbo conversivo cronico",
+    "disturbi sessuali psicogeni",
+    "mancanza di empatia cronica",
+    "ipercoinvolgimento emotivo",
+    "comportamento provocatorio",
+    "stato confusionale cronico",
+    "comportamento ritualistico",
+    "consapevolezza di malattia",
+    "derealizzazione percettiva",
+    "evitamento sociale cronico",
+    "idee di furto del pensiero",
+    "incapacità di relazionarsi",
+    "rallentamento del pensiero",
+    "vittimizzazione patologica",
+    "aggressività etero-diretta",
+    "comportamento provocatorio",
+    "deficit funzioni esecutive",
+    "gioco d'azzardo patologico",
+    "schizofrenia cronicizzata",
+    "comportamento stravagante",
+    "disorientamento nel tempo",
+    "alterazione della memoria",
+    "delirio di influenzamento",
+    "disinvestimento affettivo",
+    "stress cronico patologico",
+    "aggressività auto-diretta",
+    "alterazione della memoria",
+    "comportamento antisociale",
+    "deficit memoria episodica",
+    "deficit memoria semantica",
+    "disturbo adattivo cronico",
+    "disturbo schizoaffettivo",
+    "personalità schizotipica",
+    "stato confusionale acuto",
+    "disturbo bipolare tipo 1",
+    "disturbo bipolare tipo 2",
+    "comportamento oppositivo",
+    "comportamento sprezzante",
+    "comportamento suicidario",
+    "deterioramento cognitivo",
+    "incapacità di previsione",
+    "perfezionismo patologico",
+    "perdita di ruolo sociale",
+    "polarizzazione affettiva",
+    "procrastinazione cronica",
+    "tensione emotiva cronica",
+    "trascuratezza alimentare",
+    "comportamento disinibito",
+    "comportamento negligente",
+    "evitamento del conflitto",
+    "ipervigilanza patologica",
+    "irresponsabilità cronica",
+    "personalità narcisistica",
+    "rigidità comportamentale",
+    "agitazione psicomotoria",
+    "allucinazioni olfattive",
+    "delirio di infestazione",
+    "allucinazioni gustative",
+    "disturbi di adattamento",
+    "disturbi di personalità",
+    "pensiero disorganizzato",
+    "personalità schizoidica",
+    "disturbo neurocognitivo",
+    "instabilità identitaria",
+    "preoccupazione corporea",
+    "appiattimento affettivo",
+    "atteggiamento difensivo",
+    "atteggiamento prevenuto",
+    "comportamento impulsivo",
+    "comportamento infantile",
+    "condotta irresponsabile",
+    "disattenzione selettiva",
+    "disturbi di adattamento",
+    "esperienza di jamais-vu",
+    "incapacità di decisione",
+    "incoerenza del pensiero",
+    "meccanismi di negazione",
+    "opposizione terapeutica",
+    "preoccupazione somatica",
+    "regressione psicologica",
+    "sublimazione inefficace",
+    "trascuratezza domestica",
+    "comportamento dominante",
+    "comportamento impulsivo",
+    "comportamento infantile",
+    "egocentrismo patologico",
+    "instabilità relazionale",
+    "personalità antisociale",
+    "distorsione sensoriale",
+    "delirio di riferimento",
+    "schizofrenia residuale",
+    "disturbi della memoria",
+    "disturbi psicosomatici",
+    "ruminazione patologica",
+    "negativismo catatonico",
+    "personalità borderline",
+    "personalità dipendente",
+    "personalità istrionica",
+    "distorsione percettiva",
+    "disturbi della memoria",
+    "indecisione patologica",
+    "negligenza relazionale",
+    "opposizione patologica",
+    "ottundimento affettivo",
+    "ottundimento cognitivo",
+    "perdita di motivazione",
+    "restrizione alimentare",
+    "ritiro sociale cronico",
+    "seduttività patologica",
+    "affettività appiattita",
+    "disturbo dell'identità",
+    "egosintonia patologica",
+    "egodistonia patologica",
+    "iperreattività emotiva",
+    "insicurezza patologica",
+    "masochismo psicologico",
+    "personalità dipendente",
+    "personalità istrionica",
+    "scetticismo patologico",
+    "allucinazioni uditive",
+    "distorsione temporale",
+    "dispercezioni uditive",
+    "allucinazioni tattili",
+    "malattia di alzheimer",
+    "parkinson con demenza",
+    "povertà di linguaggio",
+    "incapacità adattativa",
+    "personalità paranoide",
+    "atteggiamento ribelle",
+    "comportamento ribelle",
+    "disattenzione cronica",
+    "distorsione cognitiva",
+    "disturbi dissociativi",
+    "instabilità economica",
+    "malattia di alzheimer",
+    "narcisismo patologico",
+    "tono di voce sommesso",
+    "affaticamento mentale",
+    "alterazioni coscienza",
+    "ambivalenza affettiva",
+    "bisogno di attenzione",
+    "comportamento ribelle",
+    "comportamento rituale",
+    "eccessiva religiosità",
+    "nichilismo patologico",
+    "personalità paranoide",
+    "personalità schizoide",
+    "povertà di linguaggio",
+    "proiezione patologica",
+    "teatralità patologica",
+    "tono di voce sommesso",
+    "delirio di grandezza",
+    "delirio persecutorio",
+    "allucinazioni visive",
+    "delirio di controllo",
+    "delirio ipocondriaco",
+    "delirio megalomanico",
+    "delirio nichilistico",
+    "demenza di alzheimer",
+    "sindrome di tourette",
+    "personalità evitante",
+    "personalità multipla",
+    "amnesia dissociativa",
+    "conversione isterica",
+    "diminuzione appetito",
+    "fanatismo ideologico",
+    "ideazione autolesiva",
+    "ideazione suicidaria",
+    "illusioni percettive",
+    "incongruenza emotiva",
+    "negligenza personale",
+    "nichilismo affettivo",
+    "perdita di interesse",
+    "sospettosità cronica",
+    "timidezza patologica",
+    "aggressività verbale",
+    "arroganza patologica",
+    "controllo compulsivo",
+    "disillusione cronica",
+    "intossicazione acuta",
+    "passività patologica",
+    "perdita di interesse",
+    "rigidità relazionale",
+    "seduzione patologica",
+    "sintomi dissociativi",
+    "delirio erotomanico",
+    "mancanza di insight",
+    "ansia generalizzata",
+    "aspetto poco curato",
+    "blocco del pensiero",
+    "depersonalizzazione",
+    "esaurimento emotivo",
+    "ideazione paranoide",
+    "impotenza psicogena",
+    "insonnia intermedia",
+    "instabilità umorale",
+    "iperfagia psicogena",
+    "mutacismo selettivo",
+    "paura di ingrassare",
+    "pseudoallucinazioni",
+    "reazione depressiva",
+    "sentimento di vuoto",
+    "stereotipie motorie",
+    "aggressività fisica",
+    "disperazione futura",
+    "estrema sensibilità",
+    "fobia generalizzata",
+    "insonnia intermedia",
+    "instabilità emotiva",
+    "mancanza di insight",
+    "mancanza di empatia",
+    "sadismo psicologico",
+    "saturazione mentale",
+    "shopping compulsivo",
+    "superbia patologica",
+    "disturbi cognitivi",
+    "eloquio accelerato",
+    "eloquio rallentato",
+    "pensieri intrusivi",
+    "disturbo di panico",
+    "disturbo distimico",
+    "disturbo psicotico",
+    "disturbi del sonno",
+    "attacchi di panico",
+    "balbuzie psicogena",
+    "cinismo patologico",
+    "condotte a rischio",
+    "confusione mentale",
+    "diminuzione libido",
+    "disforia di genere",
+    "distacco affettivo",
+    "disturbi del sonno",
+    "emozione incongrua",
+    "evitamento sociale",
+    "gelosia patologica",
+    "immagini intrusive",
+    "immaturità emotiva",
+    "insonnia terminale",
+    "isolamento cronico",
+    "isolamento sociale",
+    "ipotonia psicogena",
+    "manierismo motorio",
+    "perdita di energia",
+    "pessimismo cronico",
+    "rancore patologico",
+    "stato crepuscolare",
+    "vomito autoindotto",
+    "abuso di lassativi",
+    "catastrofizzazione",
+    "deficit attenzione",
+    "diffidenza cronica",
+    "disturbo distimico",
+    "disturbi del sonno",
+    "eloquio accelerato",
+    "eloquio rallentato",
+    "evitamento sociale",
+    "idee catastrofiche",
+    "insonnia terminale",
+    "labilità affettiva",
+    "paralisi psicogena",
+    "rigidità affettiva",
+    "rigidità cognitiva",
+    "stato confusionale",
+    "verifica ossessiva",
+    "delirio religioso",
+    "demenza vascolare",
+    "scarsa cura di sé",
+    "tossicodipendenza",
+    "anoressia nervosa",
+    "crisi epilettiche",
+    "evitamento fobico",
+    "fuga dissociativa",
+    "idee di controllo",
+    "idee di inutilità",
+    "insonnia iniziale",
+    "perdita interessi",
+    "quadro catatonico",
+    "stupor catatonico",
+    "timore patologico",
+    "abuso di sostanze",
+    "deficit cognitivo",
+    "disorganizzazione",
+    "disturbo bipolare",
+    "dubbio patologico",
+    "freddezza emotiva",
+    "insonnia iniziale",
+    "masochismo morale",
+    "paralisi isterica",
+    "razionalizzazione",
+    "risveglio precoce",
+    "sintomi psicotici",
+    "sordità psicogena",
+    "tossicodipendenza",
+    "tossicodipendenza",
+    "delirio somatico",
+    "tentato suicidio",
+    "crisi convulsive",
+    "crisi suicidaria",
+    "delirio bizzarro",
+    "ideazione fobica",
+    "mimica ipomobile",
+    "nausea psicogena",
+    "pianto frequente",
+    "postura bizzarra",
+    "reazione ansiosa",
+    "ritiro familiare",
+    "aumento appetito",
+    "cecità psicogena",
+    "crisi suicidaria",
+    "insight distorto",
+    "insight parziale",
+    "memoria alterata",
+    "monotonia vocale",
+    "procrastinazione",
+    "tentato suicidio",
+    "dolore psicogeno",
+    "fatica psicogena",
+    "psicosi cronica",
+    "voci dialoganti",
+    "voci imperative",
+    "bassa autostima",
+    "bulimia nervosa",
+    "cefalea tensiva",
+    "delirio mistico",
+    "eloquio indotto",
+    "eloquio ridotto",
+    "fuga delle idee",
+    "iperaffettività",
+    "mimica immobile",
+    "paura abbandono",
+    "perdita di peso",
+    "sfiducia futuro",
+    "abuso di droghe",
+    "auto-isolamento",
+    "crisi di panico",
+    "crisi di rabbia",
+    "crisi di pianto",
+    "derealizzazione",
+    "disorientamento",
+    "emozione labile",
+    "fobia specifica",
+    "fuga delle idee",
+    "insight assente",
+    "mimica immobile",
+    "pseudofilosofia",
+    "verbosità vuota",
+    "disorientamento",
+    "apatia emotiva",
+    "autosabotaggio",
+    "bradipsichismo",
+    "calo ponderale",
+    "eloquio povero",
+    "fatica cronica",
+    "idee ossessive",
+    "perseverazione",
+    "preoccupazione",
+    "ritiro emotivo",
+    "ritiro sociale",
+    "scarso insight",
+    "sensi di colpa",
+    "somatizzazione",
+    "umore depresso",
+    "verbigerazione",
+    "abuso di alcol",
+    "affaticabilità",
+    "autolesionismo",
+    "bias cognitivi",
+    "confabulazione",
+    "idee di rovina",
+    "maladattamento",
+    "perseverazione",
+    "polarizzazione",
+    "preoccupazione",
+    "recriminazione",
+    "ritiro sociale",
+    "sensi di colpa",
+    "senso di vuoto",
+    "preoccupazione",
+    "deterioramento",
+    "iperprosessia",
+    "catastrofismo",
+    "corpi di lewy",
+    "disattenzione",
+    "disinibizione",
+    "dispercezioni",
+    "irrequietezza",
+    "obnubilamento",
+    "tangenzialità",
+    "umore elevato",
+    "anaffettività",
+    "corpi di lewy",
+    "disattenzione",
+    "dismorfofobia",
+    "dispercezione",
+    "distaccamento",
+    "distraibilità",
+    "iperprosessia",
+    "ipervigilanza",
+    "irrequietezza",
+    "obnubilamento",
+    "perfezionismo",
+    "rallentamento",
+    "umore elevato",
+    "disattenzione",
+    "schizofrenia",
+    "binge eating",
+    "disperazione",
+    "infantilismo",
+    "iperattività",
+    "odio cronico",
+    "oppositività",
+    "sospettosità",
+    "umore labile",
+    "aggressività",
+    "aumento peso",
+    "autocondanna",
+    "bradicinesia",
+    "eccentricità",
+    "irritabilità",
+    "intolleranza",
+    "ottundimento",
+    "perdita peso",
+    "schizofrenia",
+    "sospettosità",
+    "irritabilità",
+    "aggressività",
+    "disperazione",
+    "inquietudine",
+    "irritabilità",
+    "iperattività",
+    "sospettosità",
+    "grandiosità",
+    "irritazione",
+    "schizofasia",
+    "smarrimento",
+    "conversione",
+    "depressione",
+    "esaurimento",
+    "grandiosità",
+    "ipoprosexia",
+    "irritazione",
+    "instabilità",
+    "negativismo",
+    "opposizione",
+    "regressione",
+    "impulsività",
+    "affettività",
+    "depressione",
+    "impulsività",
+    "esaurimento",
+    "grandiosità",
+    "irritazione",
+    "negativismo",
+    "agorafobia",
+    "agitazione",
+    "ciclotimia",
+    "derailment",
+    "ipersonnia",
+    "neologismi",
+    "ossessioni",
+    "pessimismo",
+    "agitazione",
+    "anorgasmia",
+    "catalepsia",
+    "confusione",
+    "diffidenza",
+    "ecoprassia",
+    "evitamento",
+    "ipocondria",
+    "ipocinesia",
+    "isolamento",
+    "pessimismo",
+    "ipocondria",
+    "confusione",
+    "isolamento",
+    "negligenza",
+    "ossessioni",
+    "pessimismo",
+    "solitudine",
+    "agitazione",
+    "diffidenza",
+    "evitamento",
+    "narcisismo",
+    "acatisiac",
+    "splitting",
+    "vaginismo",
+    "alcolismo",
+    "astinenza",
+    "fanatismo",
+    "fatalismo",
+    "mutacismo",
+    "rimuginio",
+    "timidezza",
+    "tristezza",
+    "emicrania",
+    "ideazione",
+    "tristezza",
+    "vaginismo",
+    "mutacismo",
+    "psicogeno",
+    "anoressia",
+    "controllo",
+    "tristezza",
+    "acalasia",
+    "acatisia",
+    "anedonia",
+    "aprassia",
+    "ipotimia",
+    "suicidio",
+    "tensione",
+    "violenza",
+    "aneddoto",
+    "anedonia",
+    "angoscia",
+    "burn-out",
+    "depresso",
+    "dereismo",
+    "disforia",
+    "distimia",
+    "ecolalia",
+    "ipomania",
+    "insonnia",
+    "logorrea",
+    "mutacico",
+    "ostilità",
+    "paranoia",
+    "sfiducia",
+    "suicidio",
+    "tensione",
+    "aprassia",
+    "attacchi",
+    "depresso",
+    "insonnia",
+    "malattia",
+    "paranoia",
+    "suicidio",
+    "anedonia",
+    "angoscia",
+    "depresso",
+    "disforia",
+    "disturbo",
+    "insonnia",
+    "malattia",
+    "paralisi",
+    "paziente",
+    "pensiero",
+    "tensione",
+    "violenza",
+    "depresso",
+    "agnosia",
+    "astenia",
+    "craving",
+    "demenza",
+    "psicosi",
+    "torpore",
+    "tremore",
+    "amnesia",
+    "ansioso",
+    "cefalea",
+    "delirio",
+    "euforia",
+    "mutismo",
+    "psicosi",
+    "rancore",
+    "rituali",
+    "torpore",
+    "visioni",
+    "astenia",
+    "cefalea",
+    "delirio",
+    "demenza",
+    "euforia",
+    "memoria",
+    "psicosi",
+    "bulimia",
+    "cefalea",
+    "memoria",
+    "mutismo",
+    "tremore",
+    "visioni",
+    "demenza",
+    "psicosi",
+    "abulia",
+    "alogia",
+    "rabbia",
+    "ritual",
+    "apatia",
+    "deliri",
+    "fatica",
+    "panico",
+    "pianto",
+    "rabbia",
+    "sopore",
+    "stress",
+    "stupor",
+    "abulia",
+    "apatia",
+    "dolore",
+    "dubbio",
+    "fatica",
+    "nausea",
+    "panico",
+    "pianto",
+    "rabbia",
+    "ritiro",
+    "stress",
+    "vomito",
+    "dolore",
+    "fatica",
+    "incubi",
+    "panico",
+    "pianto",
+    "rabbia",
+    "ritiro",
+    "stress",
+    "apatia",
+    "deliri",
+    "colpa",
+    "ansia",
+    "fobia",
+    "mania",
+    "sonno",
+    "vuoto",
+    "abuso",
+    "alcol",
+    "ansia",
+    "colpa",
+    "crisi",
+    "fobia",
+    "mania",
+    "sonno",
+    "umore",
+    "umore",
+    "vuoto",
+    "ansia",
+    "colpa",
+    "fobia",
+    "mania",
+    "paura",
+    "sonno",
+    "voci",
+    "odio",
+    "calo",
+    "coma",
+    "voci",
+    "voci",
+    "odio",
+    "tics",
+    "tic"
+  ],
+  "bprsCategories": [
+    {
+      "id": "somatic_concern",
+      "name": "Somatic Concern",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "preoccupazione somatica",
+            "lamentele fisiche",
+            "dolori somatici",
+            "fastidi corporei",
+            "malesseri fisici",
+            "dolore somatoforme",
+            "malattia immaginaria cronica",
+            "sintomi inesistenti cronici",
+            "disturbi psicosomatici",
+            "dolore psicogeno",
+            "fatica psicogena",
+            "nausea psicogena",
+            "disturbi gastrointestinali funzionali",
+            "cefalea tensiva",
+            "preoccupazione per la salute patologica",
+            "disagio somatico generalizzato"
+          ],
+          "baseScore": 3,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "intenso": {
+                "adjustment": 3
+              }
+            }
+          }
+        },
+        {
+          "entityTextKeywords": [
+            "ipocondria",
+            "idee ipocondriache"
+          ],
+          "baseScore": 4,
+          "modifierRules": {}
+        }
+      ]
+    },
+    {
+      "id": "anxiety",
+      "name": "Anxiety",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "angoscia",
+            "ansia",
+            "nervosismo",
+            "agitazione",
+            "irrequietezza",
+            "tensione interna",
+            "sentirsi teso",
+            "agitato",
+            "paura",
+            "preoccupazione",
+            "fobia",
+            "panico",
+            "ipervigilanza",
+            "ansia da separazione adulta",
+            "timore patologico",
+            "ipervigilanza patologica",
+            "iperreattività emotiva",
+            "tensione emotiva cronica",
+            "esaurimento emotivo",
+            "burn-out",
+            "stress cronico patologico",
+            "fobia sociale",
+            "fobia specifica",
+            "fobia generalizzata",
+            "evitamento fobico"
+          ],
+          "baseScore": 3,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "critica": {
+                "adjustment": 3
+              },
+              "severa": {
+                "adjustment": 3
+              }
+            },
+            "frequenza": {
+              "occasionale": {
+                "adjustment": 0
+              },
+              "frequente": {
+                "adjustment": 1
+              },
+              "costante": {
+                "adjustment": 2
+              },
+              "persistente": {
+                "adjustment": 2
+              }
+            }
+          }
+        },
+        {
+          "entityTextKeywords": [
+            "attacchi di panico",
+            "crisi di ansia"
+          ],
+          "baseScore": 5,
+          "modifierRules": {}
+        },
+        {
+          "entityTextKeywords": [
+            "insonnia",
+            "insonnia iniziale",
+            "difficoltà ad addormentarsi",
+            "risvegli notturni",
+            "insonnia intermedia",
+            "insonnia terminale",
+            "ipersonnia",
+            "incubi",
+            "risveglio precoce"
+          ],
+          "baseScore": 2,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "emotional_withdrawal",
+      "name": "Emotional Withdrawal",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "ritiro sociale",
+            "ritiro emotivo",
+            "isolamento",
+            "apatia",
+            "mancanza di interazione",
+            "distacco emotivo",
+            "evitamento sociale",
+            "anaffettività",
+            "freddezza emotiva",
+            "comportamenti autistici",
+            "trascuratezza igiene personale",
+            "trascuratezza alimentare",
+            "trascuratezza domestica",
+            "ritiro familiare",
+            "isolamento lavorativo",
+            "perdita interessi",
+            "isolamento cronico",
+            "evitamento sociale cronico",
+            "comportamenti auto-isolanti",
+            "incapacità di autocura cronica",
+            "disordine domestico cronico",
+            "isolamento lavorativo cronico",
+            "distacco sociale patologico",
+            "incapacità di integrazione sociale",
+            "esclusione sociale autoindotta",
+            "comportamento evitante generalizzato",
+            "incapacità di ascolto patologica"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severo": {
+                "adjustment": 2
+              }
+            },
+            "durata": {
+              "cronicizzata": {
+                "adjustment": 1
+              },
+              "persistente": {
+                "adjustment": 1
+              }
+            }
+          }
+        },
+        {
+          "entityTextKeywords": [
+            "mutacico",
+            "mutismo",
+            "silenzio prolungato",
+            "non verbale",
+            "mutacismo selettivo"
+          ],
+          "baseScore": 5,
+          "modifierRules": {}
+        },
+        {
+          "entityTextKeywords": [
+            "scarsa cura di sé",
+            "aspetto poco curato",
+            "incuria personale",
+            "negligenza dell'igiene"
+          ],
+          "baseScore": 3,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "conceptual_disorganization",
+      "name": "Conceptual Disorganization",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "disorganizzazione concettuale",
+            "pensiero disorganizzato",
+            "associazioni lasse",
+            "tangenzialità",
+            "deragliamento",
+            "illogicità del pensiero",
+            "schizofrenia",
+            "psicosi",
+            "pensiero incoerente",
+            "rallentamento del pensiero",
+            "accelerazione del pensiero",
+            "fuga delle idee",
+            "incoerenza del pensiero",
+            "illogicità",
+            "perseverazione",
+            "ecolalia",
+            "verbigerazione",
+            "neologismi",
+            "schizofasia",
+            "afasia",
+            "alogia",
+            "povertà di linguaggio",
+            "mutismo",
+            "logorrea",
+            "eloquio accelerato",
+            "eloquio rallentato",
+            "balbuzie psicogena",
+            "mutacismo selettivo",
+            "dissociazione del pensiero",
+            "dereismo",
+            "sintomi psicotici",
+            "catastrofizzazione",
+            "pensiero circolare",
+            "blocco del pensiero",
+            "rimuginio",
+            "pensieri ripetitivi patologici",
+            "ruminazione patologica"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severa": {
+                "adjustment": 2
+              }
+            },
+            "cronicita": {
+              "cronicizzata": {
+                "adjustment": 1
+              },
+              "persistente": {
+                "adjustment": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "guilt",
+      "name": "Guilt",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "senso di colpa",
+            "colpa",
+            "autocondanna",
+            "rimorso",
+            "inadeguatezza",
+            "sentirsi in colpa",
+            "colpevolezza"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tension",
+      "name": "Tension",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "tensione",
+            "agitazione psicomotoria",
+            "irrequietezza motoria",
+            "frenesia",
+            "nervosismo motorio",
+            "tensione muscolare",
+            "acatisia",
+            "iperattività",
+            "iperprosessia"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severa": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "mannerisms_and_posturing",
+      "name": "Mannerisms and Posturing",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "manierismi",
+            "posture",
+            "stereotipie motorie",
+            "tics",
+            "bizzarrie motorie",
+            "movimenti ripetitivi",
+            "agitazione catatonica",
+            "stupor catatonico",
+            "negativismo catatonico",
+            "manierismo motorio",
+            "ecolalia catatonica",
+            "ecoprassia",
+            "catalepsia",
+            "waxy flexibility (flessibilità cerea)",
+            "postura bizzarra",
+            "tic motori",
+            "tremore",
+            "ipotonia psicogena",
+            "paralisi psicogena",
+            "crisi pseudoepilettiche",
+            "rigidità comportamentale"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "frequenza": {
+              "occasionale": {
+                "adjustment": 0
+              },
+              "frequente": {
+                "adjustment": 1
+              },
+              "costante": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grandiosity",
+      "name": "Grandiosity",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "grandiosità",
+            "delirio di grandezza",
+            "senso di superiorità",
+            "onnipotenza",
+            "idee megalomaniche",
+            "eccessiva autostima",
+            "narcisismo patologico",
+            "egocentrismo patologico",
+            "arroganza patologica",
+            "superbia patologica",
+            "atteggiamento di superiorità patologica"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "depression",
+      "name": "Depression",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "depressione",
+            "depressivo",
+            "depressiva",
+            "umore depresso",
+            "tristezza",
+            "disforia",
+            "sentirsi giù",
+            "malinconia",
+            "abbattimento",
+            "disperazione",
+            "pessimismo",
+            "autosvalutazione",
+            "pianto frequente",
+            "diminuzione appetito",
+            "perdita peso",
+            "astenia",
+            "affaticabilità",
+            "fatica cronica",
+            "diminuzione libido",
+            "disperazione futura",
+            "sfiducia futuro",
+            "perdita motivazione",
+            "perdita senso vita",
+            "reazione depressiva",
+            "fragilità emotiva",
+            "vulnerabilità emotiva",
+            "nichilismo patologico",
+            "idee nichilistiche",
+            "idee catastrofiche",
+            "idee di rovina",
+            "idee di inutilità",
+            "sentimento di vuoto",
+            "senso di solitudine patologico",
+            "sensazione di abbandono",
+            "sentimenti di rifiuto cronici",
+            "disillusione cronica",
+            "nichilismo affettivo",
+            "disinvestimento affettivo",
+            "isolamento lavorativo cronico",
+            "insoddisfazione cronica",
+            "infelicità cronica",
+            "pessimismo cronico",
+            "visione catastrofica cronica",
+            "negativismo cronico",
+            "perdita della progettualità",
+            "perdita di speranza cronica",
+            "perdita della motivazione cronica",
+            "atteggiamento fatalistico"
+          ],
+          "baseScore": 3,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "critica": {
+                "adjustment": 3
+              },
+              "severa": {
+                "adjustment": 3
+              }
+            },
+            "durata": {
+              "persistente": {
+                "adjustment": 1
+              },
+              "cronicizzata": {
+                "adjustment": 2
+              }
+            }
+          }
+        },
+        {
+          "entityTextKeywords": [
+            "crisi di pianto",
+            "pianto inconsolabile",
+            "lamenti"
+          ],
+          "baseScore": 4,
+          "modifierRules": {}
+        },
+        {
+          "entityTextKeywords": [
+            "calo ponderale",
+            "perdita di appetito",
+            "anoressia",
+            "difficoltà ad alimentarsi"
+          ],
+          "baseScore": 3,
+          "modifierRules": {}
+        },
+        {
+          "entityTextKeywords": [
+            "anedonia",
+            "perdita di interesse",
+            "mancanza di piacere",
+            "mancanza di motivazione"
+          ],
+          "baseScore": 4,
+          "modifierRules": {}
+        },
+        {
+          "entityTextKeywords": [
+            "idee suicidarie",
+            "tentativo di suicidio",
+            "pensieri di morte",
+            "ideazione suicidaria",
+            "suicidio",
+            "autolesionismo",
+            "ideazione autolesiva",
+            "comportamenti autodistruttivi",
+            "comportamenti autolesivi cronici",
+            "pensieri suicidari ricorrenti",
+            "tentativi suicidari",
+            "comportamento suicidario",
+            "comportamento autodistruttivo cronico",
+            "comportamento automutilante cronico"
+          ],
+          "baseScore": 6,
+          "modifierRules": {}
+        }
+      ]
+    },
+    {
+      "id": "hostility",
+      "name": "Hostility",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "ostilità",
+            "aggressività",
+            "irritabilità",
+            "collera",
+            "rabbia",
+            "atteggiamento provocatorio",
+            "verbosità aggressiva",
+            "scontrosità",
+            "intolleranza",
+            "violenza",
+            "irritazione",
+            "crisi di rabbia",
+            "sadismo psicologico",
+            "aggressività passiva cronica",
+            "passivo-aggressività patologica",
+            "atteggiamento tirannico",
+            "comportamento dominatore",
+            "comportamento provocatorio",
+            "atteggiamento sfidante cronico",
+            "opposizione patologica",
+            "comportamento ribelle",
+            "rapporti interpersonali patologici",
+            "ostilità interpersonale cronica",
+            "comportamento vendicativo cronico",
+            "desiderio di vendetta patologico",
+            "incapacità di perdono cronica",
+            "rancore patologico",
+            "odio cronico",
+            "comportamento intimidatorio"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "violento": {
+                "adjustment": 3
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "suspiciousness",
+      "name": "Suspiciousness",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "diffidenza",
+            "sospettosità",
+            "paranoia",
+            "idee di persecuzione",
+            "sfiducia",
+            "malfidenza",
+            "sentirsi spiato",
+            "deliri persecutori",
+            "ideazione paranoide",
+            "ipervigilanza",
+            "vissuti persecutori",
+            "atteggiamento difensivo",
+            "atteggiamenti paranoici cronici",
+            "sospettosità cronica",
+            "diffidenza cronica",
+            "atteggiamento prevenuto",
+            "idee pregiudiziali patologiche",
+            "fanatismo ideologico",
+            "idee persecutorie generalizzate",
+            "sfiducia relazionale cronica",
+            "scetticismo patologico",
+            "diffidenza patologica generalizzata"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hallucinations",
+      "name": "Hallucinations",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "allucinazioni",
+            "voci",
+            "visioni",
+            "esperienze percettive insolite",
+            "psicosi",
+            "uditive",
+            "visive",
+            "tattili",
+            "olfattive",
+            "gustative",
+            "sentire voci",
+            "vedere cose",
+            "allucinazioni uditive",
+            "voci dialoganti",
+            "voci imperative",
+            "allucinazioni visive",
+            "allucinazioni tattili",
+            "allucinazioni olfattive",
+            "allucinazioni gustative",
+            "pseudoallucinazioni",
+            "illusioni percettive",
+            "percezione alterata della realtà",
+            "distorsione percettiva",
+            "distorsione sensoriale"
+          ],
+          "baseScore": 5,
+          "modifierRules": {
+            "frequenza": {
+              "occasionale": {
+                "adjustment": 0
+              },
+              "frequente": {
+                "adjustment": 1
+              },
+              "costante": {
+                "adjustment": 2
+              }
+            },
+            "modalita": {
+              "uditive": {
+                "adjustment": 0
+              },
+              "visive": {
+                "adjustment": 0
+              },
+              "tattili": {
+                "adjustment": 0
+              },
+              "olfattive": {
+                "adjustment": 0
+              },
+              "gustative": {
+                "adjustment": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "motor_retardation",
+      "name": "Motor Retardation",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "rallentamento motorio",
+            "bradicinesia",
+            "mutacico",
+            "acinesia",
+            "ipocinesia",
+            "scarso movimento",
+            "lentezza nei movimenti",
+            "immobilità",
+            "bradipsichismo",
+            "ipomimia"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severo": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "uncooperativeness",
+      "name": "Uncooperativeness",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "non collaborazione",
+            "scarso insight",
+            "opposizione",
+            "resistenza al trattamento",
+            "rifiuto di cure",
+            "mancanza di compliance",
+            "difficoltà a collaborare",
+            "mancanza di insight",
+            "negazione sintomi",
+            "oppositività",
+            "opposizione terapeutica",
+            "mancanza di adesione terapeutica",
+            "atteggiamento passivo-aggressivo",
+            "comportamento passivo-aggressivo",
+            "evitamento responsabilità",
+            "passività patologica",
+            "masochismo psicologico",
+            "autosabotaggio",
+            "comportamenti autodistruttivi",
+            "negligenza personale",
+            "irresponsabilità cronica",
+            "condotta irresponsabile",
+            "comportamento negligente cronico",
+            "negativismo cronico",
+            "negligenza relazionale",
+            "abuso psicologico",
+            "violenza domestica psicologica",
+            "vittimizzazione patologica",
+            "complesso di inferiorità patologico",
+            "comportamento sprezzante",
+            "atteggiamento cinico cronico",
+            "cinismo patologico",
+            "incapacità di autocura cronica",
+            "incapacità di relazionarsi",
+            "relazioni conflittuali croniche",
+            "incomprensione relazionale cronica",
+            "comportamento lamentoso cronico",
+            "comportamento recriminatorio",
+            "incapacità progettuale",
+            "incapacità organizzativa",
+            "procrastinazione cronica",
+            "incapacità di pianificazione",
+            "incapacità di previsione",
+            "irresponsabilità cronica",
+            "condotta irresponsabile",
+            "comportamento negligente cronico",
+            "negligenza relazionale",
+            "incapacità relazionale cronica",
+            "comportamento oppositivo cronico",
+            "comportamento irresponsabile cronico",
+            "comportamento impulsivo cronico",
+            "comportamento a rischio cronico",
+            "promiscuità patologica cronica",
+            "comportamento sessuale a rischio cronico"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "unusual_thought_content",
+      "name": "Unusual Thought Content",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "contenuto di pensiero insolito",
+            "deliri",
+            "delusioni",
+            "idee di riferimento",
+            "idee persecutorie",
+            "pensieri bizzarri",
+            "psicosi",
+            "schizofrenia",
+            "schizofrenia residuale",
+            "psicosi schizofrenica cronicizzata",
+            "idee di colpa",
+            "idee di morte",
+            "pensieri ossessivi",
+            "pensieri compulsivi",
+            "delirio persecutorio",
+            "delirio di grandezza",
+            "delirio di riferimento",
+            "delirio erotomanico",
+            "delirio somatico",
+            "delirio religioso",
+            "gelosia patologica",
+            "delirio nichilistico",
+            "delirio ipocondriaco",
+            "ideazione paranoide",
+            "sospettosità",
+            "diffidenza",
+            "ipervigilanza",
+            "delirio mistico",
+            "delirio bizzarro",
+            "idee di influenzamento",
+            "delirio di controllo",
+            "idee di trasmissione del pensiero",
+            "idee di lettura del pensiero",
+            "ideas de inserción del pensamiento",
+            "idee di furto del pensiero",
+            "delirio di infestazione",
+            "catastrofismo",
+            "pensiero dicotomico",
+            "polarizzazione affettiva",
+            "distorsioni cognitive",
+            "bias cognitivi"
+          ],
+          "baseScore": 5,
+          "modifierRules": {
+            "gravita": {
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severa": {
+                "adjustment": 2
+              }
+            },
+            "cronicita": {
+              "cronicizzata": {
+                "adjustment": 1
+              },
+              "persistente": {
+                "adjustment": 1
+              }
+            },
+            "tipologia": {
+              "persecutorio": {
+                "adjustment": 0
+              },
+              "grandioso": {
+                "adjustment": 0
+              },
+              "di riferimento": {
+                "adjustment": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "blunted_affect",
+      "name": "Blunted Affect",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "appiattimento affettivo",
+            "affetto appiattito",
+            "monotonia dell'umore",
+            "povertà emotiva",
+            "mancanza di espressività",
+            "espressione facciale fissa",
+            "voce monocorde",
+            "affettività appiattita",
+            "emozione incongrua",
+            "emozione labile",
+            "ambivalenza affettiva",
+            "apatia emotiva",
+            "incongruenza emotiva",
+            "ottundimento affettivo",
+            "ipoaffettività",
+            "iperespressione emotiva",
+            "iporespressione emotiva",
+            "inespressività emotiva",
+            "ipercoinvolgimento emotivo",
+            "rigidità affettiva",
+            "disregolazione emotiva",
+            "mimica facciale inespressiva",
+            "monotonia vocale"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severa": {
+                "adjustment": 2
+              }
+            },
+            "durata": {
+              "persistente": {
+                "adjustment": 1
+              },
+              "cronicizzata": {
+                "adjustment": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "excitement",
+      "name": "Excitement",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "eccitamento",
+            "agitazione psicomotoria",
+            "iperattività",
+            "logorrea",
+            "pressione verbosa",
+            "fuga di idee",
+            "maniacale",
+            "ipercinetico",
+            "eloquio accelerato",
+            "mania",
+            "ipomania",
+            "ciclotimia",
+            "umore labile",
+            "labilità affettiva",
+            "euforia",
+            "ipertimia",
+            "disinibizione",
+            "comportamento disinibito",
+            "comportamento impulsivo",
+            "condotte a rischio",
+            "comportamento stravagante",
+            "promiscuità patologica cronica",
+            "comportamento sessuale a rischio cronico",
+            "comportamento impulsivo cronico",
+            "comportamento a rischio cronico"
+          ],
+          "baseScore": 4,
+          "modifierRules": {
+            "gravita": {
+              "lieve": {
+                "adjustment": 0
+              },
+              "moderata": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severa": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "disorientation",
+      "name": "Disorientation",
+      "mappings": [
+        {
+          "entityTextKeywords": [
+            "disorientato",
+            "disorientamento",
+            "confusione",
+            "deterioramento cognitivo",
+            "difficoltà di orientamento",
+            "non orientato",
+            "perdita di memoria",
+            "distorsione temporale",
+            "disturbi della memoria",
+            "difficoltà di concentrazione",
+            "disattenzione",
+            "distraibilità",
+            "indecisione",
+            "incapacità decisionale",
+            "dubbio patologico",
+            "confusione",
+            "deficit attenzione",
+            "deficit memoria breve termine",
+            "deficit memoria lungo termine",
+            "deficit memoria procedurale",
+            "deficit memoria episodica",
+            "deficit memoria semantica",
+            "difficoltà pianificazione",
+            "deficit funzioni esecutive",
+            "confabulazione",
+            "disturbi orientamento spazio-temporale",
+            "smarrimento",
+            "disorganizzazione comportamentale",
+            "disorganizzazione ambientale",
+            "inabilità nella cura personale",
+            "incapacità gestione economica",
+            "incapacità relazionale",
+            "deterioramento delle relazioni interpersonali",
+            "disturbi cognitivi",
+            "deterioramento cognitivo lieve",
+            "rigidità cognitiva",
+            "disregolazione cognitiva",
+            "alterazioni coscienza",
+            "obnubilamento",
+            "sopore",
+            "torpore",
+            "stato confusionale acuto",
+            "stato confusionale cronico",
+            "delirium",
+            "stato crepuscolare",
+            "alterazioni della vigilanza",
+            "disattenzione cronica",
+            "ipoprosexia",
+            "attenzione selettiva patologica",
+            "attenzione dispersa",
+            "disattenzione selettiva",
+            "ridotta vigilanza",
+            "ottundimento cognitivo",
+            "affaticamento mentale",
+            "saturazione mentale",
+            "disturbo dell'identità",
+            "alterazione senso del tempo",
+            "esperienza di déjà-vu patologico",
+            "esperienza di jamais-vu",
+            "flashback traumatici",
+            "rigidità comportamentale",
+            "rigidità relazionale",
+            "comportamento controllante patologico",
+            "atteggiamento manipolatorio",
+            "seduzione patologica",
+            "comportamento teatrale cronico",
+            "incapacità adattativa",
+            "disturbo adattivo cronico",
+            "maladattamento",
+            "comportamenti regressivi cronici",
+            "infantilismo patologico",
+            "evitamento responsabilità cronico",
+            "incapacità progettuale",
+            "incapacità organizzativa",
+            "procrastinazione cronica",
+            "incapacità di pianificazione",
+            "incapacità di previsione",
+            "irresponsabilità cronica",
+            "condotta irresponsabile",
+            "comportamento negligente cronico",
+            "negligenza relazionale",
+            "incapacità di mantenere lavoro stabile",
+            "instabilità economica",
+            "disoccupazione patologica",
+            "isolamento lavorativo",
+            "perdita interessi",
+            "perdita energia",
+            "disperazione futura",
+            "sfiducia futuro",
+            "perdita motivazione",
+            "perdita senso vita",
+            "trascuratezza igiene personale",
+            "trascuratezza alimentare",
+            "trascuratezza domestica",
+            "ritiro familiare",
+            "comportamento stravagante",
+            "eccessiva religiosità",
+            "fanatismo",
+            "credenze superstiziose",
+            "comportamento ritualistico",
+            "pseudofilosofia",
+            "verbosità vuota",
+            "relazioni superficiali",
+            "mimica facciale inespressiva",
+            "monotonia vocale",
+            "relazioni disfunzionali",
+            "rapporti interpersonali patologici",
+            "incapacità di risoluzione conflitti",
+            "disfunzione familiare cronica",
+            "evitamento del conflitto patologico",
+            "personalità multipla",
+            "dissociazione cronica",
+            "frammentazione identitaria",
+            "percezione alterata di sé cronica",
+            "perdita del senso di identità cronica"
+          ],
+          "baseScore": 3,
+          "modifierRules": {
+            "gravita": {
+              "moderato": {
+                "adjustment": 1
+              },
+              "grave": {
+                "adjustment": 2
+              },
+              "severo": {
+                "adjustment": 2
+              }
+            },
+            "ambito": {
+              "spaziale": {
+                "adjustment": 0
+              },
+              "temporale": {
+                "adjustment": 1
+              },
+              "personale": {
+                "adjustment": 2
+              },
+              "multiplo": {
+                "adjustment": 2
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "therapies": [
+    "inibitori selettivi della ricaptazione della serotonina",
+    "stimolazione magnetica transcranica",
+    "terapia dialettico-comportamentale",
+    "trattamento sanitario obbligatorio",
+    "terapia cognitivo-comportamentale",
+    "terapia elettroconvulsivante",
+    "riabilitazione psichiatrica",
+    "psicoterapia psicodinamica",
+    "antidepressivi triciclici",
+    "stabilizzatore dell'umore",
+    "terapia interpersonale",
+    "antipsicotico atipico",
+    "psicoterapia dinamica",
+    "ricovero psichiatrico",
+    "antipsicotico tipico",
+    "supporto psicologico",
+    "carbonato di litio",
+    "terapia familiare",
+    "terapia di gruppo",
+    "acido valproico",
+    "benzodiazepina",
+    "amitriptilina",
+    "nortriptilina",
+    "clorpromazina",
+    "carbamazepina",
+    "metilfenidato",
+    "escitalopram",
+    "clomipramina",
+    "vortioxetina",
+    "aripiprazolo",
+    "psicoterapia",
+    "fluvoxamina",
+    "venlafaxina",
+    "mirtazapina",
+    "agomelatina",
+    "idrossizina",
+    "risperidone",
+    "ziprasidone",
+    "amisulpride",
+    "aloperidolo",
+    "flufenazina",
+    "lamotrigina",
+    "atomoxetina",
+    "fluoxetina",
+    "sertralina",
+    "paroxetina",
+    "citalopram",
+    "imipramina",
+    "duloxetina",
+    "bupropione",
+    "alprazolam",
+    "clonazepam",
+    "bromazepam",
+    "olanzapina",
+    "quetiapina",
+    "lurasidone",
+    "topiramato",
+    "counseling",
+    "trazodone",
+    "lorazepam",
+    "buspirone",
+    "clozapina",
+    "valproato",
+    "zopiclone",
+    "diazepam",
+    "oxazepam",
+    "zolpidem",
+    "litio",
+    "SSRI",
+    "TCA",
+    "cbt",
+    "dbt",
+    "tso",
+    "tec",
+    "tms"
+  ],
+  "negationPrefixes": [
+    "non",
+    "nessun",
+    "assenza di",
+    "negazione di",
+    "senza",
+    "no evidenza di",
+    "nessuna traccia di",
+    "negativo per",
+    "non si osserva",
+    "non riscontrato",
+    "esclude",
+    "assente",
+    "escluso",
+    "non presente",
+    "non riferito"
+  ],
+  "negationSuffixes": [
+    "assente",
+    "negativo",
+    "escluso",
+    "non evidenziato",
+    "non riscontrato",
+    "non presente",
+    "non riferito"
+  ],
+  "terminationPhrases": [
+    "ma",
+    "tuttavia",
+    "ad eccezione di",
+    "sebbene",
+    "eccetto",
+    "anche se",
+    ".",
+    ",",
+    ";"
+  ],
+  "pseudoNegations": [
+    "nonostante",
+    "a parte",
+    "tranne",
+    "più di",
+    "meno di",
+    "difficilmente",
+    "parzialmente",
+    "quasi",
+    "potrebbe essere",
+    "sospetto per",
+    "non escludo"
+  ],
+  "modifiers": {
+    "gravita": {
+      "lieve": [
+        "lieve",
+        "moderato",
+        "scarso",
+        "minimo"
+      ],
+      "moderata": [
+        "moderato",
+        "discreto"
+      ],
+      "grave": [
+        "grave",
+        "severo",
+        "intenso",
+        "marcato",
+        "critico"
+      ],
+      "assente": [
+        "assente",
+        "non presente",
+        "nessun",
+        "zero"
+      ]
+    },
+    "cronicità": {
+      "acuto": [
+        "acuto",
+        "improvviso",
+        "recente"
+      ],
+      "cronico": [
+        "cronico",
+        "persistente",
+        "di lunga data",
+        "da anni"
+      ],
+      "in remissione": [
+        "in remissione",
+        "regredito",
+        "risolto"
+      ]
+    },
+    "stato_condizione": {
+      "controllato": [
+        "controllato",
+        "ben gestito",
+        "stabile",
+        "compensato"
+      ],
+      "non controllato": [
+        "non controllato",
+        "scompensato",
+        "instabile",
+        "aggravato"
+      ],
+      "migliorato": [
+        "migliorato",
+        "in regressione"
+      ],
+      "peggiorato": [
+        "peggiorato",
+        "in progressione",
+        "deteriorato"
+      ]
+    },
+    "frequenza": {
+      "occasionale": [
+        "occasionale",
+        "saltuario"
+      ],
+      "frequente": [
+        "frequente",
+        "ricorrente",
+        "spesso"
+      ],
+      "costante": [
+        "costante",
+        "continuo"
+      ]
+    }
+  }
+}

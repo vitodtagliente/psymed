@@ -28,7 +28,7 @@ const App = () => {
   // State for entityTextKeywords multi-select
   const [selectedKeywordsForMapping, setSelectedKeywordsForMapping] = useState([]);
   // State for interactive modifierRules editor
-  const [editingModifierRules, setEditingModifierRules] = useState({});
+  const [editingModifierRules, setEditingModifierRules] = useState({}); // FIX: Initialized useState with an empty object
   // State for baseScore input in BPRS mapping
   const [newMappingBaseScoreInput, setNewMappingBaseScoreInput] = useState(0);
 
@@ -101,6 +101,8 @@ const App = () => {
     }
   }, [selectedBPRSCategoryId, selectedMappingIndex, activeTab, jsonData]);
 
+  // Helper function to remove duplicates from an array
+  const removeDuplicates = (arr) => Array.isArray(arr) ? [...new Set(arr)] : arr;
 
   // Handle file upload
   const handleFileUpload = (event) => {
@@ -113,6 +115,26 @@ const App = () => {
           // Validate the structure of the uploaded JSON
           const expectedKeys = Object.keys(categories);
           let isValidStructure = true;
+
+          // Sanitize relevant arrays to remove duplicates when loading from file
+          if (parsedData.problems) {
+            parsedData.problems = removeDuplicates(parsedData.problems);
+          }
+          if (parsedData.negationPrefixes) {
+            parsedData.negationPrefixes = removeDuplicates(parsedData.negationPrefixes);
+          }
+          if (parsedData.negationSuffixes) {
+            parsedData.negationSuffixes = removeDuplicates(parsedData.negationSuffixes);
+          }
+          if (parsedData.terminationPhrases) {
+            parsedData.terminationPhrases = removeDuplicates(parsedData.terminationPhrases);
+          }
+          if (parsedData.pseudoNegations) {
+            parsedData.pseudoNegations = removeDuplicates(parsedData.pseudoNegations);
+          }
+          if (parsedData.therapies) {
+            parsedData.therapies = removeDuplicates(parsedData.therapies);
+          }
 
           // Check top-level keys and their types
           for (const key of expectedKeys) {
@@ -684,6 +706,7 @@ const App = () => {
           flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
           margin-bottom: 32px;
           background-color: #eff6ff;
+          border-radius: 9999px;
           padding: 4px;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
@@ -1200,7 +1223,7 @@ const App = () => {
       <div className="app-container">
         <div className="main-card">
           <h1 className="main-title">
-            Dictionary Editor
+            Editor Documenti JSON
           </h1>
 
           {/* Message display */}
