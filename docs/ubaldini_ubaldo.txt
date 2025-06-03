@@ -1,0 +1,16 @@
+entities-tokens
+- mutacico/mutacismo
+- 
+
+- consapevolezza di malattia: marca il parziale (assente/presente)
+- abuso di alcohol
+
+
+angopscia - 6
+
+
+    "aggressività verbale", mancante
+    delirante, mancante
+    mimica ipomobile
+
+    memoria (manca alterata)
