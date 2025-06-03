@@ -1,0 +1,207 @@
+const categories = {
+  // Gravità
+  "gravita": [
+    // Livello 1 (quasi assenza)
+    "assente", "inesistente", "nullo", "quasi assente", "impercettibile",
+    "trascurabile", "di entità trascurabile", "minimo", "lievemente accennato",
+    "lievemente presente", "blando", "modesto", "di entità minima", "leggermente accennato",
+    "di entità limitata", "di entità ridotta", "poco marcato", "di presenza contenuta",
+    "di gravità bassa", "di portata limitata", "di entità marginalmente aumentata",
+    "occasionalmente presente", "sporadico", "a tratti", "salvo rare occasioni",
+    "di tanto in tanto", "di entità poco rilevante", "umore lievemente depresso",
+    "ansia di lieve entità", "iritabilità lieve", "agitazione lieve", "disagio lieve",
+    "affaticabilità lieve", "affettività lievemente ridotta", "attenzione minimamente compromessa",
+    "memoria leggermente compromessa",  
+    // Livello 2 (lieve)
+    "lieve", "scarso", "di lieve intensità", "minimamente evidente", "leggermente Marcato",
+    "poco significativo", "di minima entità clinica", "di minima frequenza", "di entità lieve",
+    "poco rilevabile", "leggermente accennato", "di entità limitata", "modesto",
+    "leggermente disturbante", "di entità marginale", "periodico di lieve entità",
+    "umore leggermente fluttuante", "disturbo in forma lieve", "di entità clinica ridotta",
+    "di lieve componente emotiva", "residui isolati", "episodi saltuari", "disagi lievi",
+    "scarsa intensità clinica", "evento sporadico", "lieve spunto di ansia",
+    "lieve alterazione cognitiva",  
+    // Livello 3 (lieve-moderato / moderato)
+    "lieve-moderato", "moderato", "discreto", "presenza moderata", "moderatamente evidente",
+    "abbastanza lieve", "sostanzialmente lieve", "moderata frequenza", "marcatamente lieve",
+    "con presenza regolare", "ripetuto ma controllabile", "accentuato leggermente",
+    "evidenza moderata", "presenza saltuaria ma regolare", "di entità media",
+    "moderatamente disturbante", "di gravità media", "di impatto moderato",
+    "umore moderatamente depresso", "ansia moderata", "attacchi sporadici",
+    "fluttuazioni moderate", "pensiero moderatamente disorganizzato", "episodi ricorrenti",
+    "frequenza media", "presenza costante ma contenuta", "impulsi moderati",
+    "ritiro sociale moderato", "isolamento moderato", "irritabilità moderata",
+    "aggressività moderata", "impulsività moderata", "iperattività moderata",
+    "agitazione moderata", "disturbo del sonno moderato", "concentrazione moderatamente ridotta",
+    "memoria moderatamente compromessa", "deficit attenzione moderato", "deficit memoria moderato",
+    "dissociazione moderata", "disturbi psicosomatici moderati", "craving moderato",
+    "dipendenza moderata", "astinenza moderata",  
+    // Livello 4 (moderato-marcato / marcato)
+    "moderato-marcato", "notevole", "marcato", "di entità moderata", "presenza regolare",
+    "frequente ma non grave", "abbastanza marcato", "moderatamente grave", "segnalato frequente",
+    "intenso ma non grave", "abbastanza forte", "ripetuto", "medianamente grave", "sensibile",
+    "umore moderatamente instabile", "ansia persistente", "disturbo cognitivo medio-grave",
+    "allucinazioni intermittenti", "deliri intermittenti", "pensiero disorganizzato moderato",
+    "affetto marcato", "affettività ridotta marcata", "riduzione cognitiva marcata",
+    "labilità emotiva marcata", "iperattività moderata", "agitazione marcata",
+    "discorsi confusi mediamente", "discorsi tangenziali marcati", "ritiro sociale moderato",
+    "isolamento comportamentale", "difficoltà relazionali moderate", "irritabilità moderata",
+    "aggressività moderata", "impulsività moderata", "comportamento antisociale moderato",
+    "disturbo del sonno marcato", "insonnia moderatamente grave", "iperfagia moderata",
+    "anoressia moderata", "bulimia moderata", "astenia marcata", "affaticabilità marcata",
+    "affaticamento mentale marcato", "concentrazione marcata compromessa",
+    "memoria marcata compromessa", "deficit attenzione marcato", "deficit memoria medio-termine",
+    "confabulazione sporadica", "stranezza comportamentale", "comportamento bizzarro",
+    "paranoia moderata", "sospettosità marcata", "diffidenza marcata",
+    "delirio di riferimento intermittente", "idee ossessive moderate", "compulsioni moderate",
+    "rituali moderati", "disturbo ossessivo-controllo moderato", "disturbo adattativo moderato",
+    "dissociazione moderata", "disturbi psicosomatici moderati", "craving moderato",
+    "dipendenza moderata", "astinenza moderata", "dovere clinico marcato",  
+    // Livello 5 (marcatamente grave / grave)
+    "marcatamente grave", "di entità significativa", "molto marcato", "grave",
+    "di forte intensità", "ripetizione frequente", "persistente", "fortemente evidente",
+    "importante", "notevole gravità", "evidente e disturbante", "piuttosto grave",
+    "pesante", "forte", "umore fortemente depresso", "ansia intensa",
+    "attacchi di panico frequenti", "allucinazioni ricorrenti", "deliri persistenti",
+    "pensiero fortemente disorganizzato", "affetto quasi assente",
+    "affettività notevolmente ridotta", "concentrazione fortemente compromessa",
+    "memoria fortemente compromessa", "agitazione emotiva forte", "iperattività marcata",
+    "irritabilità forte", "aggressività elevata", "impulsività elevata",
+    "comportamento antisociale rilevante", "disturbo del sonno grave",
+    "insonnia prolungata", "iperfagia intensa", "anoressia grave", "bulimia grave",
+    "astenia intensa", "affaticabilità intensa", "affaticamento mentale grave",
+    "deficit attenzione grave", "deficit memoria grave", "confabulazione frequente",
+    "stranezza comportamentale marcata", "paranoia rilevante", "sospettosità elevata",
+    "diffidenza elevata", "delirio di riferimento frequente",
+    "idee ossessive rilevanti", "compulsioni rilevanti", "rituali intensi",
+    "disturbo ossessivo-controllo marcato", "disturbo adattativo severo",
+    "dissociazione marcata", "disturbi psicosomatici rilevanti", "craving intenso",
+    "dipendenza forte", "astinenza severa", "necessità di intervento intenso",  
+    // Livello 6 (molto grave / estremamente grave)
+    "molto grave", "estremamente grave", "di gravità elevata", "gravissimo", "drammatico",
+    "quasi critico", "altamente disturbante", "di alta intensità", "fortemente invalidante",
+    "quasi continuo", "persistenza intensa", "estremamente marcato", "di impatto significativo",
+    "rilevante gravità", "umore profondamente depresso", "ansia quasi ininterrotta",
+    "attacchi di panico quasi costanti", "allucinazioni quasi continue", "deliri quasi costanti",
+    "pensiero gravemente disorganizzato", "affetto praticamente assente", "affettività quasi nulla",
+    "concentrazione praticamente nulla", "memoria quasi azzerata", "agitazione incontrollabile",
+    "iperattività esaustiva", "irritabilità incontrollabile", "aggressività violenta",
+    "impulsività grave", "comportamento antisociale grave", "disturbo del sonno quasi assente",
+    "insonnia cronica", "iperfagia incontrollata", "anoressia pericolosa", "bulimia pericolosa",
+    "astenia paralizzante", "affaticabilità invalidante", "affaticamento mentale esaustivo",
+    "deficit attenzione totale", "deficit memoria totale", "confabulazione costante",
+    "distorsione forte della realtà", "stranezza comportamentale estrema", "paranoia quasi permanente",
+    "sospettosità estrema", "diffidenza costante", "delirio di riferimento costante",
+    "idee ossessive costanti", "compulsioni ingombranti", "rituali insormontabili",
+    "disturbo ossessivo-controllo grave", "disturbo adattativo massivo", "dissociazione intensa",
+    "disturbi psicosomatici massivi", "craving insaziabile", "dipendenza totale",
+    "astinenza acuta", "necessità di intervento psichiatrico urgente",  
+    // Livello 7 (estremo / critico / catastrofico)
+    "estremo", "critico", "catastrofico", "massimamente grave", "di gravità massima",
+    "persistente costante", "cronico severo", "completamente invalidante", "permanente",
+    "continuo", "irremovibile", "irreversibile", "impossibile gestire", "spesso continuo",
+    "completamente persistente", "totalmente grave", "umore suicida costante",
+    "ansia paralizzante", "attacchi di panico costanti", "allucinazioni ininterrotte",
+    "deliri costanti", "pensiero totalmente disorganizzato", "affetto completamente assente",
+    "affettività azzerata", "concentrazione impossibile", "memoria completamente perduta",
+    "agitazione incontrollata", "iperattività distruttiva", "irritabilità esplosiva",
+    "aggressività letale", "impulsività incontrollabile", "comportamento antisociale brutale",
+    "disturbo del sonno inesistente", "insonnia permanente", "iperfagia distruttiva",
+    "anoressia mortale", "bulimia gravissima", "astenia assoluta", "affaticabilità insopportabile",
+    "affaticamento mentale totale", "deficit attenzione irreversibile", "deficit memoria irreversibile",
+    "confabulazione continua", "distorsione irreversibile della realtà", "stranezza comportamentale massima",
+    "paranoia assoluta", "sospettosità incontrollata", "diffidenza totale", "delirio di riferimento costante",
+    "idee ossessive incontrollabili", "compulsioni inarrestabili", "rituali impossibili da interrompere",
+    "disturbo ossessivo-controllo estremo", "disturbo adattativo irreversibile", "dissociazione totale",
+    "disturbi psicosomatici catastrofici", "craving inestinguibile", "dipendenza mortale",
+    "astinenza impossibile da gestire", "necessità di intervento immediato", "catastrofe clinica",
+    "completa perdita di funzione", "compromissione vitale", "assenza di speranza clinica",
+    "perdita totale di contatto con la realtà"
+  ],
+
+  // Cronicità / Decorso
+  "cronicita": [
+    // Acuto / Insorgenza rapida
+    "acuto", "improvviso", "recente", "subitaneo", "di insorgenza rapida",
+    "di esordio recente", "di breve durata", "esordio improvviso", "compare da poco",
+    "di comparsa rapida", "inizio brusco", "picco acuto", "tempo breve dall'esordio",
+    "nuovo esordio", "emergente", "acuto di breve corso", "sintomo emergente", "scatto improvviso",
+
+    // Cronico / Persistente
+    "cronico", "persistente", "di lunga data", "da anni", "quasi continuo", "ininterrotto",
+    "permanente", "cronico severo", "cronico di vecchia data", "cronico progressivo",
+    "resistente alla terapia", "consolidato nel tempo", "cronico recidivante",
+    "stabile da lungo periodo", "remoto nel tempo", "persistente costante",
+    "incorporato nella storia", "cronicizzato", "a lungo termine", "di lunga evoluzione",
+    "consolidato cronicamente",
+
+    // Remissione / Regressione
+    "in remissione", "regredito", "risolto", "in regressione", "parzialmente rimesso",
+    "attenuato", "alleviato", "parzialmente controllato", "in miglioramento",
+    "parzialmente migliorato", "stabilizzato", "residuo lieve", "residuo minimo",
+    "in parziale regressione", "in flessione", "con segni di miglioramento",
+    "quasi scomparso", "clinicamente guarito"
+  ],
+
+  // Stato (per condizioni)
+  "stato_condizione": [
+    // Controllato / Stabilità
+    "controllato", "ben gestito", "stabile", "compensato", "in equilibrio",
+    "sotto controllo", "rimesso", "parzialmente controllato", "ben stabilizzato",
+    "ben compensato", "ben gestito dal trattamento", "in stabilità",
+    "clinicamente stabile", "remissione mantenuta", "gestione terapeutica efficace",
+    "risposta soddisfacente alla terapia", "regolarizzato", "in controllo clinico",
+    "sotto monitoraggio stabile",
+
+    // Non controllato / Scompenso
+    "non controllato", "scompensato", "instabile", "aggravato", "fuori controllo",
+    "esacerbato", "peggiorato", "in peggioramento", "ristagno sintomatologico",
+    "residuo clinico significativo", "instabilità emotiva", "instabilità umorale",
+    "difficile da gestire", "abbandono terapeutico", "riacutizzato", "non responsivo alla terapia",
+    "profondamente scompensato", "esplosione sintomatica", "riacutizzazione",
+
+    // Migliorato / Regressione clinica
+    "migliorato", "in regressione", "in miglioramento", "parzialmente migliorato",
+    "stabilizzato", "alleviato", "attenuato", "residuo lieve", "sintomo ridotto",
+    "in fase di regressione", "clinicamente migliorato", "in miglioramento progressivo",
+    "in remissione parziale", "risposta positiva al trattamento", "minore intensità",
+    "recupero in corso", "riduzione clinica", "presa in carico efficace",
+
+    // Peggiorato / Recrudescenza
+    "peggiorato", "in progressione", "deteriorato", "esacerbato", "aggravato",
+    "progressivo peggioramento", "riacutizzato", "riemergente", "in recrudescenza",
+    "riacutizzazione", "intensificato", "più marcato", "riproduzione sintomatica",
+    "peggioramento clinico", "evoluzione negativa", "progressione rapida",
+    "peggioramento progressivo", "aumentata gravità", "riapparizione marcata"
+  ],
+
+  // Frequenza (per sintomi)
+  "frequenza": [
+    // Occasionale / Saltuario
+    "occasionale", "saltuario", "sporadico", "raro", "di rado", "a tratti",
+    "una tantum", "di tanto in tanto", "a volte", "da sporadico a occasionale",
+    "salvo rare occasioni", "episodi isolati", "presenza saltuaria", "presenza intermittente",
+    "solo in certi momenti", "in rilievo sporadico", "rilievo occasionale",
+
+    // Frequente / Ricorrente
+    "frequente", "ricorrente", "spesso", "ripetuto", "regolare", "periodico",
+    "abituale", "ripetutamente", "a intervalli regolari", "presenza ricorrente",
+    "ripetuto con frequenza", "frequente ma non continuo", "continui a intervalli",
+    "fluttuazioni frequenti", "episodi frequenti", "costante ma non continuo",
+
+    // Costante / Continuo
+    "costante", "continuo", "ininterrotto", "permanente", "persistente",
+    "quasi continuo", "non cessante", "senza interruzioni", "sicuro e continuo",
+    "di durata ininterrotta", "permanente nel tempo", "persistenza costante",
+    "sempre presente", "continuo senza pausa"
+  ],
+
+  // Insight
+  "insight": [
+    "insight parziale",
+    "insight assente",
+    "insight distorto"
+  ]
+};
+
+module.exports = categories;
