@@ -1,0 +1,5 @@
+{
+  "watch": [".", "../dataset"],
+  "ext": "js,json,txt,pdf,docx",
+  "exec": "node index.js"
+}
