@@ -1,5 +1,5 @@
 {
-  "watch": [".", "../dataset"],
+  "watch": [".", "../dataset", "../data"],
   "ext": "js,json,txt,pdf,docx",
   "exec": "node index.js"
 }

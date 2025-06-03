@@ -2182,5 +2182,27 @@
         "continuo"
       ]
     }
-  }
+  },
+  "sections": [
+    {
+      "name": "Inizio Ricovero",
+      "startPattern": "INIZIO RICOVERO",
+      "inclusive": false
+    },
+    {
+      "name": "Fine Ricovero",
+      "startPattern": "FINE RICOVERO",
+      "inclusive": false
+    },
+    {
+      "name": "Dati Paziente",
+      "startPattern": "DATI PAZIENTE:",
+      "inclusive": false
+    },
+    {
+      "name": "Diagnosi",
+      "startPattern": "DIAGNOSI:",
+      "inclusive": false
+    }
+  ]
 }

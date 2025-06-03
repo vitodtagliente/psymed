@@ -1,7 +1,6 @@
 const fs = require('fs').promises; // Required for directory creation/management
 const path = require('path');
 
-const Data = require('../data/data');
 const DirectoryReader = require('./src/io/directory_reader');
 const FileReader = require('./src/io/file_reader');
 const JsonWriter = require('./src/io/json_writer');
@@ -24,6 +23,11 @@ const input_path = path.join(__dirname, '/../dataset'); // Currently configured 
  * context files will be saved.
  */
 const output_path = path.join(__dirname, '/../bin');
+
+/**
+ * @constant {object} Data - Defines the data used for processing the dataset
+ */
+const Data = require('../data/data-ita');
 
 /**
  * Processes a single document file: extracts its text content, runs it through the PsyMed NLP pipeline,
@@ -52,21 +56,21 @@ async function process(file, visualize = false)
 
     console.log("Text content extracted successfully. Running PsyMed NLP...");
     // Process the extracted content using PsyMed and the loaded Data.
-    const context = PsyMed.process(fileContent, Data);
+    const result = PsyMed.process(fileContent, Data);
     console.log("NLP processing complete.");
 
     // Extract filename and construct output JSON path.
     const baseNameWithExtension = path.basename(file);
     const fileNameWithoutExtension = path.parse(baseNameWithExtension).name;
-    const outputContextPath = path.join(output_path, `${fileNameWithoutExtension}.json`);
+    const outputResultPath = path.join(output_path, `${fileNameWithoutExtension}.json`);
 
-    // Write the processed context object to a JSON file.
-    console.log(`Saving processed context to JSON: ${outputContextPath}`);
-    const writeSuccess = await JsonWriter.write(context, outputContextPath);
+    // Write the processed result object to a JSON file.
+    console.log(`Saving processed result to JSON: ${outputResultPath}`);
+    const writeSuccess = await JsonWriter.write(result, outputResultPath);
 
     if (!writeSuccess)
     {
-        console.error(`Failed to write context to JSON file: ${outputContextPath}`);
+        console.error(`Failed to write result to JSON file: ${outputResultPath}`);
         // Continue to visualization even if JSON write fails, but log the error.
     } else
     {
@@ -77,7 +81,7 @@ async function process(file, visualize = false)
     if (visualize)
     {
         console.log("\n--- Visualization of Results ---");
-        PsyMed.visualize(context);
+        PsyMed.visualize(result);
         console.log("--- End Visualization ---");
     }
 }
