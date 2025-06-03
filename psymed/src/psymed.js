@@ -16,44 +16,43 @@ class PsyMed
 {
     /**
      * Processes a given text to extract medical entities, their relations,
-     * and calculate BPRS scores based on a provided dataset.
+     * and calculate BPRS scores based on a provided data.
      *
      * @static
      * @param {string} text - The input medical text to be processed.
-     * @param {object} dataset - An object containing the NLP dataset configuration.
-     * @param {object} dataset.language - Language-specific configurations.
-     * @param {string[]} [dataset.language.negationPrefixes=[]] - An array of words/phrases indicating negation prefixes.
-     * @param {string[]} [dataset.language.negationSuffixes=[]] - An array of words/phrases indicating negation suffixes.
-     * @param {string[]} [dataset.language.terminationPhrases=[]] - An array of phrases that terminate a negation scope.
-     * @param {string[]} [dataset.language.pseudoNegations=[]] - An array of pseudo-negation phrases.
-     * @param {object} [dataset.language.modifiers={}] - An object defining modifier patterns and their effects.
-     * @param {object[]} dataset.problems - An array of problem definitions, each containing patterns for identification.
-     * @param {object[]} dataset.therapies - An array of therapy definitions, each containing patterns for identification.
-     * @param {object[]} [dataset.relations=[]] - An array of relation definitions, specifying how entities might be related.
-     * @param {object} dataset.bprs - BPRS specific configurations and categories for scoring.
+     * @param {object} data - An object containing the NLP data configuration.
+     * @param {string[]} [data.negationPrefixes=[]] - An array of words/phrases indicating negation prefixes.
+     * @param {string[]} [data.negationSuffixes=[]] - An array of words/phrases indicating negation suffixes.
+     * @param {string[]} [data.terminationPhrases=[]] - An array of phrases that terminate a negation scope.
+     * @param {string[]} [data.pseudoNegations=[]] - An array of pseudo-negation phrases.
+     * @param {object} [data.modifiers={}] - An object defining modifier patterns and their effects.
+     * @param {object[]} data.problems - An array of problem definitions, each containing patterns for identification.
+     * @param {object[]} data.therapies - An array of therapy definitions, each containing patterns for identification.
+     * @param {object[]} [data.relations=[]] - An array of relation definitions, specifying how entities might be related.
+     * @param {object} data.bprsCategories - BPRS specific configurations and categories for scoring.
      * @returns {Context} A Context object containing all identified problems, therapies, relations,
      * and BPRS scores.
      */
-    static process(text, dataset)
+    static process(text, data)
     {
         // Prepare negation rules and modifiers to be passed down to entity finding methods.
         // These options configure how entities are identified and how their attributes (e.g., negated) are determined.
         const processOptions = {
             negationRules: {
-                negationPrefixes: dataset.language.negationPrefixes || [],
-                negationSuffixes: dataset.language.negationSuffixes || [],
-                terminationPhrases: dataset.language.terminationPhrases || [],
-                pseudoNegations: dataset.language.pseudoNegations || []
+                negationPrefixes: data.negationPrefixes || [],
+                negationSuffixes: data.negationSuffixes || [],
+                terminationPhrases: data.terminationPhrases || [],
+                pseudoNegations: data.pseudoNegations || []
             },
-            modifierDefinitions: dataset.language.modifiers || {}, // Pass the entire modifiers object for contextual analysis.
+            modifierDefinitions: data.modifiers || {}, // Pass the entire modifiers object for contextual analysis.
             modifierWindowSize: 5 // Defines the word window around an entity to look for modifiers.
         };
 
         // Map patterns once outside the loops for efficiency.
         // This converts raw pattern definitions into a more usable format for entity identification.
-        const problemPatterns = Pattern.map(dataset.problems);
-        const therapyPatterns = Pattern.map(dataset.therapies);
-        const relationDefinitions = dataset.relations || []; // Ensure relations are available, default to empty array.
+        const problemPatterns = Pattern.map(data.problems);
+        const therapyPatterns = Pattern.map(data.therapies);
+        const relationDefinitions = data.relations || []; // Ensure relations are available, default to empty array.
 
         // Initialize a new Context object to store all extracted information.
         const context = new Context();
@@ -88,8 +87,8 @@ class PsyMed
         context.redux();
 
         // Calculate BPRS Score after all problems have been identified and processed.
-        // The BPRS scores are derived from the identified problems and the BPRS dataset configuration.
-        const bprsResult = BPRS.process(context.problems, dataset.bprs);
+        // The BPRS scores are derived from the identified problems and the BPRS data configuration.
+        const bprsResult = BPRS.process(context.problems, data.bprsCategories);
         context.bprsScores = bprsResult.scores; // Store category-wise BPRS scores.
         context.totalBPRSSum = bprsResult.totalScore; // Store the total BPRS score.
 

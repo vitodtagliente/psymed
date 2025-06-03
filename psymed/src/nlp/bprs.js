@@ -8,16 +8,16 @@ class BPRS
     /**
      * Processes extracted entities and calculates BPRS scores based on a provided configuration.
      * @param {Array<Object>} entities - An array of extracted entities, each potentially having text and negation information.
-     * @param {Object} bprsOptions - The BPRS configuration containing categories and their mapping rules.
+     * @param {Object} bprsCategories - The BPRS configuration containing categories and their mapping rules.
      * @returns {Object} An object containing individual category scores and the total BPRS score.
      */
-    static process(entities, bprsOptions)
+    static process(entities, bprsCategories)
     {
         const bprsScores = {};
         let totalBPRSScore = 0;
 
         // Initialize all categories with a default score of 1 (Not present)
-        bprsOptions.categories.forEach((category) =>
+        bprsCategories.forEach((category) =>
         {
             bprsScores[category.id] = {
                 name: category.name,
@@ -34,7 +34,7 @@ class BPRS
             // Stem the entity text for robust matching
             const stemmedEntityText = Text.stemItalian(entity.text);
 
-            bprsOptions.categories.forEach((category) =>
+            bprsCategories.forEach((category) =>
             {
                 category.mappings.forEach((mapping) =>
                 {
@@ -84,7 +84,7 @@ class BPRS
         });
 
         // Calculate the final scores for each category
-        bprsOptions.categories.forEach((category) =>
+        bprsCategories.forEach((category) =>
         {
             const itemData = entitiesPerCategory.get(category.id);
             let finalScore = 1; // Default to 1 (Not present)

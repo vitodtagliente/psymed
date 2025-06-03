@@ -1,7 +1,7 @@
 const fs = require('fs').promises; // Required for directory creation/management
 const path = require('path');
 
-const DataSet = require('../data/dataset');
+const Data = require('../data/dictionary');
 const DirectoryReader = require('./src/io/directory_reader');
 const FileReader = require('./src/io/file_reader');
 const JsonWriter = require('./src/io/json_writer');
@@ -51,8 +51,8 @@ async function process(file, visualize = false)
     }
 
     console.log("Text content extracted successfully. Running PsyMed NLP...");
-    // Process the extracted content using PsyMed and the loaded DataSet.
-    const context = PsyMed.process(fileContent, DataSet);
+    // Process the extracted content using PsyMed and the loaded Data.
+    const context = PsyMed.process(fileContent, Data);
     console.log("NLP processing complete.");
 
     // Extract filename and construct output JSON path.
@@ -94,19 +94,6 @@ async function process(file, visualize = false)
  */
 async function main()
 {
-    // Generate the dictionary
-    const dic_file = path.join(__dirname, '/../data/dictionary.json');
-    await JsonWriter.write({
-        problems: DataSet.problems,
-        bprsCategories: DataSet.bprs.categories,
-        therapies: DataSet.therapies,
-        negationPrefixes: DataSet.language.negationPrefixes,
-        negationSuffixes: DataSet.language.negationSuffixes,
-        terminationPhrases: DataSet.language.terminationPhrases,
-        pseudoNegations: DataSet.language.pseudoNegations,
-        modifiers: DataSet.language.modifiers,
-    }, dic_file);
-
     console.log("Starting PsyMed Document Processor.");
     console.log(`Input Path: ${input_path}`);
     console.log(`Output Path: ${output_path}`);
