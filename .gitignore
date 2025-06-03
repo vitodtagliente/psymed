@@ -132,3 +132,6 @@ dist
 .vscode
 .vs
 .idea
+
+.dataset/
+.output/
