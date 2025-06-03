@@ -1,7 +1,7 @@
 const fs = require('fs').promises; // Required for directory creation/management
 const path = require('path');
 
-const DataSet = require('./data/dataset');
+const DataSet = require('../data/dataset');
 const DirectoryReader = require('./src/io/directory_reader');
 const FileReader = require('./src/io/file_reader');
 const JsonWriter = require('./src/io/json_writer');
@@ -17,13 +17,13 @@ const PsyMed = require('./src/psymed');
  * // For a directory:
  * // const input_path = path.join(__dirname, '/dataset');
  */
-const input_path = path.join(__dirname, '/dataset'); // Currently configured to process a directory named 'dataset'
+const input_path = path.join(__dirname, '/../dataset'); // Currently configured to process a directory named 'dataset'
 
 /**
  * @constant {string} output_path - Defines the path to the directory where processed JSON
  * context files will be saved.
  */
-const output_path = path.join(__dirname, '/output');
+const output_path = path.join(__dirname, '/../output');
 
 /**
  * Processes a single document file: extracts its text content, runs it through the PsyMed NLP pipeline,
