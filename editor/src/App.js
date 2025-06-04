@@ -1223,7 +1223,7 @@ const App = () => {
       <div className="app-container">
         <div className="main-card">
           <h1 className="main-title">
-            Editor Documenti JSON
+            PsyMed Editor
           </h1>
 
           {/* Message display */}

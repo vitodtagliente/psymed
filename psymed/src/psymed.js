@@ -1,5 +1,5 @@
 const Label = require('./label');
-const BPRS = require('./nlp/bprs');
+const BPRS = require('./algo/bprs');
 const Context = require('./nlp/context');
 const Pattern = require('./nlp/pattern');
 const Section = require('./nlp/section');
