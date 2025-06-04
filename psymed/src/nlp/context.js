@@ -49,6 +49,12 @@ class Context
          * @type {number}
          */
         this.totalBPRSSum = 0; // New property for the total BPRS sum
+
+        /**
+         * The calculated Global Assessment of Functioning (GAF) score.
+         * @type {number}
+         */
+        this.gafScore = 0; // New property for GAF score
     }
 
     /**

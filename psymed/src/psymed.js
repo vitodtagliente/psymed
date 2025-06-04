@@ -1,6 +1,7 @@
 const Label = require('./label');
 const BPRS = require('./algo/bprs');
 const Context = require('./nlp/context');
+const GAF = require('./algo/gaf');
 const Pattern = require('./nlp/pattern');
 const Section = require('./nlp/section');
 const Sentence = require('./nlp/sentence');
@@ -30,6 +31,7 @@ class PsyMed
      * @param {object[]} data.therapies - An array of therapy definitions, each containing patterns for identification.
      * @param {object[]} [data.relations=[]] - An array of relation definitions, specifying how entities might be related.
      * @param {object} data.bprsCategories - BPRS specific configurations and categories for scoring.
+     * @param {object} data.gafConfig - GAF specific configuration for scoring.
      * @returns {Context} A Context object containing all identified problems, therapies, relations,
      * and BPRS scores.
      */
@@ -97,6 +99,13 @@ class PsyMed
             context.bprsScores = bprsResult.scores; // Store category-wise BPRS scores.
             context.totalBPRSSum = bprsResult.totalScore; // Store the total BPRS score.
 
+            // Calculate GAF Score after all problems have been identified and processed.
+            // The GAF score is derived from the identified problems and the GAF data configuration.
+            if (data.gaf) 
+            { 
+                context.gafScore = GAF.process(context.problems, data.gaf);
+            }
+
             result[section.name] = context;
         }
 
@@ -147,8 +156,12 @@ class PsyMed
                 console.log(`${formattedIndex} - ${context.bprsScores[categoryId].name}: ${context.bprsScores[categoryId].score}`);
                 i++;
             }
+            
             // Logging the total BPRS score.
             console.log(`Total BPRS Score: ${context.totalBPRSSum}`);
+
+            // Logging the GAF score.
+            console.log(`GAF Score: ${context.gafScore}`);
         }
     }
 }
