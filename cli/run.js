@@ -1,5 +1,5 @@
 // run-projects.js
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
@@ -9,9 +9,9 @@ const fs = require('fs');
  * @param {string} project.path - Il percorso della sottocartella del progetto.
  * @param {string} project.command - Il comando npm da eseguire (es. 'npm start', 'npm run dev').
  */
-function runNpmCommand({ path: projectDir, command })
+function runNpmCommand({ path: projectDir, command }, run_async = true)
 {
-    const fullPath = path.join(__dirname, '..' ,projectDir);
+    const fullPath = path.join(__dirname, '..', projectDir);
 
     // Check if the project folder exists before trying to launch it
     if (!fs.existsSync(fullPath))
@@ -21,46 +21,61 @@ function runNpmCommand({ path: projectDir, command })
     }
 
     console.log(`Launching "${command}" in: ${fullPath}`);
-    const child = exec(command, { cwd: fullPath });
-
-    child.stdout.on('data', (data) =>
+    if (run_async)
     {
-        // Prepend output with project name for clarity
-        console.log(`[${projectDir}] stdout: ${data.trim()}`);
-    });
+        const child = exec(command, { cwd: fullPath });
 
-    child.stderr.on('data', (data) =>
-    {
-        // Prepend error with project name for clarity
-        console.error(`[${projectDir}] stderr: ${data.trim()}`);
-    });
+        child.stdout.on('data', (data) =>
+        {
+            // Prepend output with project name for clarity
+            console.log(`[${projectDir}] stdout: ${data.trim()}`);
+        });
 
-    child.on('close', (code) =>
-    {
-        console.log(`[${projectDir}] process terminated with code ${code}`);
-    });
+        child.stderr.on('data', (data) =>
+        {
+            // Prepend error with project name for clarity
+            console.error(`[${projectDir}] stderr: ${data.trim()}`);
+        });
 
-    child.on('error', (err) =>
+        child.on('close', (code) =>
+        {
+            console.log(`[${projectDir}] process terminated with code ${code}`);
+        });
+
+        child.on('error', (err) =>
+        {
+            console.error(`[${projectDir}] Error starting process: ${err}`);
+        });
+    }
+    else 
     {
-        console.error(`[${projectDir}] Error starting process: ${err}`);
-    });
+        try
+        {
+            const child = execSync(command, { cwd: fullPath });
+            console.log(`[${projectDir}] ${child.toString()}`);
+        }
+        catch (error)
+        {
+            console.error(`[${projectDir}]: ${error.message}`);
+        }
+    }
 }
 
 /**
  * Avvia più progetti Node.js in parallelo basandosi su una configurazione fornita.
  * @param {Array<object>} projectsConfig - Un array di oggetti configurazione progetto.
  */
-function launchAllProjects(projectsConfig)
+function launchAllProjects(projectsConfig, run_async = true)
 {
     console.log(`\n--- Starting Projects ---`);
 
     if (projectsConfig.length === 0)
     {
         console.warn("No projects defined in the configuration. The script will do nothing.");
-    } 
+    }
     else
     {
-        projectsConfig.forEach(project => runNpmCommand(project));
+        projectsConfig.forEach(project => runNpmCommand(project, run_async));
     }
 
     console.log('\n--- All processes have been started. ---');
