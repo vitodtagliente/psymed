@@ -64,6 +64,7 @@ node start.js
 
 ```
 /dataset       # Input files for processing (used by psymed)
+/data          # Input data configuration (used by psymed)
 /bin           # Output folder for generated JSON documents
 /psymed        # Document processor
 /visualizer    # Web app for JSON visualization
