@@ -1501,26 +1501,77 @@
         }
     ],
     "gaf": {
-        "initialGAF": 100,
+        "initialGAF": 90,
         "entityImpact": {
-            "_default": 5,
+            "_default": 3,
             "consapevolezza di malattia": 10,
-            "disorientato nel tempo": 15,
-            "aspetto poco curato": 8,
+            "disorientato": 15,
             "scarsa cura di se": 12,
-            "insonnia iniziale": 7,
-            "crisi di pianto": 10,
-            "calo ponderale": 8,
-            "ritiro sociale": 20
+            "insonnia": 5,
+            "crisi di pianto": 8,
+            "calo ponderale": 7,
+            "ritiro sociale": 15,
+            "aggressività verbale": 20,
+            "produzione delirante": 25,
+            "megalomanico": 18,
+            "mutacico": 15,
+            "attenzione": 5,
+            "memoria": 5,
+            "umore": 5,
+            "curato": -5,
+            "mimica": 5
         },
         "modifiersImpact": {
             "gravita": {
-                "lieve": 1.2,
-                "moderata": 1.5,
-                "severa": 2,
-                "critica": 2.5
+                "lieve": 1.0,
+                "moderata": 1.2,
+                "grave": 1.5,
+                "severa": 1.8,
+                "critica": 2.0,
+                "intenso": 1.8,
+                "violento": 2.0,
+                "totale": 2.0,
+                "completo": 2.0
+            },
+            "cronicità": {
+                "acuto": 1.0,
+                "cronico": 1.5,
+                "persistente": 1.3,
+                "cronicizzata": 1.7,
+                "ricorrente": 1.2,
+                "in remissione": 0.2
+            },
+            "frequenza": {
+                "occasionale": 0.8,
+                "frequente": 1.2,
+                "costante": 1.5,
+                "ripetuto": 1.3
+            },
+            "stato_condizione": {
+                "controllato": 0.5,
+                "non controllato": 1.5,
+                "migliorato": 0.3,
+                "peggiorato": 1.7
+            },
+            "modalita": {
+                "uditive": 1.0,
+                "visive": 1.1,
+                "tattili": 1.2,
+                "olfattive": 1.1,
+                "gustative": 1.1
+            },
+            "tipologia": {
+                "persecutorio": 1.3,
+                "grandioso": 1.1,
+                "di riferimento": 1.2
+            },
+            "ambito": {
+                "spaziale": 1.0,
+                "temporale": 1.2,
+                "personale": 1.5,
+                "multiplo": 1.8
             }
         },
-        "negationImpactFactor": 0.2
+        "negationImpactFactor": 0.05
     }
 }
