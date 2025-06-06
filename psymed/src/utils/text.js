@@ -1,6 +1,3 @@
-const sentenceBoundaryDetector = require('sbd');
-// Import WordTokenizer to split text into words
-// Import StemmerId for Italian stemming
 const natural = require('natural');
 const ItalianStemmer = natural.PorterStemmerIt;
 const WordTokenizer = natural.WordTokenizer;
@@ -95,12 +92,38 @@ class Text
      */
     static tokenizeSentences(text)
     {
-        // sbd (sentence boundary detector) is excellent for sentence tokenization.
-        return sentenceBoundaryDetector.sentences(text, {
-            newline_boundaries: true, // Treat newlines as sentence boundaries
-            sanitize: true, // Remove non-printable control characters
-            allowed_tags: [] // We don't expect HTML tags in this context
-        }).map(sentence => Text.normalize(sentence));
+        const sentenceTokenizer = new natural.SentenceTokenizer();
+
+        const regex = /([.?!,;]\s*)/; // Captures the delimiter and following whitespace
+
+        const rawSegments = text.split(regex).filter(s => s.trim().length > 0);
+
+        let combinedSegments = [];
+        for (let i = 0; i < rawSegments.length; i++)
+        {
+            const current = rawSegments[i];
+            // If the current segment is a delimiter, attach it to the previous non-delimiter segment
+            if (current.match(/^[.?!,;]\s*$/) && combinedSegments.length > 0)
+            {
+                combinedSegments[combinedSegments.length - 1] += current;
+            }
+            else
+            {
+                combinedSegments.push(current);
+            }
+        }
+
+        let finalTokenized = [];
+        combinedSegments.forEach(segment =>
+        {
+            const subSentences = sentenceTokenizer.tokenize(segment); // <--- This line uses SentenceTokenizer
+            finalTokenized = finalTokenized.concat(subSentences);
+        });
+
+        const cleanedTokenized = finalTokenized.filter(s => s && s.trim().length > 0);
+
+        // Apply your custom Text.normalize function to each resulting segment
+        return cleanedTokenized.map(sentence => Text.normalize(sentence));
     }
 }
 
