@@ -15,7 +15,18 @@
         "scarsa cura di se",
         "aggressività verbale",
         "produzione delirante",
-        "megalomanico"
+        "megalomanico",
+        "diffidenza",
+        "sospettosità",
+        "persecuzione",
+        "dispercezioni uditive",
+        "eloquio",
+        "nessi associativi allentati",
+        "angoscia",
+        "disforia",
+        "disorientata",
+        "spese",
+        "isolamento"
     ],
     "bprsCategories": [
         {
@@ -102,7 +113,7 @@
                         "fobia generalizzata",
                         "evitamento fobico"
                     ],
-                    "baseScore": 3,
+                    "baseScore": 4,
                     "modifierRules": {
                         "gravita": {
                             "lieve": {
@@ -208,7 +219,7 @@
                         "comportamento evitante generalizzato",
                         "incapacità di ascolto patologica"
                     ],
-                    "baseScore": 4,
+                    "baseScore": 2,
                     "modifierRules": {
                         "gravita": {
                             "lieve": {
@@ -322,7 +333,9 @@
                         "pensieri ripetitivi patologici",
                         "ruminazione patologica",
                         "attenzione",
-                        "memoria"
+                        "memoria",
+                        "eloquio",
+                        "nessi associativi allentati"
                     ],
                     "baseScore": 4,
                     "modifierRules": {
@@ -342,6 +355,14 @@
                                 "adjustment": 1
                             },
                             "persistente": {
+                                "adjustment": 1
+                            }
+                        },
+                        "coerenza": {
+                            "congruo": {
+                                "adjustment": -1
+                            },
+                            "incongruo": {
                                 "adjustment": 1
                             }
                         }
@@ -551,7 +572,8 @@
                         "perdita della progettualità",
                         "perdita di speranza cronica",
                         "perdita della motivazione cronica",
-                        "atteggiamento fatalistico"
+                        "atteggiamento fatalistico",
+                        "disforia"
                     ],
                     "baseScore": 3,
                     "modifierRules": {
@@ -698,6 +720,7 @@
                     "entityTextKeywords": [
                         "diffidenza",
                         "sospettosità",
+                        "persecuzione",
                         "paranoia",
                         "idee di persecuzione",
                         "sfiducia",
@@ -719,7 +742,7 @@
                         "scetticismo patologico",
                         "diffidenza patologica generalizzata"
                     ],
-                    "baseScore": 4,
+                    "baseScore": 5,
                     "modifierRules": {
                         "gravita": {
                             "lieve": {
@@ -755,6 +778,7 @@
                         "sentire voci",
                         "vedere cose",
                         "allucinazioni uditive",
+                        "dispercezioni uditive",
                         "voci dialoganti",
                         "voci imperative",
                         "allucinazioni visive",
@@ -1086,9 +1110,10 @@
                         "promiscuità patologica cronica",
                         "comportamento sessuale a rischio cronico",
                         "comportamento impulsivo cronico",
-                        "comportamento a rischio cronico"
+                        "comportamento a rischio cronico",
+                        "spese"
                     ],
-                    "baseScore": 4,
+                    "baseScore": 2,
                     "modifierRules": {
                         "gravita": {
                             "lieve": {
@@ -1102,6 +1127,14 @@
                             },
                             "severa": {
                                 "adjustment": 2
+                            }
+                        },
+                        "coerenza": {
+                            "congruo": {
+                                "adjustment": -1
+                            },
+                            "incongruo": {
+                                "adjustment": 1
                             }
                         }
                     }
@@ -1475,6 +1508,21 @@
                 "multiplo",
                 "generale",
                 "completo"
+            ]
+        },
+        "coerenza": {
+            "congruo": [
+                "congruo",
+                "adeguato",
+                "coerente",
+                "appropriato"
+            ],
+            "incongruo": [
+                "incongruo",
+                "inadeguato",
+                "incoerente",
+                "illogico",
+                "bizzarro"
             ]
         }
     },
