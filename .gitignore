@@ -135,3 +135,6 @@ dist
 
 dataset
 bin
+
+psymed/package-lock.json
+package-lock.json
